@@ -1,5 +1,5 @@
 from pages.login.password_recovery import ResetPage
-from locators.login import ResetPageLocators
+from locators.login_page_locators import ResetPageLocators
 import pytest
 import time
 
@@ -36,6 +36,7 @@ def test_password_reset_not_valid_email(driver):
 def test_password_reset_no_email_filled(driver):
     page = ResetPage(driver, url=ResetPageLocators.FORGOT_PASS_URL)
     page.open()
+    time.sleep(1) # без time sleep нестабильное поведение сайта
     page.button_reset_password().click()
     assert page.error_message() == 'This is a required field.'
 
