@@ -1,8 +1,3 @@
-# AUTH 
-
-# URLS
-
-MAIN_PAGE = 'https://magento.softwaretestingboard.com/'
 GEAR_PAGE = 'https://magento.softwaretestingboard.com/gear.html'
 
 # Categories of GEAR 
