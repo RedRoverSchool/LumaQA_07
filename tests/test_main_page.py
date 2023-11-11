@@ -7,6 +7,8 @@ class TestMainPage:
         page.open()
         page.check_visibility_the_title()
 
+        assert True
+
     def test_visibility_of_erin_recommends_widget(self, driver):
         page = MainPage(driver, url=MainPage.URL)
         page.open()
