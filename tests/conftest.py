@@ -1,6 +1,7 @@
 import pytest
 from faker import Faker
-
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 from pages.account.create_account import CreateAccountPage
 
 

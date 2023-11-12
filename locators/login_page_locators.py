@@ -20,3 +20,10 @@ class ResetPageLocators:
     SUCCESS_MESSAGE = (By.CSS_SELECTOR, "[data-ui-id=message-success] div")
     ERROR_MESSAGE = (By.CSS_SELECTOR, "#email_address-error")
     ERROR_ALERT = (By.CSS_SELECTOR, '[data-ui-id="message-error"]')
+
+class ForgotPasswordPageLocators:
+    URL = 'https://magento.softwaretestingboard.com/customer/account/forgotpassword/'
+    TEXT = 'Forgot Your Password?'
+    FORGOT_PASSWORD_TEXT = (By.CSS_SELECTOR, 'span[data-ui-id="page-title-wrapper"]')
+    EMAIL = (By.CSS_SELECTOR, 'input#email_address')
+    BUTTON_RESET_MY_PASSWORD = (By.CSS_SELECTOR, 'button.action.submit')
