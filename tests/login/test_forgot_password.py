@@ -8,5 +8,4 @@ def test_link_forgot_password(driver):
     page.open()
     page.button_forgot_password().click()
     text = page.verify_text_forgot_password()
-
     assert text == ForgotPasswordPageLocators.TEXT, f'Expected result: {text}, but got: {ForgotPasswordPageLocators.TEXT}'
