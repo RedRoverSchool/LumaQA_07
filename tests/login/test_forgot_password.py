@@ -23,3 +23,16 @@ def test_email_not_valid_format(driver, test_email):
     page.button_reset_password().click()
     error_text = page.error_email_text()
     assert error_text == ForgotPasswordPageLocators.TEXT_WRONG_EMAIL, f'Expected result: {ForgotPasswordPageLocators.TEXT_WRONG_EMAIL}, but got: {error_text}'
+
+@pytest.mark.parametrize('test_email', ["test@test.com", "test123@tes.com"])
+def test_email_valid_format(driver, test_email):
+    page = ForgotPasswordPage(driver, url=LoginPageLocators.URL)
+    page.open()
+    page.button_forgot_password().click()
+    email = page.email_fild_with_not_valid_format()
+    email.clear()
+    email.send_keys(test_email)
+    page.button_reset_password().click()
+    message = page.text_after_reset_email()
+    assert message == LoginPageLocators.RESET_PASS_MESS, f'Expected result: {LoginPageLocators.RESET_PASS_MESS}, but got: {message}'
+

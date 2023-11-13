@@ -19,3 +19,6 @@ class ForgotPasswordPage(LoginPage):
 
     def error_email_text(self) -> str:
         return self.is_visible(ForgotPasswordPageLocators.EMAIL_ERROR_MESS).text
+
+    def text_after_reset_email(self) -> str:
+        return self.is_visible(LoginPageLocators.RESET_PASS_MESS).text
