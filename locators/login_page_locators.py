@@ -24,6 +24,8 @@ class ResetPageLocators:
 class ForgotPasswordPageLocators:
     URL = 'https://magento.softwaretestingboard.com/customer/account/forgotpassword/'
     TEXT = 'Forgot Your Password?'
+    TEXT_WRONG_EMAIL= 'Please enter a valid email address (Ex: johndoe@domain.com).'
     FORGOT_PASSWORD_TEXT = (By.CSS_SELECTOR, 'span[data-ui-id="page-title-wrapper"]')
     EMAIL = (By.CSS_SELECTOR, 'input#email_address')
     BUTTON_RESET_MY_PASSWORD = (By.CSS_SELECTOR, 'button.action.submit')
+    EMAIL_ERROR_MESS = (By.CSS_SELECTOR, 'div#email_address-error')
