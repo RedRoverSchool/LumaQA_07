@@ -35,4 +35,3 @@ def test_email_valid_format(driver, test_email):
     page.button_reset_password().click()
     message = page.text_after_reset_email()
     assert message == LoginPageLocators.RESET_PASS_MESS, f'Expected result: {LoginPageLocators.RESET_PASS_MESS}, but got: {message}'
-
