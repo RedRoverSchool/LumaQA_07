@@ -49,12 +49,19 @@ class SignInPage(BasePage):
 
 class ForgotPage(BasePage):
     URL = "https://magento.softwaretestingboard.com/customer/account/forgotpassword/"
+    URL_LOGIN = 'https://magento.softwaretestingboard.com/customer/account/login/'
     URL_DONE = "https://magento.softwaretestingboard.com/customer/account/login/referer/aHR0cHM6Ly9tYWdlbnRvLnNvZnR3YXJldGVzdGluZ2JvYXJkLmNvbS9jdXN0b21lci9hY2NvdW50L2luZGV4Lw%2C%2C/"
 
     EMAIL = (By.CSS_SELECTOR, "input#email_address")
     RESET_PASSWORD = (By.CSS_SELECTOR, "button.action.submit.primary")
+    RESET_PASS_MESS = (By.CSS_SELECTOR, 'div[data-ui-id="message-success"]')
+    FORGOT_PASSWORD_TEXT = (By.CSS_SELECTOR, 'span[data-ui-id="page-title-wrapper"]')
+    EMAIL_ERROR_MESS = (By.CSS_SELECTOR, 'div#email_address-error')
+    FORGOT_PASSWORD = (By.CSS_SELECTOR, "a.action.remind")
 
     SUCCESS = "If there is an account associated with %s you will receive an email with a link to reset your password."
+    SUCCESS_FORGOT_PASS = 'Forgot Your Password?'
+    WRONG_EMAIL = 'Please enter a valid email address (Ex: johndoe@domain.com).'
 
     def __init__(self, driver, url=URL):
         super().__init__(driver, url)
@@ -70,3 +77,15 @@ class ForgotPage(BasePage):
 
     def reset_password(self):
         return self.is_visible(self.RESET_PASSWORD)
+
+    def verify_text_forgot_password(self) -> str:
+        return self.is_clickable(self.FORGOT_PASSWORD_TEXT).text
+
+    def forgot_password(self):
+        return self.is_visible(self.FORGOT_PASSWORD)
+
+    def wrong_email(self) -> str:
+        return self.is_visible(self.EMAIL_ERROR_MESS).text
+
+    def success_reset(self) -> str:
+        return self.is_visible(self.RESET_PASS_MESS).text
