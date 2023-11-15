@@ -11,7 +11,8 @@ class TestContentPopularSearchTermsPage:
         assert driver.current_url == POPULAR_SEARCH_TERMS_PAGE_URL
         assert page.get_heading().text == HEADING_TEXT, 'Heading is invisible'
 
+    def test_verify_number_of_keywords(self, driver):
+        page = PopularSearchTermsPage(driver, POPULAR_SEARCH_TERMS_PAGE_URL)
+        page.open()
 
-
-
-
+        assert len(page.get_keywords_list()) == 100

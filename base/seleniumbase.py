@@ -1,4 +1,5 @@
 from time import sleep, strftime
+from typing import List
 
 from selenium.common import TimeoutException
 from selenium.webdriver import ActionChains
@@ -180,3 +181,5 @@ class BasePage:
     def scroll_to_element(self, locator):
         ActionChains(self.driver).scroll_to_element(self.driver.find_element(*locator)).perform()
 
+    def is_visible_all_elements(self, locator: str, timeout: int = 10) -> list[WebElement]:
+        return wait(self.driver, timeout).until(EC.visibility_of_all_elements_located(locator))

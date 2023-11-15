@@ -8,4 +8,5 @@ class PopularSearchTermsPage(BasePage):
     def get_heading(self):
         return self.is_visible(self.locators.HEADING)
 
-
+    def get_keywords_list(self):
+        return self.is_visible_all_elements(self.locators.KEYWORDS_LIST)
