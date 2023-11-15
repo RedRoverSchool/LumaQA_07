@@ -17,4 +17,5 @@ class TestMainPage:
         page.open()
         page.check_clickability_of_erin_recommends_widget()
 
-
+    def test_test(self):
+        assert True
