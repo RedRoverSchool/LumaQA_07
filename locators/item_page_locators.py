@@ -22,3 +22,20 @@ class ItemPageLocators:
     LINK_CLAMBER_WATCH = (
         By.XPATH, "//div/a[@href='https://magento.softwaretestingboard.com/clamber-watch.html']")
     ADD_TO_CART_CLAMBER_WATCH_BUTTON = (By.XPATH, "//input[@value='43']/following-sibling::button")
+
+
+class ItemPageReviewsLocators:
+    URL = 'https://magento.softwaretestingboard.com/breathe-easy-tank.html'
+
+    TAB_REVIEWS = (By.CSS_SELECTOR, '#tab-label-reviews-title')
+    RATING_STAR = (By.XPATH, "(//div[@class='control review-control-vote']/label)[3]")
+    NICKNAME_FIELD = (By.CSS_SELECTOR, 'input#nickname_field')
+    SUMMARY_FIELD = (By.CSS_SELECTOR, 'input#summary_field')
+    REVIEW_FIELD = (By.CSS_SELECTOR, 'textarea#review_field')
+    SUBMIT_REVIEW_BUTTON = (By.CSS_SELECTOR, 'button.submit ')
+    SUCCESS_MESSAGE = 'You submitted your review for moderation.'
+
+
+
+
+

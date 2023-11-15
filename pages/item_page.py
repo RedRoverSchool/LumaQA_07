@@ -1,12 +1,9 @@
 import math
-
 from selenium.webdriver.common.by import By
-
-from selenium.webdriver.common.by import By
-
 from base.seleniumbase import BasePage
 from locators.base_page_locators import BasePageLocators
 from locators.item_page_locators import ItemPageLocators
+from locators.item_page_locators import ItemPageReviewsLocators
 
 
 class ItemPage(BasePage):
@@ -73,3 +70,32 @@ class ItemPageJackets(BasePage):
 
     def related_item(self):
         return self.item_count(self.RELATED_ITEM)
+
+
+class ItemReviews(BasePage):
+
+    def tab_reviews(self):
+        return self.is_clickable(ItemPageReviewsLocators.TAB_REVIEWS)
+
+    def rating_star(self):
+        return self.hold_mouse_on_element_and_click(ItemPageReviewsLocators.RATING_STAR)
+
+    def nick_name(self, value):
+        return self.clear_and_send_keys(self.is_visible(ItemPageReviewsLocators.NICKNAME_FIELD), value)
+
+    def summary(self, value):
+        return self.clear_and_send_keys(self.is_visible(ItemPageReviewsLocators.SUMMARY_FIELD), value)
+
+    def review(self, value):
+        return self.clear_and_send_keys(self.is_visible(ItemPageReviewsLocators.REVIEW_FIELD), value)
+
+    def submit_review_button(self):
+        return self.is_clickable(ItemPageReviewsLocators.SUBMIT_REVIEW_BUTTON)
+
+
+
+
+
+
+
+
