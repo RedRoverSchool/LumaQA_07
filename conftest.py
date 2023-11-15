@@ -12,8 +12,8 @@ def options():
     options.add_argument('--window-size=2880,1800')
     if environ.get('PYTHONDONTWRITEBYTECODE') == '1':
         options.add_argument('--headless')
-    options.add_argument('--no-sandbox')
-    options.add_argument('--disable-dev-shm-usage')
+        options.add_argument('--no-sandbox')
+        options.add_argument('--disable-dev-shm-usage')
     return options 
 
 
