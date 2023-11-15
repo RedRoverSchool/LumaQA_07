@@ -158,3 +158,6 @@ class BasePage:
     def item_count(self, locator):
         return len(self.driver.find_elements(*locator))
 
+    def scroll_to_element(self, locator):
+        ActionChains(self.driver).scroll_to_element(self.driver.find_element(*locator)).perform()
+
