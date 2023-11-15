@@ -19,3 +19,6 @@ class MenPage(BasePage):
         self.hold_mouse_on_element(MenPageLocators.SIDE_BAR_JACKETS)
         self.is_clickable(MenPageLocators.SIDE_BAR_JACKETS).click()
 
+    def select_bottoms_from_men_dropdown(self):
+        self.hold_mouse_on_element(MenPageLocators.MEN_DROPDOWN_BUTTON)
+        self.is_clickable(MenPageLocators.BOTTOMS_DROPDOWN_BUTTON).click()
