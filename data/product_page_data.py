@@ -36,3 +36,4 @@ TIMEOUT = 10
 MAX_TIMEOUT = 30
 
 PRODUCT_PAGE_EXAMPLE = "https://magento.softwaretestingboard.com/breathe-easy-tank.html"
+
