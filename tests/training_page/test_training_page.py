@@ -15,7 +15,7 @@ class TestTrainingPage:
         page = TrainingPage(driver, url=TrainingPage.URL)
         page.open()
         page.click_training_menu()
-        training_text = page.is_visible(TrainingPageLocators.TRANING_TEXT)
+        training_text = page.is_visible(TrainingPageLocators.TRAINING_TEXT)
         shop_by_text = page.is_visible(TrainingPageLocators.SHOP_BY_TEXT)
         video_download_text = page.is_visible(TrainingPageLocators.VIDEO_DOWNLOAD)
         compare_products_text = page.is_visible(TrainingPageLocators.COMPARE_PRODUCTS_TEXT)
@@ -27,3 +27,9 @@ class TestTrainingPage:
         assert my_wish_list_text.is_displayed(), "My Wish List text is not displayed"
 
 
+    def test_Video_Download_is_clickable(self, driver):
+        page = TrainingPage(driver, url=TrainingPage.URL)
+        page.open()
+        video_download_link = page.is_clickable(TrainingPageLocators.VIDEO_DOWNLOAD)
+        assert video_download_link.is_displayed(), "Video Download link is not displayed"
+        assert video_download_link.get_attribute('href') is not None, "Video Download link is None"

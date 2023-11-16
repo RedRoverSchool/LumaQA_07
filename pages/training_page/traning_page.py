@@ -5,4 +5,4 @@ class TrainingPage(BasePage):
     URL = "https://magento.softwaretestingboard.com/training.html"
 
     def click_training_menu(self):
-        self.is_clickable(TrainingPageLocators.TRANING_MENU).click()
+        self.is_clickable(TrainingPageLocators.TRAINING_MENU).click()
