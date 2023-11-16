@@ -1,10 +1,14 @@
-from time import strftime, sleep
+from os.path import join, abspath, dirname, pardir
+from time import strftime
 
 import pytest
 from faker import Faker
+
+from locators.login import LOGIN_PAGE, LOGAUT_PAGE
 from pages.account.create_account import CreateAccountPage
 from pages.login.login_page import LoginPage
-from locators.login import LOGIN_PAGE, LOGAUT_PAGE
+
+IMG = join(dirname(abspath(__file__)), pardir, "img")
 
 
 @pytest.fixture
@@ -31,6 +35,7 @@ def password():
 def create_account(driver):
     CreateAccountPage(driver)
 
+
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)
 def pytest_runtest_makereport(item, call):
     outcome = yield
@@ -43,7 +48,7 @@ def check_if_failed(request, driver):
     yield
     if request.node.rep_setup.passed and request.node.rep_call.failed:
         fn = f'{request.node.nodeid}_{strftime("%H_%M")}.png'.replace("/", "-").replace(":", "_")
-        driver.save_screenshot(fn)
+        driver.save_screenshot(join(IMG, fn))
 
 
 @pytest.fixture

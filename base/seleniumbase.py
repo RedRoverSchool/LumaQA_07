@@ -1,18 +1,20 @@
+from os.path import abspath, dirname, join, pardir
 from time import sleep, strftime
-from typing import List
 
 from selenium.common import TimeoutException
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait as wait
-from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.remote.webelement import WebElement
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait as wait
 
 from locators.base_page_locators import BasePageLocators
 
+IMG = join(dirname(abspath(__file__)), pardir, "img")
+
 
 class BasePage:
-    TIMEOUT = 10
+    TIMEOUT = 15
     ATTEMPTS = 10
     MESSAGE = (By.CSS_SELECTOR, "[data-ui-id^='message-']")
     MESSAGE_SUCCESS = (By.CSS_SELECTOR, "[data-ui-id='message-success']")
@@ -48,7 +50,7 @@ class BasePage:
         self.driver.execute_cdp_cmd('Network.setExtraHTTPHeaders', {'headers': {'accept-language': 'en-US,en;q=0.9'}})
         self.driver.get(self.url)
 
-    def is_visible(self, locator: tuple, timeout: int = 10) -> WebElement:
+    def is_visible(self, locator: tuple, timeout: int = TIMEOUT) -> WebElement:
         """
         Ожидает видимость элемента, заданного локатором, в течение указанного времени.
 
@@ -64,7 +66,7 @@ class BasePage:
         """
         return wait(self.driver, timeout).until(EC.visibility_of_element_located(locator))
 
-    def is_clickable(self, locator: tuple, timeout: int = 10) -> WebElement:
+    def is_clickable(self, locator: tuple, timeout: int = TIMEOUT) -> WebElement:
         """
         Ожидает, что элемент, заданный локатором, станет кликабельным в течение указанного времени.
 
@@ -87,9 +89,9 @@ class BasePage:
         ActionChains(self.driver).move_to_element(self.is_visible(locator)).perform()
 
     def hold_mouse_on_element_and_click(self, locator):
-        ActionChains(self.driver).move_to_element(self.is_visible(locator)).click().perform()
+        ActionChains(self.driver).move_to_element(self.is_visible(locator)).pause(0.5).click().perform()
 
-    def is_invisible(self, locator: tuple, timeout: int = 10) -> WebElement:
+    def is_invisible(self, locator: tuple, timeout: int = TIMEOUT) -> WebElement:
         return wait(self.driver, timeout).until(EC.invisibility_of_element_located(locator))
 
     def clear_and_send_keys(self, el: WebElement, val: str) -> None:
@@ -167,13 +169,13 @@ class BasePage:
     def is_loading(self):
         trigger = False
         while self.driver.execute_script("return document.querySelector('div.loader:not(.hidden)') != null;"):
-            sleep(0.1)
+            sleep(0.6)
             trigger = True
         if trigger:
             self.shot("loading_wait_done")
 
     def shot(self, file_name_prefix='shot'):
-        self.driver.save_screenshot(f'{file_name_prefix}_{strftime("%H%M%S")}.png')
+        self.driver.save_screenshot(join(IMG, f'{file_name_prefix}_{strftime("%H%M%S")}.png'))
 
     def item_count(self, locator):
         return len(self.driver.find_elements(*locator))
@@ -181,5 +183,5 @@ class BasePage:
     def scroll_to_element(self, locator):
         ActionChains(self.driver).scroll_to_element(self.driver.find_element(*locator)).perform()
 
-    def is_visible_all_elements(self, locator: str, timeout: int = 10) -> list[WebElement]:
+    def is_visible_all_elements(self, locator, timeout: int = TIMEOUT) -> list[WebElement]:
         return wait(self.driver, timeout).until(EC.visibility_of_all_elements_located(locator))
