@@ -13,3 +13,6 @@ PRODUCT_PAGE_URL_LIST = [
     ]
 
 TIMEOUT = 10
+
+PRODUCT_PAGE_EXAMPLE = "https://magento.softwaretestingboard.com/breathe-easy-tank.html"
+
