@@ -1,4 +1,4 @@
-from data.gear_page_urls import GEAR_PAGE
+from data.gear_page_urls import GEAR_PAGE, SPRITE_YOGA_COMPANION_KIT_PAGE
 from locators.gear_page_locators import BannerLocators
 from base.seleniumbase import BasePage
 
@@ -19,3 +19,10 @@ def test_luma_water_bottle_is_visible(driver):
     page = BasePage(driver, url=GEAR_PAGE)
     page.open()
     assert page.is_visible(BannerLocators.LUMA_WATER_BOTTLE_BANNER)
+
+def test_sprite_yoga_companion_kit_page_is_open(driver):
+    """TC_009.005.001 | Gear page > categories > Verify opening the ‘Sprite Yoga Companion Kit’ page"""
+    page = BasePage(driver, url=GEAR_PAGE)
+    page.open()
+    page.is_visible(BannerLocators.SPRITE_YOGA_COMPANION_KIT_BANNER).click()
+    assert SPRITE_YOGA_COMPANION_KIT_PAGE == GEAR_PAGE
