@@ -46,3 +46,10 @@ class TestTrainingPage:
         page.open()
         block1 = page.the_presence_of_element_located(TrainingPageLocators.BLOCK1)
         assert block1.is_displayed(), "Block1 is not displayed"
+
+    def test_Block1_text_is_displayed(self, driver):
+        page = TrainingPage(driver, url=TrainingPage.URL)
+        page.open()
+        block1_list = page.is_visible_all_elements(TrainingPageLocators.BLOCK1_TEXT)
+        expected_text = 'Motivate yourself.\nReach goals.\nBoost ambition.\nMax fitness.\nUpgrade lifestyle.'
+        assert expected_text in block1_list[0].text
