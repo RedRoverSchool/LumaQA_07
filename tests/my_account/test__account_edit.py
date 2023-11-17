@@ -150,3 +150,12 @@ class TestX(FakeData):
 
         assert page.current_url == AddressAddPage.URL_DONE
         assert page.message_success == AddressAddPage.SUCCESS
+
+    def test_change_password_negative(self, driver, create_account, password):
+        page = AccountEditPage(driver)
+        page.change_password().click()
+        page.password_current = password
+        page.save().click()
+
+        assert page.message_change_password_error() == AccountEditPage.CHANGE_PASSWORD_ERROR
+        assert page.message_confirm_change_password_error() == AccountEditPage.CHANGE_PASSWORD_ERROR
