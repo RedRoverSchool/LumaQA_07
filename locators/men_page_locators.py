@@ -6,6 +6,7 @@ class MenPageLocators:
     TOPS_DROPDOWN_BUTTON = (By.ID, "ui-id-17")
     BOTTOMS_DROPDOWN_BUTTON = (By.ID, "ui-id-18")
     TOPS_CATEGORY_LINK = (By.XPATH, "//*[@id='narrow-by-list2']/dd/ol/li[1]/a")
+    BOTTOMS_CATEGORY_LINK = (By.XPATH, "//*[@id='narrow-by-list2']/dd/ol/li[2]/a")
     SIDE_BAR_JACKETS = (By.XPATH, "//a[@id='ui-id-19']//span[contains(text(),'Jackets')]")
 
 
