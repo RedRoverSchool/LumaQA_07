@@ -34,4 +34,4 @@ class TestMenPage:
         page = MenPage(driver, MEN_PAGE)
         page.open()
         page.select_bottoms_from_sidebar_menu()
-        assert driver.current_url == BOTTOMS_MEN_PAGE
+        assert driver.current_url == MEN_BOTTOMS_PAGE
