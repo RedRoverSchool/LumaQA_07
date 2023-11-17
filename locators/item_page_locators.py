@@ -37,6 +37,22 @@ class ItemPageReviewsLocators:
     SUCCESS_MESSAGE = 'You submitted your review for moderation.'
 
 
+class ItemPageRatingLocators:
+    URL = 'https://magento.softwaretestingboard.com/women/tops-women.html'
+    URL_REVIEWS = 'https://magento.softwaretestingboard.com/antonia-racer-tank.html#reviews'
+    URL_ADD_YOUR_REVIEWS = 'https://magento.softwaretestingboard.com/antonia-racer-tank.html#review-form'
+
+    ITEM_ANTONIA_RACER_TANK = (By.CSS_SELECTOR, '[href="https://magento.softwaretestingboard.com/'
+                                                'antonia-racer-tank.html"]')
+    REVIEW_RATINGS = (By.CSS_SELECTOR, '.review-ratings .rating-result')
+    RATING_RESULT = (By.CSS_SELECTOR, '.product-reviews-summary .rating-result')
+    LINK_REVIEWS = (By.CSS_SELECTOR, '.reviews-actions .view')
+    LINK_ADD_YOUR_REVIEWS = (By.CSS_SELECTOR, '.reviews-actions .add')
+
+
+
+
+
 
 
 
