@@ -9,6 +9,7 @@ class ProductPageLocators:
     BODY = (By.XPATH, "//main[@id='maincontent']")
     FOOTER = (By.XPATH, "//footer[@class='page-footer']")
     COPYRIGHT = (By.XPATH, "//small[@class='copyright']")
+    PRODUCT_QUANTITY = (By.XPATH, '//input[@id="qty"]')
 
     # Product page body
     MAIN_INFO = (By.XPATH, "//div[@class='product-info-main']")
