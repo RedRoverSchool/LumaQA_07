@@ -1,5 +1,3 @@
-import time
-
 from pages.main_page import MainPage
 from locators.base_page_locators import BasePageLocators
 from pages.erin_recommends.erin_recommends import ErinRecommendsPage
@@ -56,7 +54,3 @@ class TestMainPage:
         page.open()
         results = page.check_images_boxes_on_page()
         assert all(results), "Not all blocks are present on the page"
-
-
-
-
