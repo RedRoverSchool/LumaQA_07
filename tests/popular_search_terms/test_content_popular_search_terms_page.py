@@ -16,3 +16,12 @@ class TestContentPopularSearchTermsPage:
         page.open()
 
         assert len(page.get_keywords_list()) == 100
+
+    def test_verify_there_are_at_least_5_keywords_with_font_size_larger_88_percent(self, driver):
+        page = PopularSearchTermsPage(driver, POPULAR_SEARCH_TERMS_PAGE_URL)
+        page.open()
+
+        keywords_filtered_list = [keyword for keyword in page.get_keywords_list()
+                                  if float(keyword.get_attribute('style').split(':')[-1].replace('%;', '')) > 88]
+
+        assert len(keywords_filtered_list) >= 5
