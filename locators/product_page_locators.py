@@ -22,6 +22,7 @@ class ProductPageLocators:
     PRODUCT_NAME = (By.XPATH, "//span[@itemprop='name']")
     RATING_BLOCK = (By.XPATH, "//div[@class = 'product-reviews-summary']")
     PRICE_BLOCK = (By.XPATH, "//span[@id = 'product-price-1812'] ")
+    AVAILABILITY_BLOCK = (By.XPATH, "//div[@class = 'stock available'] ")
 
     # class="product media"
 
