@@ -27,3 +27,6 @@ venv/
 
 #
 Dockerfile_*
+
+#Игнорировать директрорию проекта "screenshots"
+screenshots/
