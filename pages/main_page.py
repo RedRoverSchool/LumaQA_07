@@ -1,7 +1,6 @@
 from base.seleniumbase import BasePage
 from locators.base_page_locators import BasePageLocators
 from locators.item_page_locators import ItemPageLocators
-from selenium.webdriver.common.action_chains import ActionChains
 
 
 class MainPage(BasePage):
@@ -31,4 +30,11 @@ class MainPage(BasePage):
 
     def scroll_down_to_shop_performance(self):
         self.scroll_to_element(BasePageLocators.SHOP_PERFORMANCE)
+
+    def check_images_boxes_on_page(self):
+        results = []
+        for block_selector in BasePageLocators.LIST_IMAGES:
+            block_present = self.is_visible(block_selector)
+            results.append(block_present)
+        return results
 

@@ -7,7 +7,6 @@ class BasePageLocators:
     MSG_SUCCESS = (By.CSS_SELECTOR, '[data-ui-id="message-success"]')
     LOGO_TITLE = (By.CSS_SELECTOR, '[class="logo"]')
     ERIN_SECTION = (By.CSS_SELECTOR, '.home-erin')
-
     LINK_WHATS_NEW = (By.XPATH, "//a[@id='ui-id-3']")
 
     LINK_WOMEN = (By.XPATH, "//a[@id='ui-id-4']")
@@ -45,4 +44,13 @@ class BasePageLocators:
 
     SHOP_ERIN_RECOMMENDS = (By.CSS_SELECTOR, "a[class='block-promo home-erin'] span[class='action more icon']")
     SHOP_PERFORMANCE = (By.XPATH, "//span[normalize-space()='Shop Performance'][1]")
+    BLOCK_PROMO = (By.XPATH, "//*[@class='block-promo-wrapper block-promo-hp']")
 
+    BLOCK_1 = (By.XPATH, "//*[@class='block-promo home-main']")
+    BLOCK_2 = (By.XPATH, "//*[@class='block-promo home-pants']")
+    BLOCK_3 = (By.XPATH, "//*[@class='block-promo home-t-shirts']")
+    BLOCK_5 = (By.XPATH, "//*[@class='block-promo home-performance']")
+    BLOCK_6 = (By.XPATH, "//*[@class='block-promo home-eco']")
+    LIST_IMAGES = [
+        BLOCK_1, BLOCK_2, BLOCK_3, ERIN_SECTION, BLOCK_5, BLOCK_6
+    ]
