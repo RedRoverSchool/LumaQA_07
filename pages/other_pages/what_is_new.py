@@ -11,6 +11,7 @@ class NewPage(BasePage):
     TITLE_TEXT = "What's New"
     YOGA_WIDGET_TITLE = "New Luma Yoga Collection"
     YOGA_SUBTITLE_TEXT = 'The very latest yoga styles plus twists on timeless classics'
+    SENSE_RENEWAL_TITLE_TEXT = 'A sense of renewal'
 
 
     def __init__(self, driver, url=URL):

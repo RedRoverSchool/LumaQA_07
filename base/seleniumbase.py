@@ -180,11 +180,19 @@ class BasePage:
     def item_count(self, locator):
         return len(self.driver.find_elements(*locator))
 
-    def scroll_to_element(self, locator):
+    def scroll_to_element(self, locator) -> WebElement:
         ActionChains(self.driver).scroll_to_element(self.driver.find_element(*locator)).perform()
+        return self.driver.find_element(*locator)
 
     def is_visible_all_elements(self, locator, timeout: int = TIMEOUT) -> list[WebElement]:
         return wait(self.driver, timeout).until(EC.visibility_of_all_elements_located(locator))
 
     def the_presence_of_element_located(self, locator, timeout: int = TIMEOUT) -> WebElement:
         return wait(self.driver, timeout).until(EC.presence_of_element_located(locator))
+
+    def get_text(self, locatorOrWebelement) -> str:
+        if type(locatorOrWebelement) == WebElement:
+            return locatorOrWebelement.text
+        else:
+            return self.is_visible(locatorOrWebelement).text
+
