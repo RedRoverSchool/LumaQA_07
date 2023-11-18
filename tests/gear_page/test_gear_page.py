@@ -4,7 +4,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from pages.gear_page.category_page import CategoryPage
 from pages.gear_page.gear_page import GearPage
 from tests.gear_page.conftest import driver_initiation_for_test_data
-from data.gear_page_urls import BAGS_PAGE, FITNESS_EQ_PAGE, WATCHES_PAGE
+from data.gear_page_urls import BAGS_PAGE, FITNESS_EQ_PAGE, GEAR_PAGE, WATCHES_PAGE
 from locators.gear_page_locators import GearPageLocators, CategoryPageLocators
 
 total_categories = ["Bags", "Fitness Equipment", "Watches"]
@@ -41,17 +41,18 @@ class TestGearPageCategory:
             test_data.append([category_xpath, counter_xpath])
         driver.quit()
         return test_data
-
-    def test_find_and_verify_title_of_sidebar(self, gear_page_precondition):
+    
+    @pytest.mark.parametrize("any_url",[GEAR_PAGE])
+    def test_find_and_verify_title_of_sidebar(self, any_page_precondition,any_url):
         """TC_009.001.001 | Gear page > categories > Shop By Category
         Pre-conditions:
             A user is on The Gear page
-        Steps:
+        Steps:l
             Find and verify the title of the sidebar with the text 'Shop By Category'.
         Expected results:
         The title 'Shop By Category' is displayed on the sidebar."""
 
-        gear_page = gear_page_precondition
+        gear_page = any_page_precondition
         sidebar = gear_page.is_visible(locator=GearPageLocators.SIDEBAR_MAIN)
         title_1 = sidebar.find_element(*GearPageLocators.SHOP_BY_TITLE).text
         title_2 = sidebar.find_element(*GearPageLocators.CATEGORY_TITLE).text
@@ -60,12 +61,13 @@ class TestGearPageCategory:
         ), f"""
             The title of the Sidebar - '{title_1} {title_2}'.
             Expected - 'Shop By Category'"""
-
+        
+    @pytest.mark.parametrize("any_url",[GEAR_PAGE])
     @pytest.mark.parametrize(
         "category_xpath,counter_xpath", find_categories_and_counters_at_the_sidebar()
     )
     def test_find_and_verify_category_at_the_sidebar(
-        self, category_xpath, counter_xpath, gear_page_precondition
+        self, category_xpath, counter_xpath, any_page_precondition,any_url
     ):
         """TC_009.001.(002-004) | Gear page > categories > category
         Pre-conditions:
@@ -75,7 +77,7 @@ class TestGearPageCategory:
         Expected results:
             The category is visible on the sidebar."""
 
-        gear_page = gear_page_precondition
+        gear_page = any_page_precondition
         category = gear_page.is_visible(locator=category_xpath)
         category_name = category.text
         assert (
@@ -93,12 +95,13 @@ class TestGearPageCategory:
         assert (
             not category_list
         ), f"Please check compare the we have found : {founded_categories}, we should found : {total_categories}. we miss {missed_category}"
-
+    
+    @pytest.mark.parametrize("any_url",[GEAR_PAGE])
     @pytest.mark.parametrize(
         "category_xpath,counter_xpath", find_categories_and_counters_at_the_sidebar()
-    )
+    )    
     def test_find_and_verify_location_of_counter_at_the_sidebar(
-        self, gear_page_precondition, category_xpath, counter_xpath
+        self, any_page_precondition, category_xpath, counter_xpath,any_url
     ):
         """TC_009.002.(001-003) | Gear page > categories > The counter for the category
         Pre-conditions:
@@ -110,18 +113,19 @@ class TestGearPageCategory:
         Expected results:
             The quantity counter for products with the category is located near the title at the sidebar and visible.
         """
-        gear_page = gear_page_precondition
+        gear_page = any_page_precondition
         category = gear_page.is_visible(locator=category_xpath)
         category_counter = gear_page.is_visible(locator=counter_xpath)
         assert (
             category_counter.text
         ), f"We found a counter for {category.text}, but it is empty"
 
+    @pytest.mark.parametrize("any_url",[GEAR_PAGE])
     @pytest.mark.parametrize(
         "category_xpath,counter_xpath", find_categories_and_counters_at_the_sidebar()
     )
     def test_verify_category_counter_on_gear_and_category_page(
-        self, driver, wait, gear_page_precondition, category_xpath, counter_xpath
+        self, driver, wait, any_page_precondition, category_xpath, counter_xpath,any_url
     ):
         """TC_009.002.(004-006) | Gear page > categories >
         Verify the counter on the Gear Page for the category 'Bags' with counter on the Category Page
@@ -135,7 +139,7 @@ class TestGearPageCategory:
         Expected results:
             The counter on the Gear page match the counter on the respective category page.
         """
-        gear_page = gear_page_precondition
+        gear_page = any_page_precondition
         category = gear_page.is_visible(locator=category_xpath)
         category_name = category.text
         category_counter = gear_page.is_visible(locator=counter_xpath).text
