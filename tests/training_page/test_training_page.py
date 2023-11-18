@@ -40,3 +40,24 @@ class TestTrainingPage:
         page.click_video_download_link()
         expected_url = "https://magento.softwaretestingboard.com/training/training-video.html"
         assert page.current_url == expected_url, "Wrong URL"
+
+    def test_Block1_is_displayed(self, driver):
+        page = TrainingPage(driver, url=TrainingPage.URL)
+        page.open()
+        block1 = page.the_presence_of_element_located(TrainingPageLocators.BLOCK1)
+        assert block1.is_displayed(), "Block1 is not displayed"
+
+    def test_Block1_text_is_displayed(self, driver):
+        page = TrainingPage(driver, url=TrainingPage.URL)
+        page.open()
+        block1_list = page.is_visible_all_elements(TrainingPageLocators.BLOCK1_TEXT)
+        expected_text = 'Motivate yourself.\nReach goals.\nBoost ambition.\nMax fitness.\nUpgrade lifestyle.'
+        assert expected_text in block1_list[0].text
+
+    def test_Block1_size_is_correct(self, driver):
+        page = TrainingPage(driver, url=TrainingPage.URL)
+        page.open()
+        block1_img = page.the_presence_of_element_located(TrainingPageLocators.BLOCK1_IMG)
+        assert block1_img.size['height'] == TrainingPage.BLOCK1_IMG_HEIGHT and \
+               block1_img.size['width'] == TrainingPage.BLOCK1_IMG_WIDTH, "Block1 height and width is not correct"
+

@@ -4,9 +4,6 @@ from pages.erin_recommends.erin_recommends import ErinRecommendsPage
 from data.men_page_url import MEN_PAGE
 from pages.performance_fabrics.performance_fabrics import PerformanceFabricsPage
 
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.common.by import By
-
 
 class TestMainPage:
     def test_verify_visibility_the_title(self, driver):
@@ -24,7 +21,6 @@ class TestMainPage:
         page.open()
         page.check_clickability_of_erin_recommends_widget()
 
-
     def test_main_page_erin_recommends_is_clickable(self, driver):
         page = MainPage(driver, url=MainPage.URL)
         page.open()
@@ -39,14 +35,12 @@ class TestMainPage:
 
         assert driver.current_url == MEN_PAGE
 
-
     def test_main_page_erin_recommends_visible(self, driver):
         page = MainPage(driver, url=MainPage.URL)
         page.open()
         page.scroll_down_to_shop_erin_recom()
         page.is_visible(BasePageLocators.ERIN_SECTION)
         assert page.is_visible(BasePageLocators.ERIN_SECTION), "element is not visible"
-
 
     def test_main_page_shop_performance_is_clickable(self, driver):
         page = MainPage(driver, url=MainPage.URL)
@@ -55,3 +49,8 @@ class TestMainPage:
         page.is_clickable(BasePageLocators.SHOP_PERFORMANCE).click()
         assert driver.current_url == PerformanceFabricsPage.URL
 
+    def test_presence_of_image_boxes(self, driver):
+        page = MainPage(driver, url=MainPage.URL)
+        page.open()
+        results = page.check_images_boxes_on_page()
+        assert all(results), "Not all blocks are present on the page"

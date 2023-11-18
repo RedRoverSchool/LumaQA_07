@@ -185,3 +185,6 @@ class BasePage:
 
     def is_visible_all_elements(self, locator, timeout: int = TIMEOUT) -> list[WebElement]:
         return wait(self.driver, timeout).until(EC.visibility_of_all_elements_located(locator))
+
+    def the_presence_of_element_located(self, locator, timeout: int = TIMEOUT) -> WebElement:
+        return wait(self.driver, timeout).until(EC.presence_of_element_located(locator))

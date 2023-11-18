@@ -1,7 +1,7 @@
 import pytest
-from pages.gear_page.category_page import BasePage
 from locators.base_page_locators import BasePageLocators
 from data.test_urls_list import TEST_URL_LIST
+
 
 
 class TestFooterElementsVisibleClickable:
@@ -9,12 +9,12 @@ class TestFooterElementsVisibleClickable:
         "visibility",
         "clickability",
     ]
-
+    
     @pytest.mark.long
     @pytest.mark.parametrize("param", PARAMETERS)
     @pytest.mark.parametrize("any_url", TEST_URL_LIST)
     def test_check_visibility_or_clickability_of_the_title_write_for_us(
-        self, param, any_url, driver
+        self, param, any_url, driver,any_page_precondition
     ):
         """
         TC_012.001.001 | Footer > "Write for us" link > Verify visibility of the link for the page for writing an article
@@ -29,8 +29,7 @@ class TestFooterElementsVisibleClickable:
 
         expected_link = "https://softwaretestingboard.com/write-for-us/"
 
-        any_page = BasePage(driver=driver, url=any_url)
-        any_page.open()
+        any_page = any_page_precondition
         any_page.verify_visability_or_clickability_of_the_element_in_location(
             param=param,
             element_value=f"The link to the '{expected_link}'",
@@ -40,7 +39,7 @@ class TestFooterElementsVisibleClickable:
 
     @pytest.mark.long
     @pytest.mark.parametrize("any_url", TEST_URL_LIST)
-    def test_check_visibility_of_the_copyright(self, any_url, driver):
+    def test_check_visibility_of_the_copyright(self, any_url, driver,any_page_precondition):
         """
         TC_012.011.001 | Footer > Self > Verify Copyright statement in the footer
             Steps:
@@ -51,8 +50,7 @@ class TestFooterElementsVisibleClickable:
                 The copyright information is visible in the footer of current page of the website.
         """
 
-        any_page = BasePage(driver=driver, url=any_url)
-        any_page.open()
+        any_page = any_page_precondition
         any_page.verify_visability_or_clickability_of_the_element_in_location(
             param="visibility",
             element_value="The copyright information",
@@ -62,7 +60,7 @@ class TestFooterElementsVisibleClickable:
 
     @pytest.mark.long
     @pytest.mark.parametrize("any_url", TEST_URL_LIST)
-    def test_text_verification_of_the_copyright(self, any_url, driver):
+    def test_text_verification_of_the_copyright(self, any_url, driver,any_page_precondition):
         """
         TC_012.011.002 | Footer > Self > Text verification of Copyright information
             Precondition:
@@ -75,8 +73,7 @@ class TestFooterElementsVisibleClickable:
         """
 
         expected_text = "Copyright © 2013-present Magento, Inc. All rights reserved."
-        any_page = BasePage(driver=driver, url=any_url)
-        any_page.open()
+        any_page = any_page_precondition
         copyright_info = any_page.is_visible(locator=BasePageLocators.COPYRIGHT_INFO)
         assert (
             copyright_info.text == expected_text

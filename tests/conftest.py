@@ -1,6 +1,6 @@
 from os.path import join, abspath, dirname, pardir
 from time import strftime
-
+from base.seleniumbase import BasePage
 import pytest
 from faker import Faker
 
@@ -59,3 +59,9 @@ def authorization(driver):
     yield
     page = LoginPage(driver, LOGAUT_PAGE)
     page.open()
+
+@pytest.fixture
+def any_page_precondition(driver,any_url):
+    base_page = BasePage(driver=driver,url=any_url)
+    base_page.open()
+    return base_page

@@ -14,11 +14,14 @@ class AccountEditPage(BasePage):
 
     PASSWORD = (By.CSS_SELECTOR, "input#password")
     PASSWORD_CONFIRM = (By.CSS_SELECTOR, "input#password-confirmation")
+    MESSAGE_CHANGE_PASSWORD_ERROR = (By.CSS_SELECTOR, '#password-error')
+    MESSAGE_CONFIRM_CHANGE_PASSWORD_ERROR = (By.CSS_SELECTOR, '#password-confirmation-error')
 
     SAVE = (By.CSS_SELECTOR, "button.save")
 
     SUCCESS = "You saved the account information."
-    ERROR_EMAIL_IN_USE = "A customer with the same email address already exists in an associated website."
+
+    CHANGE_PASSWORD_ERROR = 'This is a required field.'
 
     def __init__(self, driver, url=URL):
         super().__init__(driver, url)
@@ -80,3 +83,11 @@ class AccountEditPage(BasePage):
 
     def save(self):
         return self.is_clickable(self.SAVE)
+
+    def message_change_password_error(self):
+        password_error_msg = self.driver.find_element(*AccountEditPage.MESSAGE_CHANGE_PASSWORD_ERROR).text
+        return password_error_msg
+
+    def message_confirm_change_password_error(self):
+        confirm_pass_error_msg = self.driver.find_element(*AccountEditPage.MESSAGE_CONFIRM_CHANGE_PASSWORD_ERROR).text
+        return confirm_pass_error_msg

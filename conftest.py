@@ -1,6 +1,5 @@
 from os import environ
 
-import inspect
 import os
 import pytest
 import time
