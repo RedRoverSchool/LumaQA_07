@@ -43,4 +43,5 @@ def test_sprite_yoga_companion_kit_page_is_open(driver):
     page = BasePage(driver, url=GEAR_PAGE)
     page.open()
     page.is_visible(BannerLocators.SPRITE_YOGA_COMPANION_KIT_BANNER).click()
-    assert SPRITE_YOGA_COMPANION_KIT_PAGE == GEAR_PAGE
+    current_page = driver.current_url
+    assert current_page == SPRITE_YOGA_COMPANION_KIT_PAGE
