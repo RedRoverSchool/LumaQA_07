@@ -21,3 +21,9 @@ class TestProductPage:
         page = ProductPage(driver, PRODUCT_PAGE_EXAMPLE)
         page.open()
         assert page.price_block_is_visible()
+
+    def add_to_block_is_visible(self, driver):
+        """TC_014.001.001"""
+        page = ProductPage(driver, PRODUCT_PAGE_EXAMPLE)
+        page.open()
+        assert page.add_to_block_is_visible()

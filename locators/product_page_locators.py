@@ -30,3 +30,4 @@ class ProductPageLocators:
 
     # class="block upsell"
 
+    ADD_TO_BLOCK = (By.XPATH, "//div[@class = 'product-addto-links']")
