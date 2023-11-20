@@ -94,6 +94,42 @@ class CheckoutPage(BasePage):
         return order_id
 
 
+class MultipleAddressesPage(CheckoutPage):
+    URL_SHIP_TO_MULTIPLE_ADDRESSES = "https://magento.softwaretestingboard.com/multishipping/checkout/addresses/"
+    URL_CREATE_SHIPPING_ADDRESS = "https://magento.softwaretestingboard.com/multishipping/checkout_address/newShipping/"
+    URL_SELECT_SHIPPING_METHOD = "https://magento.softwaretestingboard.com/multishipping/checkout/shipping/"
+
+    def presence_of_an_asterisk(self, locator):
+        label = self.is_visible(locator).text
+        script = ("return window.getComputedStyle(document.querySelector('" +
+                  locator[1] + "'),'::after').getPropertyValue('content')")
+        element = self.driver.execute_script(script)
+        return label + ' ' + element.strip('"')
+
+    def enter_a_new_address_button(self):
+        return self.is_clickable(MultipleAddressesPageLocators.ENTER_A_NEW_ADDRESS_BUTTON)
+
+    def back_to_cart_link(self):
+        return self.is_visible(MultipleAddressesPageLocators.BACK_TO_CART_LINK)
+
+    def select_shipping_method_block(self):
+        return self.is_visible(MultipleAddressesPageLocators.SELECT_SHIPPING_METHOD_BLOCK)
+
+    def update_qty_and_address_button(self):
+        return self.is_clickable(MultipleAddressesPageLocators.UPDATE_QTY_AND_ADDRESS_BUTTON)
+
+    def select_address_from_dropdown_send_to(self, first_name, last_name, street, number_of_item: int = 1):
+        return self.is_clickable((By.XPATH,
+                                  f'(//div[@class="field address"]//option[text()[contains(.,"{first_name + " " + last_name}") and contains(.,"{street}")]])[{number_of_item}]'))
+
+    def change_button_for_a_specifically_address(self, first_name, last_name, phone_number):
+        return self.is_clickable((By.XPATH,
+                                  f'//div[div[address[text()="{first_name + " " + last_name}"]/a[text()="{phone_number}"]]]//a[@class="action edit"]'))
+
+    def go_to_shipping_info_button(self):
+        return self.is_clickable(MultipleAddressesPageLocators.GO_TO_SHIPPING_INFO_BUTTON)
+
+
 class GuestShippingAddressPage(BasePage):
     WITH_REGIONS = ["AU", "BR", "CA", "CH", "CN", "CO", "EE", "ES",
                     "HR", "IN", "LT", "LV", "MX", "PL", "RO", "US",
