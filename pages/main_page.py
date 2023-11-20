@@ -55,3 +55,6 @@ class MainPage(BasePage):
             results.append(block_present)
         return results
 
+    def scroll_down_to_shop_eco_friendly(self):
+        self.scroll_to_element(BasePageLocators.SHOP_ECO_FRIENDLY)
+
