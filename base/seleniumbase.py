@@ -85,6 +85,9 @@ class BasePage:
     def header(self) -> WebElement:
         return self.is_visible(BasePageLocators.HEADER)
 
+    def wait_overlay_closed(self):
+        return self.is_invisible(BasePageLocators.OVERLAY)
+
     def hold_mouse_on_element(self, locator):
         ActionChains(self.driver).move_to_element(self.is_visible(locator)).perform()
 
