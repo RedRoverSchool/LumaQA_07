@@ -23,5 +23,21 @@ class CheckoutPageLocators:
 
     CHECKOUT_STEP_2_NEXT_BUTTON = (By.XPATH, "//*[@class='button action continue primary']")
     PLACE_ORDER_BUTTON = (By.XPATH, "//button[@title='Place Order']")
+    ADDITIONAL_ADDRESS = (By.XPATH,"//div[@class='shipping-address-item not-selected-item']")
+    CURRENT_DELIVERY_ADDRESS = (By.XPATH,"//div[@class='shipping-address-item selected-item']")
+    STATE_OF_ADDITIONAL_ADDRESS = (By.XPATH, "//div[@class='shipping-address-item not-selected-item']/span")
+    SHIP_HERE_BUTTON = (By.XPATH,"//*[text()='Ship Here']")
 
     OVERLAY = (By.XPATH, "//*[@data-role='loader']")
+
+
+class MultipleAddressesPageLocators:
+    ENTER_A_NEW_ADDRESS_BUTTON = (By.XPATH, "//button[@title='Enter a New Address']")
+    UPDATE_QTY_AND_ADDRESS_BUTTON = (By.XPATH, "//button[@class='action update']")
+    BACK_TO_CART_LINK = (By.XPATH, "//span[text()='Back to Shopping Cart']")
+    GO_TO_SHIPPING_INFO_BUTTON = (By.XPATH, "//button[@class='action primary continue']")
+    SELECT_SHIPPING_METHOD_BLOCK = (By.XPATH,"//*[@id='shipping_method_form']")
+
+    TEXT_HEADER_USER_HAS_AN_ADDRESS = 'Ship to Multiple Addresses'
+    TEXT_HEADER_USER_HAS_NO_ONE_ADDRESS = 'Create Shipping Address'
+    TEXT_SUCCESSFUL_MSG_SAVE_NEW_ADDRESS = 'You saved the address.'
