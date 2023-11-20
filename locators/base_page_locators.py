@@ -7,6 +7,7 @@ class BasePageLocators:
     MSG_SUCCESS = (By.CSS_SELECTOR, '[data-ui-id="message-success"]')
     LOGO_TITLE = (By.CSS_SELECTOR, '[class="logo"]')
     ERIN_SECTION = (By.CSS_SELECTOR, '.home-erin')
+    OVERLAY = (By.XPATH, "//*[@data-role='loader']")
 
     LINK_WHATS_NEW = (By.XPATH, "//a[@id='ui-id-3']")
 
