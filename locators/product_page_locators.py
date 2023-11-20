@@ -11,6 +11,8 @@ class ProductPageLocators:
     COPYRIGHT = (By.XPATH, "//small[@class='copyright']")
     PRODUCT_QUANTITY = (By.XPATH, '//input[@id="qty"]')
 
+
+
     # Product page body
     MAIN_INFO = (By.XPATH, "//div[@class='product-info-main']")
     PICTURES = (By.XPATH, "//div[@class='product media']")
@@ -24,6 +26,10 @@ class ProductPageLocators:
     RATING_BLOCK = (By.XPATH, "//div[@class = 'product-reviews-summary']")
     PRICE_BLOCK = (By.XPATH, "//span[@id = 'product-price-1812'] ")
     AVAILABILITY_BLOCK = (By.XPATH, "//div[@class = 'stock available'] ")
+    PRODUCT_SIZE = (By.XPATH, '//div[@option-label="XS"]')
+    PRODUCT_COLOR = (By.XPATH, '//div[@option-label="Purple"]')
+    BUTTON_ADD_TO_CART = (By.XPATH, '//button[@id="product-addtocart-button"]')
+    COUNTER_NUMBER = (By.XPATH, '//span[@class="counter-number"]')
 
     # class="product media"
 
