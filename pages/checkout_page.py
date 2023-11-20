@@ -2,11 +2,12 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 
 from base.seleniumbase import BasePage
-from locators.checkout_page_locators import CheckoutPageLocators
+from locators.checkout_page_locators import CheckoutPageLocators, MultipleAddressesPageLocators
 
 
 class CheckoutPage(BasePage):
     URL = "https://magento.softwaretestingboard.com/checkout/"
+    URL_USER_HAVE_ADDRESS = "https://magento.softwaretestingboard.com/checkout/#shipping"
 
     def email_field(self):
         return self.is_visible(CheckoutPageLocators.EMAIL_FIELD)
@@ -45,9 +46,6 @@ class CheckoutPage(BasePage):
     def step_2_next_button(self):
         return self.is_clickable(CheckoutPageLocators.CHECKOUT_STEP_2_NEXT_BUTTON)
 
-    def wait_overlay_closed(self):
-        return self.is_invisible(CheckoutPageLocators.OVERLAY)
-
     def place_order_button(self):
         return self.is_clickable(CheckoutPageLocators.PLACE_ORDER_BUTTON)
 
@@ -57,6 +55,24 @@ class CheckoutPage(BasePage):
 
     def order_number_guest(self):
         return self.is_visible(CheckoutPageLocators.ORDER_NUMBER_GUEST)
+
+    def additional_address(self):
+        return self.is_visible(CheckoutPageLocators.ADDITIONAL_ADDRESS)
+
+    def check_data_availability(self, what, where):
+        for i in what:
+            if i not in where:
+                return False
+        return True
+
+    def current_delivery_address(self):
+        return self.is_visible(CheckoutPageLocators.CURRENT_DELIVERY_ADDRESS)
+
+    def ship_here_button(self):
+        return self.is_clickable(CheckoutPageLocators.SHIP_HERE_BUTTON)
+
+    def state_of_additional_address(self):
+        return self.is_visible(CheckoutPageLocators.STATE_OF_ADDITIONAL_ADDRESS).text
 
     def fill_all_require_field_as_guest_us_shipping(self, state, email, firstname, lastname, street_1, city, postcode,
                                                     phone_number):
