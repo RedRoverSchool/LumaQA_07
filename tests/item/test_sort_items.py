@@ -6,7 +6,8 @@ def test_sort_items_by_product_name(driver):
     page = SortItemsByProduct(driver, url=SortItemsLocators.URL)
     page.open()
     page.sort_select().select_by_value('name')
-    assert page.current_url == SortItemsByProduct.URL_SORTED_BY_NAME
+
+    assert page.wait_url_redirection(SortItemsByProduct.URL_SORTED_BY_NAME)
     assert page.sort_direction().get_attribute('data-value') == 'desc'
     res = []
     while page.paging_button_next_visible():
