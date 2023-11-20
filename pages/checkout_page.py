@@ -85,6 +85,15 @@ class CheckoutPage(BasePage):
         self.postcode_field().send_keys(postcode)
         self.phone_number_field().send_keys(phone_number)
 
+    def fill_invalid_data_as_guest_us_shipping(self):
+        self.email_field().send_keys('123')
+        self.first_name_field().send_keys(' ')
+        self.last_name_field().send_keys(' ')
+        self.street_address_1_field().send_keys(' ')
+        self.city_field().send_keys(' ')
+        self.postcode_field().send_keys(' ')
+        self.phone_number_field().send_keys(' ')
+
     def full_guest_place_order_us_address_flat_shipping(self, state, email, firstname, lastname, street_1, city,
                                                         postcode,
                                                         phone_number) -> str:
@@ -171,7 +180,11 @@ class GuestShippingAddressPage(BasePage):
 
     BUTTON_NEXT = (By.CSS_SELECTOR, "button.continue")
 
-    LD_PAYMENT_METHOD = (By.CSS_SELECTOR, "li.checkout-payment-method")
+    # LD_PAYMENT_METHOD = (By.CSS_SELECTOR, "li.checkout-payment-method")
+
+    SHIPPING_METHOD = (By.CSS_SELECTOR, ".table-checkout-shipping-method > tbody > tr")
+    LOADER = (By.CSS_SELECTOR, "div.loader")
+    LOADER_ONE = (By.XPATH, "//*[@data-role='loader']")
 
     def __init__(self, driver, url=URL):
         super().__init__(driver, url)
@@ -282,5 +295,15 @@ class GuestShippingAddressPage(BasePage):
         Select(self.is_clickable(self.COUNTRY)).select_by_value(val)
 
     def button_next(self):
-        self.is_invisible(self.LD_PAYMENT_METHOD)
+        self.available()
         return self.is_clickable(self.BUTTON_NEXT)
+
+    def shipping_method(self):
+        self.available()
+        return self.is_clickable(self.SHIPPING_METHOD)
+
+    def available(self):
+        return self.is_invisible(self.LOADER)
+
+    def wait_close_loader_one(self):
+        return self.is_invisible(self.LOADER_ONE)

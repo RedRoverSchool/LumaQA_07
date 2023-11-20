@@ -1,16 +1,12 @@
-from os.path import join, abspath, dirname, pardir
-from time import strftime
-
 import pytest
 from faker import Faker
 
+from base.seleniumbase import BasePage
 from locators.login import LOGIN_PAGE, LOGAUT_PAGE
 from pages.account.create_account import CreateAccountPage
 from pages.item_page import ItemPage
 from pages.login.login_page import LoginPage
 from pages.my_account.address_book_page import AddressBookPage
-
-IMG = join(dirname(abspath(__file__)), pardir, "img")
 
 
 @pytest.fixture
@@ -77,21 +73,6 @@ def add_first_address_in_account(driver, state, first_name, last_name, phone_num
     page.add_new_address(state, first_name, last_name, phone_number, street_address, city, postcode)
 
 
-@pytest.hookimpl(tryfirst=True, hookwrapper=True)
-def pytest_runtest_makereport(item, call):
-    outcome = yield
-    rep = outcome.get_result()
-    setattr(item, "rep_" + rep.when, rep)
-
-
-@pytest.fixture(autouse=True)
-def check_if_failed(request, driver):
-    yield
-    if request.node.rep_setup.passed and request.node.rep_call.failed:
-        fn = f'{request.node.nodeid}_{strftime("%H_%M")}.png'.replace("/", "-").replace(":", "_")
-        driver.save_screenshot(join(IMG, fn))
-
-
 @pytest.fixture
 def authorization(driver):
     page = LoginPage(driver, LOGIN_PAGE)
@@ -100,3 +81,10 @@ def authorization(driver):
     yield
     page = LoginPage(driver, LOGAUT_PAGE)
     page.open()
+
+
+@pytest.fixture
+def any_page_precondition(driver, any_url):
+    base_page = BasePage(driver=driver, url=any_url)
+    base_page.open()
+    return base_page

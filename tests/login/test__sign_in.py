@@ -1,3 +1,5 @@
+import time
+
 from data.fake_data import FakeData
 from locators.login_page_locators import LoginPageLocators
 from pages.account.create_account import CreateAccountPage

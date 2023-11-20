@@ -30,3 +30,8 @@ class TestMenPage:
         page.select_bottoms_from_men_dropdown()
         assert driver.current_url == MEN_BOTTOMS_PAGE
 
+    def test_redirect_to_tops_men_page_from_bottoms_category(self, driver):
+        page = MenPage(driver, MEN_PAGE)
+        page.open()
+        page.select_bottoms_from_sidebar_menu()
+        assert driver.current_url == MEN_BOTTOMS_PAGE

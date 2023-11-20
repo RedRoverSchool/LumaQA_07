@@ -1,10 +1,9 @@
 from pages.main_page import MainPage
 from locators.base_page_locators import BasePageLocators
 from pages.erin_recommends.erin_recommends import ErinRecommendsPage
-from data.men_page_url import MEN_PAGE
+from data.men_page_url import MEN_PAGE, TOPS_MEN_PAGE
+from pages.performance_fabrics.performance_fabrics import PerformanceFabricsPage
 
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.common.by import By
 
 
 class TestMainPage:
@@ -23,13 +22,11 @@ class TestMainPage:
         page.open()
         page.check_clickability_of_erin_recommends_widget()
 
-
     def test_main_page_erin_recommends_is_clickable(self, driver):
         page = MainPage(driver, url=MainPage.URL)
         page.open()
         page.scroll_down_to_shop_erin_recom()
         page.is_clickable(BasePageLocators.SHOP_ERIN_RECOMMENDS).click()
-
         assert driver.current_url == ErinRecommendsPage.URL
 
     def test_redirect_men_page_by_clicking_men_btn(self, driver):
@@ -38,3 +35,35 @@ class TestMainPage:
         page.men_btn_catalog().click()
 
         assert driver.current_url == MEN_PAGE
+
+    def test_select_tops_from_men_dropdown_menu(self, driver):
+        page = MainPage(driver, url=MainPage.URL)
+        page.open()
+        page.select_tops_from_mens_dropdown_menu()
+        assert page.visibility_of_men_tops_secondary_dropdown_menu(), "element is not visible"
+
+    def test_select_bottoms_from_men_dropdown_menu(self, driver):
+        page = MainPage(driver, url=MainPage.URL)
+        page.open()
+        page.select_bottoms_from_mens_dropdown_menu()
+        assert page.visibility_of_men_bottoms_secondary_dropdown_menu(), "element is not visible"
+
+    def test_main_page_erin_recommends_visible(self, driver):
+        page = MainPage(driver, url=MainPage.URL)
+        page.open()
+        page.scroll_down_to_shop_erin_recom()
+        page.is_visible(BasePageLocators.ERIN_SECTION)
+        assert page.is_visible(BasePageLocators.ERIN_SECTION), "element is not visible"
+
+    def test_main_page_shop_performance_is_clickable(self, driver):
+        page = MainPage(driver, url=MainPage.URL)
+        page.open()
+        page.scroll_down_to_shop_performance()
+        page.is_clickable(BasePageLocators.SHOP_PERFORMANCE).click()
+        assert driver.current_url == PerformanceFabricsPage.URL
+
+    def test_presence_of_image_boxes(self, driver):
+        page = MainPage(driver, url=MainPage.URL)
+        page.open()
+        results = page.check_images_boxes_on_page()
+        assert all(results), "Not all blocks are present on the page"

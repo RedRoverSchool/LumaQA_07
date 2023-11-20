@@ -6,6 +6,8 @@ class BasePageLocators:
     MSG_ERROR = (By.CSS_SELECTOR, '[data-ui-id="message-error"]')
     MSG_SUCCESS = (By.CSS_SELECTOR, '[data-ui-id="message-success"]')
     LOGO_TITLE = (By.CSS_SELECTOR, '[class="logo"]')
+    LINK_HEADER_SIGN_IN = (By.XPATH, "//header[@class='page-header']//child::a[contains(text(), 'Sign In')]")
+    LINK_HEADER_CREATE_ACCOUNT = (By.XPATH, "//header[@class='page-header']//child::a[contains(text(), 'Create an Account')]")
     ERIN_SECTION = (By.CSS_SELECTOR, '.home-erin')
     OVERLAY = (By.XPATH, "//*[@data-role='loader']")
 
@@ -41,8 +43,29 @@ class BasePageLocators:
 
     LINK_SALE = (By.XPATH, "//*[@id='ui-id-8']")
 
-    WRITE_FOR_US_LINK = (By.XPATH,'//footer//a[@href="https://softwaretestingboard.com/write-for-us/"]')
+    LINK_WRITE_FOR_US = (By.XPATH, '//footer//a[@href="https://softwaretestingboard.com/write-for-us/"]')
+    LINK_SUBSCRIBE_YO_OUR_MAILING_LIST = (By.XPATH, '//footer//a[@href="https://softwaretestingboard.com/subscribe/"]')
+    LINK_CONTACT_US = (By.XPATH, '//footer//a[@href="https://softwaretestingboard.com/contact/"]')
+    LINK_HIRE = (By.XPATH, '//footer//a[@href="https://adeunqa.com"]')
+    LINK_SEARCH_TERMS = (By.XPATH, '//footer//a[@href="https://magento.softwaretestingboard.com/search/term/popular/"]')
+    LINK_PRIVACY_AND_COOKIE_POLICY = (By.XPATH, '//footer//a[@href="https://magento.softwaretestingboard.com/privacy-policy-cookie-restriction-mode/"]')
+    LINK_ADVANCED_SEARCH = (By.XPATH, '//footer//a[@href="https://magento.softwaretestingboard.com/catalogsearch/advanced/"]')
+    LINK_ORDERS_AND_RETURNS = (By.XPATH, '//footer//a[@href="https://magento.softwaretestingboard.com/sales/guest/form/"]')
+
+
+
     COPYRIGHT_INFO = (By.XPATH,"//footer/following-sibling::*[@class='copyright']")
 
     SHOP_ERIN_RECOMMENDS = (By.CSS_SELECTOR, "a[class='block-promo home-erin'] span[class='action more icon']")
+    SHOP_PERFORMANCE = (By.XPATH, "//span[normalize-space()='Shop Performance'][1]")
+    BLOCK_PROMO = (By.XPATH, "//*[@class='block-promo-wrapper block-promo-hp']")
 
+    BLOCK_1 = (By.XPATH, "//*[@class='block-promo home-main']")
+    BLOCK_2 = (By.XPATH, "//*[@class='block-promo home-pants']")
+    BLOCK_3 = (By.XPATH, "//*[@class='block-promo home-t-shirts']")
+    BLOCK_5 = (By.XPATH, "//*[@class='block-promo home-performance']")
+    BLOCK_6 = (By.XPATH, "//*[@class='block-promo home-eco']")
+    LIST_IMAGES = [
+        BLOCK_1, BLOCK_2, BLOCK_3, ERIN_SECTION, BLOCK_5, BLOCK_6
+    ]
+    SHOP_NEW_YOGA = (By.XPATH, "//span[@class='action more button']")

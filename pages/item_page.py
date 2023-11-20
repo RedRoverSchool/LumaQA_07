@@ -4,7 +4,7 @@ from base.seleniumbase import BasePage
 from locators.base_page_locators import BasePageLocators
 from locators.item_page_locators import ItemPageLocators
 from locators.item_page_locators import ItemPageReviewsLocators
-
+from locators.item_page_locators import ItemPageRatingLocators
 
 class ItemPage(BasePage):
     URL_DRIVEN_BACKPACK = "https://magento.softwaretestingboard.com/driven-backpack.html"
@@ -94,6 +94,30 @@ class ItemReviews(BasePage):
 
     def block_customer_reviews(self):
         return self.is_visible(ItemPageLocators.BLOCK_CUSTOMER_REVIEWS)
+
+
+class ItemRatingBlock(BasePage):
+    def item_antonia_racer_tank(self):
+        return self.is_clickable(ItemPageRatingLocators.ITEM_ANTONIA_RACER_TANK)
+
+    def block_customer_reviews(self):
+        return self.is_visible(ItemPageLocators.BLOCK_CUSTOMER_REVIEWS)
+
+    def bar_stars(self):
+        return int(self.is_visible(ItemPageRatingLocators.RATING_RESULT).get_attribute('title')[:-1])
+
+    def bar_stars_contents(self):
+        lst = self.driver.find_elements(*ItemPageRatingLocators.REVIEW_RATINGS)
+        return math.ceil(sum([int(x.get_attribute('title')[:-1]) for x in lst]) / len(lst))
+
+    def link_reviews(self):
+        return self.is_visible(ItemPageRatingLocators.LINK_REVIEWS)
+
+    def link_add_your_reviews(self):
+        return self.is_visible(ItemPageRatingLocators.LINK_ADD_YOUR_REVIEWS)
+
+
+
 
 
 
