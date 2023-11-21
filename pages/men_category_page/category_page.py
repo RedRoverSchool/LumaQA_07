@@ -30,15 +30,16 @@ class MenCategoryPage(BasePage):
 
         return box_property == 'rgba(0, 0, 0, 0.3) 3px 4px 4px 0px'
 
-    def is_options_displayed(self) -> bool:
+    def get_product_options(self) -> dict:
         """
-        Returns True if all product options are displayed on the page,
-        otherwise False.
+        Returns a dictionary where:
+            {'element name': WebElement, ...}
         """
-        options = [
-            self.driver.find_element(*MCL.ADD_TO_CART).is_displayed(),
-            self.driver.find_element(*MCL.ADD_TO_WISH_LIST).is_displayed(),
-            self.driver.find_element(*MCL.ADD_TO_COMPARE).is_displayed()
-        ]
 
-        return all(options)
+        options = {
+            'add_to_cart': self.driver.find_element(*MCL.ADD_TO_CART),
+            'add_to_wish_list': self.driver.find_element(*MCL.ADD_TO_WISH_LIST),
+            'add_to_compare': self.driver.find_element(*MCL.ADD_TO_COMPARE)
+        }
+
+        return options

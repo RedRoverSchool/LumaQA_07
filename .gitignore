@@ -26,6 +26,7 @@ venv/
 *.iml
 
 #
+x/
 Dockerfile_*
 
 #Игнорировать директрорию проекта "screenshots"

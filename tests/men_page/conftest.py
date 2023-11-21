@@ -17,3 +17,16 @@ def page_with_hs_filter(driver) -> MenCategoryPage:
 
     return page
 
+
+@pytest.fixture
+def page_with_tees_filter(driver) -> MenCategoryPage:
+    """
+    Returns the open MenCategoryPage
+    with the "Tees" filter on it.
+
+    """
+
+    page = MenCategoryPage(driver, url=mp_url.TEES_FILTER)
+    page.open()
+
+    return page
