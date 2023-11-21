@@ -46,8 +46,6 @@ class CollectionPage(BasePage):
     def banner_subtitle(self) -> str:
         return self.is_visible(self.BANNER_SUBTITLE).text
 
-    def scroll_page(self):
-        return self.page_down()
 
     def bruno_title(self) -> str:
         return self.is_visible(self.BRUNO_TITLE).text
