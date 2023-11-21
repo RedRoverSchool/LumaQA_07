@@ -1,0 +1,2 @@
+# block content "Your Choices Regarding Use Of The Information We Collect"
+YOUR_CHOICES_REGARDING_USE_OF_THE_INFORMATION_WE_COLLECT_CONTENT_LOCATOR = "//*[preceding::h2[text()='Your Choices Regarding Use Of The Information We Collect']][following::h2[text()='Your California Privacy Rights']]"
