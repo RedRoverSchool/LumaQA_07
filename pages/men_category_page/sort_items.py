@@ -7,6 +7,7 @@ from locators.sort_items_locators import SortItemsLocators, ShowItemsPerPageLoca
 class SortItemsByProduct(BasePage):
 
     URL_SORTED_BY_NAME = "https://magento.softwaretestingboard.com/men/tops-men.html?product_list_order=name"
+    URL_SORTED_BY_PRICE = "https://magento.softwaretestingboard.com/men/tops-men.html?product_list_order=price"
 
     def sort_select(self):
         return Select(self.is_clickable(SortItemsLocators.SORT_SELECT))

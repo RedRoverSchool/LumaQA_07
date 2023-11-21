@@ -9,7 +9,7 @@ def test_sort_items_by_product_name(driver):
     page.open()
     page.sort_select().select_by_value('name')
 
-    assert page.wait_url_redirection(SortItemsByProduct.URL_SORTED_BY_NAME)
+    assert page.wait_url_redirection(SortItemsByProduct.URL_SORTED_BY_NAME,30)
     assert page.sort_direction().get_attribute('data-value') == 'desc'
     res = []
     while page.paging_button_next_visible():
@@ -26,7 +26,7 @@ def test_sort_items_by_price(driver):
     page.open()
     page.sort_select().select_by_value('price')
 
-    # assert page.wait_url_redirection(SortItemsByProduct.URL_SORTED_BY_NAME)
+    assert page.wait_url_redirection(SortItemsByProduct.URL_SORTED_BY_PRICE,30)
     assert page.sort_direction().get_attribute('data-value') == 'desc'
     res = []
     while page.paging_button_next_visible():
