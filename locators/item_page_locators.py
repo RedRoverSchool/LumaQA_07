@@ -24,6 +24,12 @@ class ItemPageLocators:
         By.XPATH, "//div/a[@href='https://magento.softwaretestingboard.com/clamber-watch.html']")
     ADD_TO_CART_CLAMBER_WATCH_BUTTON = (By.XPATH, "//input[@value='43']/following-sibling::button")
 
+    # Echo Fit Compression Short (EFCS)
+    LINK_EFCS_SIZE_28 = (By.XPATH, '//a[@href="https://magento.softwaretestingboard.com/echo-fit-compression-short.html"]/following-sibling::div[@class="product details product-item-details"]//child::div[@option-label="28"]')
+    LINK_EFCS_SIZE_BLACK = (By.XPATH, '//a[@href="https://magento.softwaretestingboard.com/echo-fit-compression-short.html"]/following-sibling::div[@class="product details product-item-details"]//child::div[@option-label="Black"]')
+    LINK_EFCS_ADD_TO_CART = (By.XPATH, '//a[@href="https://magento.softwaretestingboard.com/echo-fit-compression-short.html"]/following-sibling::div[@class="product details product-item-details"]//child::button[@title="Add to Cart"]')
+    LINK_EFCS_SIZE_29 = (By.XPATH, '//div[@class="swatch-option text"]')
+    LINK_EFCS_SIZE_BLUE = (By.XPATH, '//div[@aria-label = "Blue"]')
 
 class ItemPageReviewsLocators:
     URL = 'https://magento.softwaretestingboard.com/breathe-easy-tank.html'
@@ -50,9 +56,8 @@ class ItemPageRatingLocators:
     LINK_ADD_YOUR_REVIEWS = (By.CSS_SELECTOR, '.reviews-actions .add')
 
 
-
-
-
-
-
-
+class ColorSizeBlockLocators:
+    COLOR = (By.XPATH, "//div[contains(@class, 'swatch-option color')][1]")
+    SIZE = (By.XPATH, "//div[contains(@class, 'swatch-option text')][1]")
+    SELECTED_SIZE = (By.XPATH, "//div[@attribute-code='size']//span[@class='swatch-attribute-selected-option']")
+    SELECTED_COLOR = (By.XPATH, "//div[@attribute-code='color']//span[@class='swatch-attribute-selected-option']")

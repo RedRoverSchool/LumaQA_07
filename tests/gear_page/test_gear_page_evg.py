@@ -1,4 +1,4 @@
-from data.gear_page_urls import GEAR_PAGE
+from data.gear_page_urls import GEAR_PAGE, SPRITE_YOGA_COMPANION_KIT_PAGE, SHOP_FITNESS_PAGE
 from locators.gear_page_locators import BannerLocators
 from base.seleniumbase import BasePage
 
@@ -19,7 +19,7 @@ def test_luma_water_bottle_is_visible(driver):
     page = BasePage(driver, url=GEAR_PAGE)
     page.open()
     assert page.is_visible(BannerLocators.LUMA_WATER_BOTTLE_BANNER)
-
+    
 def test_bags_is_visible(driver):
     """TC_009.004.001 | Gear page > categories >Visibility of the 'Bags' banner"""
     page = BasePage(driver, url=GEAR_PAGE)
@@ -37,3 +37,27 @@ def test_watches_is_visible(driver):
     page = BasePage(driver, url=GEAR_PAGE)
     page.open()
     assert page.is_visible(BannerLocators.WATCHES_BANNER)
+
+def test_sprite_yoga_companion_kit_page_is_open(driver):
+    """TC_009.005.001 | Gear page > categories > Verify opening the ‘Sprite Yoga Companion Kit’ page"""
+    page = BasePage(driver, url=GEAR_PAGE)
+    page.open()
+    page.is_visible(BannerLocators.SPRITE_YOGA_COMPANION_KIT_BANNER).click()
+    current_page = driver.current_url
+    assert current_page == SPRITE_YOGA_COMPANION_KIT_PAGE
+
+def test_sprite_yoga_companion_kit_page_is_open_after_click_button(driver):
+    """TC_009.005.002 | Gear page > categories > Verify opening the 'Sprite Yoga Companion Kit' page after clicking on the "Shop Yoga Kit" button"""
+    page = BasePage(driver, url=GEAR_PAGE)
+    page.open()
+    page.is_visible(BannerLocators.SPRITE_YOGA_COMPANION_KIT_BANNER_BUTTON).click()
+    current_page = driver.current_url
+    assert current_page == SPRITE_YOGA_COMPANION_KIT_PAGE
+
+def test_shop_fitness_page_is_open(driver):
+    """TC_009.005.003 | Gear page > categories > Verify opening the ‘Shop Fitness’ page"""
+    page = BasePage(driver, url=GEAR_PAGE)
+    page.open()
+    page.is_visible(BannerLocators.LOOSEN_UP_BANNER).click()
+    current_page = driver.current_url
+    assert current_page == SHOP_FITNESS_PAGE

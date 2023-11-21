@@ -7,6 +7,7 @@ class OrdersAndPaymentPageLocators:
     ECHO_FIT_COMPRESSION_SHORT = (By.XPATH, "//div[@class='product-item-info']//a[contains(text(), 'Echo Fit Compression Short')]")
     SHOPPING_CART_BUTTON = (By.XPATH, "//a[contains(@class, 'showcart')]")
     PROCEED_TO_CHECKOUT = (By.XPATH, "//div[@class='primary']/button[@id='top-cart-btn-checkout']")
+    VIEW_AND_EDIT_CART = (By.XPATH, "//span[@data-bind=\"i18n: 'View and Edit Cart'\"]")
 
     """"Форма оформления заказа"""
     EMAIL_FIELD = (By.XPATH, "//fieldset[@class='fieldset']//input[@id='customer-email']")
@@ -25,5 +26,8 @@ class OrdersAndPaymentPageLocators:
     NEXT_BUTTON = (By.XPATH, "//div[@class='primary']//button[contains(@class, 'continue')]")
     PLACE_ORDER_BUTTON = (By.XPATH, "//div[@class='primary']//button[@title='Place Order']")
 
-
-
+    """"Локаторы для проверки и изменения товаров в корзине"""
+    CART_ITEM_TITLE = (By.XPATH, "//tbody[@class=\"cart item\"]//child::strong[@class=\"product-item-name\"]/a[@href=\"https://magento.softwaretestingboard.com/echo-fit-compression-short.html\"]")
+    CART_ITEM_OPTIONS = (By.XPATH, "//tbody[@class=\"cart item\"]//child::dl[@class=\"item-options\"]")
+    CART_EDIT_ITEM = (By.XPATH, "//a[@class=\"action action-edit\"]")
+    UPDATE_CART_BUTTON = (By.XPATH, '//button[@title = "Update Cart"]')

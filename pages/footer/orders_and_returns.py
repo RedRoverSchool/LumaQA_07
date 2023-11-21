@@ -62,6 +62,10 @@ class OrdersAndReturnsPage(BasePage):
     def continue_button(self):
         return self.is_clickable(OrdersAndReturnsPageLocators.CONTINUE_BUTTON)
 
+    def go_to_continue_button(self):
+        self.hold_mouse_on_element(OrdersAndReturnsPageLocators.CONTINUE_BUTTON)
+        return self.is_clickable(OrdersAndReturnsPageLocators.CONTINUE_BUTTON)
+
     def order_status(self):
         return self.is_visible(OrdersAndReturnsPageLocators.ORDER_STATUS)
 
@@ -73,21 +77,21 @@ class OrdersAndReturnsPage(BasePage):
         return self.is_clickable(OrdersAndReturnsPageLocators.FIND_ORDER_BY_POSTCODE_DROPDOWN).click()
 
     def fill_all_field_with_email(self, order_id, billing_lastname, email):
-        self.order_id_field().send_keys(order_id)
-        self.billing_lastname_field().send_keys(billing_lastname)
-        self.email_field().send_keys(email)
+        self.clear_and_send_keys(self.order_id_field(), order_id)
+        self.clear_and_send_keys(self.billing_lastname_field(), billing_lastname)
+        self.clear_and_send_keys(self.email_field(), email)
 
     def fill_all_field_with_postcode(self, order_id, billing_lastname, postcode):
-        self.order_id_field().send_keys(order_id)
-        self.billing_lastname_field().send_keys(billing_lastname)
+        self.clear_and_send_keys(self.order_id_field(), order_id)
+        self.clear_and_send_keys(self.billing_lastname_field(), billing_lastname)
         self.select_find_order_by_postcode_dropdown()
-        self.billing_postcode_field().send_keys(postcode)
+        self.billing_postcode_field_name()
+        self.clear_and_send_keys(self.billing_postcode_field(), postcode)
 
-    def find_order_by_email(self,order_id, billing_lastname, postcode):
+    def find_order_by_email(self, order_id, billing_lastname, postcode):
         self.fill_all_field_with_email(order_id, billing_lastname, postcode)
         self.continue_button().click()
 
-    def find_order_by_postcode(self,order_id, billing_lastname, postcode):
+    def find_order_by_postcode(self, order_id, billing_lastname, postcode):
         self.fill_all_field_with_postcode(order_id, billing_lastname, postcode)
         self.continue_button().click()
-

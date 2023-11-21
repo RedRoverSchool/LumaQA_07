@@ -9,6 +9,9 @@ class ProductPageLocators:
     BODY = (By.XPATH, "//main[@id='maincontent']")
     FOOTER = (By.XPATH, "//footer[@class='page-footer']")
     COPYRIGHT = (By.XPATH, "//small[@class='copyright']")
+    PRODUCT_QUANTITY = (By.XPATH, '//input[@id="qty"]')
+
+
 
     # Product page body
     MAIN_INFO = (By.XPATH, "//div[@class='product-info-main']")
@@ -16,11 +19,17 @@ class ProductPageLocators:
     DETAILED_INFO = (By.XPATH, "//div[@class='product info detailed']")
     RELATED_PRODUCTS = (By.XPATH, "//div[@class='block related']")
     LIKED_PRODUCTS = (By.XPATH, "//div[@class='block upsell']")
+    RELATED_PRODUCTS_HEADING = (By.ID, "block-related-heading")
 
     # class="product-info-main"
     PRODUCT_NAME = (By.XPATH, "//span[@itemprop='name']")
     RATING_BLOCK = (By.XPATH, "//div[@class = 'product-reviews-summary']")
     PRICE_BLOCK = (By.XPATH, "//span[@id = 'product-price-1812'] ")
+    AVAILABILITY_BLOCK = (By.XPATH, "//div[@class = 'stock available'] ")
+    PRODUCT_SIZE = (By.XPATH, '//div[@option-label="XS"]')
+    PRODUCT_COLOR = (By.XPATH, '//div[@option-label="Purple"]')
+    BUTTON_ADD_TO_CART = (By.XPATH, '//button[@id="product-addtocart-button"]')
+    COUNTER_NUMBER = (By.XPATH, '//span[@class="counter-number"]')
 
     # class="product media"
 
@@ -29,3 +38,4 @@ class ProductPageLocators:
 
     # class="block upsell"
 
+    ADD_TO_BLOCK = (By.XPATH, "//div[@class = 'product-addto-links']")

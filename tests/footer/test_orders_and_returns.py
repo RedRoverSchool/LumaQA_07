@@ -1,9 +1,8 @@
 from data.fake_data import FakeData
+from locators.base_page_locators import BasePageLocators
 from locators.orders_and_returns_locators import OrdersAndReturnsPageLocators
 from pages.checkout_page import CheckoutPage
 from pages.footer.orders_and_returns import OrdersAndReturnsPage
-from pages.item_page import ItemPage
-from pages.main_page import MainPage
 
 
 class TestIncorrectEmailFill(FakeData):
@@ -19,9 +18,9 @@ class TestIncorrectEmailFill(FakeData):
             'Please enter a valid email address (Ex: johndoe@domain.com).' """
         page = OrdersAndReturnsPage(driver, url=OrdersAndReturnsPage.URL)
         page.open()
-        page.fill_all_field_with_email(order_id=self.fake_order_id, email='dadqweq3@mailcom',
-                                       billing_lastname=self.last_name)
-        page.continue_button().click()
+        page.fill_all_field_with_email(self.fake_order_id, self.last_name, 'dadqweq3@mailcom')
+        page.go_to_continue_button().click()
+        assert page.is_invisible(BasePageLocators.MSG_ERROR)
         assert page.error_msg_email_not_filled_or_incorrect_type().text == OrdersAndReturnsPageLocators.TEXT_ERROR_MESSAGE_EMAIL_TYPE, "Не появилась ошибка про неправильный формат email"
 
     def test_email_without_at(self, driver):
@@ -35,9 +34,9 @@ class TestIncorrectEmailFill(FakeData):
             'Please enter a valid email address (Ex: johndoe@domain.com).' """
         page = OrdersAndReturnsPage(driver, url=OrdersAndReturnsPage.URL)
         page.open()
-        page.fill_all_field_with_email(order_id=self.fake_order_id, email='dadqweq3amail.com',
-                                       billing_lastname=self.last_name)
-        page.continue_button().click()
+        page.fill_all_field_with_email(self.fake_order_id,self.last_name, 'dadqweq3amail.com')
+        page.go_to_continue_button().click()
+        assert page.is_invisible(BasePageLocators.MSG_ERROR)
         assert page.error_msg_email_not_filled_or_incorrect_type().text == OrdersAndReturnsPageLocators.TEXT_ERROR_MESSAGE_EMAIL_TYPE, "Не появилась ошибка про неправильный формат email"
 
 
@@ -52,8 +51,10 @@ class TestFieldsNotFilled(FakeData):
             Error message 'This is a required field.' appeared under the "Order ID" field."""
         page = OrdersAndReturnsPage(driver, url=OrdersAndReturnsPage.URL)
         page.open()
-        page.fill_all_field_with_email(order_id='', email=self.email, billing_lastname=self.last_name)
+        page.fill_all_field_with_email(self.fake_order_id, self.last_name, self.email, )
+        page.order_id_field().clear()
         page.continue_button().click()
+        assert page.is_invisible(BasePageLocators.MSG_ERROR)
         assert page.error_msg_order_id_not_filled().text == OrdersAndReturnsPageLocators.TEXT_ERROR_MESSAGE_FIELD_NOT_FIELD, "Поле order_id не заполнено , а ошибка не показана"
 
     def test_billing_lastname_field_not_filled(self, driver):
@@ -66,8 +67,10 @@ class TestFieldsNotFilled(FakeData):
             Error message 'This is a required field.' appeared under the "Billing Last Name" field."""
         page = OrdersAndReturnsPage(driver, url=OrdersAndReturnsPage.URL)
         page.open()
-        page.fill_all_field_with_email(order_id=self.fake_order_id, email=self.email, billing_lastname='')
+        page.fill_all_field_with_email(self.fake_order_id, self.last_name, self.email)
+        page.billing_lastname_field().clear()
         page.continue_button().click()
+        assert page.is_invisible(BasePageLocators.MSG_ERROR)
         assert page.error_msg_billing_lastname_not_filled().text == OrdersAndReturnsPageLocators.TEXT_ERROR_MESSAGE_FIELD_NOT_FIELD, "Поле billing lastname не заполнено , а ошибка не показана"
 
     def test_email_field_not_filled(self, driver):
@@ -80,8 +83,10 @@ class TestFieldsNotFilled(FakeData):
             Error message 'This is a required field.' appeared under the "Email" field."""
         page = OrdersAndReturnsPage(driver, url=OrdersAndReturnsPage.URL)
         page.open()
-        page.fill_all_field_with_email(order_id=self.fake_order_id, email='', billing_lastname=self.last_name)
+        page.fill_all_field_with_email(self.fake_order_id, self.last_name , self.email)
+        page.email_field().clear()
         page.continue_button().click()
+        assert page.is_invisible(BasePageLocators.MSG_ERROR)
         assert page.error_msg_email_not_filled_or_incorrect_type().text == OrdersAndReturnsPageLocators.TEXT_ERROR_MESSAGE_FIELD_NOT_FIELD, "Поле email не заполнено , а ошибка не показана"
 
     def test_zip_field_not_filled(self, driver):
@@ -95,8 +100,10 @@ class TestFieldsNotFilled(FakeData):
             Error message 'This is a required field.' appeared under the "Billing ZIP Code" field."""
         page = OrdersAndReturnsPage(driver, url=OrdersAndReturnsPage.URL)
         page.open()
-        page.fill_all_field_with_postcode(billing_lastname=self.last_name, order_id=self.fake_order_id, postcode='')
+        page.fill_all_field_with_postcode(self.fake_order_id, self.last_name,self.postcode)
+        page.billing_postcode_field().clear()
         page.continue_button().click()
+        assert page.is_invisible(BasePageLocators.MSG_ERROR)
         assert page.error_msg_billing_postcode_not_filled().text == OrdersAndReturnsPageLocators.TEXT_ERROR_MESSAGE_FIELD_NOT_FIELD, "Поле zipcode не заполнено , а ошибка не показана"
 
 
@@ -113,10 +120,9 @@ class TestCheckNonExistentOrder(FakeData):
             appeared below the "Orders and Returns" heading."""
         page = OrdersAndReturnsPage(driver, url=OrdersAndReturnsPage.URL)
         page.open()
-        page.fill_all_field_with_email(billing_lastname=self.last_name, order_id=self.fake_order_id,
-                                       email=self.email)
+        page.fill_all_field_with_email(self.fake_order_id,self.last_name,self.email)
         page.continue_button().click()
-        assert page.error_msg_incorrect_data().text == OrdersAndReturnsPageLocators.TEXT_ERROR_MESSAGE_INCORRECT_DATA, "Не появилась ошибка о том что введены неправильные данные заказа"
+        assert page.message_error == OrdersAndReturnsPageLocators.TEXT_ERROR_MESSAGE_INCORRECT_DATA, "Не появилась ошибка о том что введены неправильные данные заказа"
 
     def test_by_postcode(self, driver):
         """TC_012.009.008 | Footer > “Orders and Returns” > Search for a non-existent order\n
@@ -130,15 +136,14 @@ class TestCheckNonExistentOrder(FakeData):
             appeared below the "Orders and Returns" heading."""
         page = OrdersAndReturnsPage(driver, url=OrdersAndReturnsPage.URL)
         page.open()
-        page.fill_all_field_with_postcode(billing_lastname=self.last_name, order_id=self.fake_order_id,
-                                          postcode=self.postcode)
+        page.fill_all_field_with_postcode(self.fake_order_id,self.last_name,self.postcode)
         page.continue_button().click()
-        assert page.error_msg_incorrect_data().text == OrdersAndReturnsPageLocators.TEXT_ERROR_MESSAGE_INCORRECT_DATA, "Не появилась ошибка о том что введены неправильные данные заказа"
+        assert page.message_error == OrdersAndReturnsPageLocators.TEXT_ERROR_MESSAGE_INCORRECT_DATA, "Не появилась ошибка о том что введены неправильные данные заказа"
 
 
 class TestCheckExistingOrder(FakeData):
 
-    def test_by_email(self, driver):
+    def test_by_email(self, driver , add_3_item_to_cart):
         """TC_012.009.007 | Footer > “Orders and Returns” > Search for an existing order By Email or ZIP Code\n
         Pre-conditions:
             The user must place an order on the website.
@@ -155,10 +160,6 @@ class TestCheckExistingOrder(FakeData):
         last_name = self.last_name
         state = self.state
 
-        page = MainPage(driver, url=MainPage.URL)
-        page.open()
-        page.add_clamber_watch_from_gear_catalog_to_cart()
-
         page = CheckoutPage(driver, CheckoutPage.URL)
         page.open()
         order_id = page.full_guest_place_order_us_address_flat_shipping(state, email, self.first_name,
@@ -173,7 +174,7 @@ class TestCheckExistingOrder(FakeData):
         assert page.text_order_number_on_view_order_page().text == f"Order # {order_id}", 'Не удалось отследить существующий заказ'
         assert page.order_status(), 'У заказа отсутствует статус'
 
-    def test_by_postcode(self, driver):
+    def test_by_postcode(self, driver, add_3_item_to_cart):
         """TC_012.009.007 | Footer > “Orders and Returns” > Search for an existing order By Email or ZIP Code\n
         Pre-conditions:
             The user must place an order on the website.
@@ -192,20 +193,16 @@ class TestCheckExistingOrder(FakeData):
         postcode = self.us_postcode_state(state)
         last_name = self.last_name
 
-        page = ItemPage(driver, url=ItemPage.URL_DRIVEN_BACKPACK)
-        page.open()
-        page.add_driven_backpack_from_item_card_to_cart(3)
-
         page = CheckoutPage(driver, CheckoutPage.URL)
         page.open()
         order_id = page.full_guest_place_order_us_address_best_way_shipping(state, self.email, self.first_name,
                                                                             last_name, self.street_address, self.city,
                                                                             postcode,
                                                                             self.phone_number)
-
         page = OrdersAndReturnsPage(driver, url=OrdersAndReturnsPage.URL)
         page.open()
         page.find_order_by_postcode(order_id, last_name, postcode)
+
         assert page.text_order_number_on_view_order_page().text == f"Order # {order_id}", 'Не удалось отследить существующий заказ'
         assert page.order_status(), 'У заказа отсутствует статус'
 

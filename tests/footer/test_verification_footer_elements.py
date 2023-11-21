@@ -33,7 +33,7 @@ class TestFooterElementsVisibleClickable:
         any_page.verify_visability_or_clickability_of_the_element_in_location(
             param=param,
             element_value=f"The link to the '{expected_link}'",
-            element_locator=BasePageLocators.WRITE_FOR_US_LINK,
+            element_locator=BasePageLocators.LINK_WRITE_FOR_US,
             location="the footer",
         )
 
