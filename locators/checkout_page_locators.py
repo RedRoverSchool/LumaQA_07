@@ -51,3 +51,4 @@ class MultipleAddressesPageLocators:
     TEXT_HEADER_USER_HAS_AN_ADDRESS = 'Ship to Multiple Addresses'
     TEXT_HEADER_USER_HAS_NO_ONE_ADDRESS = 'Create Shipping Address'
     TEXT_SUCCESSFUL_MSG_SAVE_NEW_ADDRESS = 'You saved the address.'
+
