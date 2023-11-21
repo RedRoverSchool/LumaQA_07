@@ -12,7 +12,7 @@ class SortItemsByProduct(BasePage):
         return Select(self.is_clickable(SortItemsLocators.SORT_SELECT))
 
     def sort_direction(self):
-        return self.is_visible(SortItemsLocators.DIRECTION_SWITCHER)
+        return self.is_clickable(SortItemsLocators.DIRECTION_SWITCHER)
 
     def paging_button_next(self):
         return self.is_clickable(SortItemsLocators.PAGING_BUTTON_NEXT)
@@ -22,5 +22,12 @@ class SortItemsByProduct(BasePage):
 
     def name_items(self):
         return self.is_visible_all_elements(SortItemsLocators.NAME_ITEMS)
+
+    def price_items(self):
+        return self.is_visible_all_elements(SortItemsLocators.PRICE_ITEMS)
+
+    def paging_one_page(self):
+        return self.is_clickable(SortItemsLocators.PAGING_ONE_PAGE)
+
 
 

@@ -19,4 +19,34 @@ def test_sort_items_by_product_name(driver):
     assert res == sorted(res), 'Не верно отсортирован'
 
 
+def test_sort_items_by_price(driver):
+    page = SortItemsByProduct(driver, url=SortItemsLocators.URL)
+    page.open()
+    page.sort_select().select_by_value('price')
+
+    # assert page.wait_url_redirection(SortItemsByProduct.URL_SORTED_BY_NAME)
+    assert page.sort_direction().get_attribute('data-value') == 'desc'
+    res = []
+    while page.paging_button_next_visible():
+        for item in page.price_items():
+            res.append(float(item.get_attribute('data-price-amount')))
+        page.paging_button_next().click()
+    for item in page.price_items():
+        res.append(float(item.get_attribute('data-price-amount')))
+    assert res == sorted(res), 'Не верно отсортирован'
+    page.sort_direction().click()
+    page.paging_one_page().click()
+    res = []
+    while page.paging_button_next_visible():
+        for item in page.price_items():
+            res.append(float(item.get_attribute('data-price-amount')))
+        page.paging_button_next().click()
+    for item in page.price_items():
+        res.append(float(item.get_attribute('data-price-amount')))
+    assert res == sorted(res, reverse=True), 'Не верно отсортирован'
+
+
+
+
+
 
