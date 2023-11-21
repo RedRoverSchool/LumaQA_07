@@ -8,7 +8,7 @@ class MenPageLocators:
     TOPS_CATEGORY_LINK = (By.XPATH, "//*[@id='narrow-by-list2']/dd/ol/li[1]/a")
     BOTTOMS_CATEGORY_LINK = (By.XPATH, "//*[@id='narrow-by-list2']/dd/ol/li[2]/a")
     SIDE_BAR_JACKETS = (By.XPATH, "//a[@id='ui-id-19']//span[contains(text(),'Jackets')]")
-
+    MEN_TOPS_GRID = (By.XPATH, "//div[2]/div[1]/strong[2]")
 
 class MenCategoryPageLocators:
     CATEGORY_BUTTON = (
