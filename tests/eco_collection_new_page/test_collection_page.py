@@ -25,6 +25,7 @@ def test_bunner_subtitle(driver):
     subtitle = page.banner_subtitle()
     assert subtitle == CollectionPage.SUBTITLE_TEXT, f'Expected text: {CollectionPage.SUBTITLE_TEXT}, but got: {subtitle}'
 
+
 def test_items(driver):
     """ TC _006.013.004 | Eco Collection New > The items name is visible and clickable """
     page = CollectionPage(driver, url=CollectionPage.URL)
