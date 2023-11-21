@@ -1,5 +1,7 @@
-from locators.sort_items_locators import SortItemsLocators
-from pages.men_category_page.sort_items import SortItemsByProduct
+import pytest
+
+from locators.sort_items_locators import SortItemsLocators, ShowItemsPerPageLocators
+from pages.men_category_page.sort_items import SortItemsByProduct, ShowItemsPerPage
 
 
 def test_sort_items_by_product_name(driver):
@@ -44,6 +46,32 @@ def test_sort_items_by_price(driver):
     for item in page.price_items():
         res.append(float(item.get_attribute('data-price-amount')))
     assert res == sorted(res, reverse=True), 'Не верно отсортирован'
+
+
+@pytest.mark.parametrize('qty', [12, 24, 36])
+def test_show_items_per_page_grid(driver, qty):
+    page = ShowItemsPerPage(driver, url=ShowItemsPerPageLocators.URL)
+    page.open()
+    page.modes_grid_active()
+    page.select_show_items().select_by_value(str(qty))
+    assert page.item_count(ShowItemsPerPageLocators.NAME_ITEMS) == qty, 'Не верное количество'
+
+
+@pytest.mark.parametrize('qty', [5, 10, 15, 20, 25])
+def test_show_items_per_page_list(driver, qty):
+    page = ShowItemsPerPage(driver, url=ShowItemsPerPageLocators.URL)
+    page.open()
+    page.modes_list().click()
+    page.modes_list_active()
+    page.select_show_items().select_by_value(str(qty))
+    assert page.item_count(ShowItemsPerPageLocators.NAME_ITEMS) == qty, 'Не верное количество'
+
+
+
+
+
+
+
 
 
 

@@ -1,7 +1,7 @@
 from selenium.webdriver.support.select import Select
 
 from base.seleniumbase import BasePage
-from locators.sort_items_locators import SortItemsLocators
+from locators.sort_items_locators import SortItemsLocators, ShowItemsPerPageLocators
 
 
 class SortItemsByProduct(BasePage):
@@ -28,6 +28,26 @@ class SortItemsByProduct(BasePage):
 
     def paging_one_page(self):
         return self.is_clickable(SortItemsLocators.PAGING_ONE_PAGE)
+
+
+class ShowItemsPerPage(BasePage):
+
+    def modes_grid_active(self):
+        return self.is_visible(ShowItemsPerPageLocators.MODES_GRID_ACTIVE)
+
+    def modes_list(self):
+        return self.is_clickable(ShowItemsPerPageLocators.MODES_LIST)
+
+    def modes_list_active(self):
+        return self.is_visible(ShowItemsPerPageLocators.MODES_LIST_ACTIVE)
+
+    def select_show_items(self):
+        return Select(self.is_clickable(ShowItemsPerPageLocators.SELECT_SHOW_ITEMS_QTY))
+
+    def name_items(self):
+        return self.is_visible_all_elements(SortItemsLocators.NAME_ITEMS)
+
+
 
 
 
