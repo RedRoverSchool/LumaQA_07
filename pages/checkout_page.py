@@ -56,8 +56,8 @@ class CheckoutPage(BasePage):
     def order_number_guest(self):
         return self.is_visible(CheckoutPageLocators.ORDER_NUMBER_GUEST)
 
-    def additional_address(self):
-        return self.is_visible(CheckoutPageLocators.ADDITIONAL_ADDRESS)
+    def shipping_addresses_block(self):
+        return self.is_visible(CheckoutPageLocators.ALL_SHIPPING_ADDRESSES_BLOCK)
 
     def check_data_availability(self, what, where):
         for i in what:
@@ -68,11 +68,15 @@ class CheckoutPage(BasePage):
     def current_delivery_address(self):
         return self.is_visible(CheckoutPageLocators.CURRENT_DELIVERY_ADDRESS)
 
-    def ship_here_button(self):
-        return self.is_clickable(CheckoutPageLocators.SHIP_HERE_BUTTON)
+    def click_ship_here_button(self,firstname ,lastname,street):
+        self.is_clickable((By.XPATH, f"//div[@class='shipping-address-item not-selected-item' and text()='{firstname}' and text()='{lastname}' and text()='{street}' ]//*[text()='Ship Here']")).click()
+        self.wait_shipping_methods_overlay_closed()
 
     def state_of_additional_address(self):
         return self.is_visible(CheckoutPageLocators.STATE_OF_ADDITIONAL_ADDRESS).text
+
+    def wait_shipping_methods_overlay_closed(self):
+        self.is_invisible(CheckoutPageLocators.SHIPPING_METHODS_OVERLAY)
 
     def fill_all_require_field_as_guest_us_shipping(self, state, email, firstname, lastname, street_1, city, postcode,
                                                     phone_number):
@@ -131,8 +135,16 @@ class MultipleAddressesPage(CheckoutPage):
         element = self.driver.execute_script(script)
         return label + ' ' + element.strip('"')
 
-    def enter_a_new_address_button(self):
-        return self.is_clickable(MultipleAddressesPageLocators.ENTER_A_NEW_ADDRESS_BUTTON)
+    def wait_body_overlay_closed(self):
+        self.is_visible(CheckoutPageLocators.BODY_OVERLAY)
+        self.is_invisible(CheckoutPageLocators.BODY_OVERLAY)
+
+    def wait_enter_new_address_overlay_closed(self):
+        self.wait_body_overlay_closed()
+
+    def click_enter_a_new_address_button(self):
+        self.is_clickable(MultipleAddressesPageLocators.ENTER_A_NEW_ADDRESS_BUTTON).click()
+        self.wait_enter_new_address_overlay_closed()
 
     def back_to_cart_link(self):
         return self.is_visible(MultipleAddressesPageLocators.BACK_TO_CART_LINK)
@@ -151,8 +163,10 @@ class MultipleAddressesPage(CheckoutPage):
         return self.is_clickable((By.XPATH,
                                   f'//div[div[address[text()="{first_name + " " + last_name}"]/a[text()="{phone_number}"]]]//a[@class="action edit"]'))
 
-    def go_to_shipping_info_button(self):
-        return self.is_clickable(MultipleAddressesPageLocators.GO_TO_SHIPPING_INFO_BUTTON)
+    def click_go_to_shipping_info_button(self):
+        self.hold_mouse_on_element(MultipleAddressesPageLocators.GO_TO_SHIPPING_INFO_BUTTON)
+        self.is_clickable(MultipleAddressesPageLocators.GO_TO_SHIPPING_INFO_BUTTON).click()
+        self.wait_body_overlay_closed()
 
 
 class GuestShippingAddressPage(BasePage):

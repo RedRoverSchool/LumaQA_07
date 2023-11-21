@@ -95,8 +95,7 @@ class TestMultipleAddressCheckout(FakeData):
 
         page.checkout_multiple_addresses_link().click()
         page = MultipleAddressesPage(driver, page.current_url)
-        page.enter_a_new_address_button().click()
-        page.wait_overlay_closed()
+        page.click_enter_a_new_address_button()
         AddressBookPage(driver, url=page.current_url).add_new_address(self.state, self.first_name, self.last_name,
                                                                       self.phone_number,
                                                                       self.street_address,
@@ -114,20 +113,18 @@ class TestMultipleAddressCheckout(FakeData):
 
         page.checkout_multiple_addresses_link().click()
         page = MultipleAddressesPage(driver, page.current_url)
-        page.enter_a_new_address_button().click()
-        page.wait_overlay_closed()
+        page.click_enter_a_new_address_button()
+
         AddressBookPage(driver, url=page.current_url).add_new_address(self.state, first_name, last_name, phone_number,
                                                                       street, city, postcode)
         page.back_to_cart_link().click()
-        CartPage(driver, page.current_url).proceed_to_checkout_button().click()
-        page.wait_overlay_closed()
+        CartPage(driver, page.current_url).click_proceed_to_checkout_button()
 
         assert page.current_url == page.URL_USER_HAVE_ADDRESS, 'Не открылась страница с выбором шиппинг адреса'
         assert page.check_data_availability(new_address_info,
-                                            page.additional_address().text), 'новый , добавленный адрес не сохранился'
+                                            page.shipping_addresses_block().text), 'новый , добавленный адрес не сохранился'
 
-        page.ship_here_button().click()
-        page.wait_overlay_closed()
+        page.click_ship_here_button(first_name,last_name,street)
 
         assert page.check_data_availability(new_address_info,
                                             page.current_delivery_address().text), 'не удалось использовать новый добавленный адрес'
@@ -141,8 +138,7 @@ class TestMultipleAddressCheckout(FakeData):
         page.open()
 
         page.checkout_multiple_addresses_link().click()
-        MultipleAddressesPage(driver, page.current_url).enter_a_new_address_button().click()
-        page.wait_overlay_closed()
+        MultipleAddressesPage(driver, page.current_url).click_enter_a_new_address_button()
         AddressBookPage(driver, url=page.current_url).add_new_address(self.state, *new_address_info)
         page = AddressBookPage(driver, url=AddressBookPage.URL_USER_HAVE_ADDRESS)
         page.open()
@@ -165,14 +161,12 @@ class TestMultipleAddressCheckout(FakeData):
 
         page.checkout_multiple_addresses_link().click()
         page = MultipleAddressesPage(driver, page.current_url)
-        page.enter_a_new_address_button().click()
-        page.wait_overlay_closed()
+        page.click_enter_a_new_address_button()
         AddressBookPage(driver, url=page.current_url).add_new_address(self.state, old_first_name, old_last_name,
                                                                       old_phone_number, old_street, old_city,
                                                                       old_postcode)
         page.select_address_from_dropdown_send_to(old_first_name, old_last_name, old_postcode).click()
-        page.go_to_shipping_info_button().click()
-        page.wait_overlay_closed()
+        page.click_go_to_shipping_info_button()
         page.change_button_for_a_specifically_address(old_first_name, old_last_name, old_phone_number).click()
         AddressBookPage(driver, url=page.current_url).add_new_address(self.state, *new_address_info)
 
@@ -191,8 +185,7 @@ class TestMultipleAddressCheckout(FakeData):
 
         page.checkout_multiple_addresses_link().click()
         page = MultipleAddressesPage(driver, page.current_url)
-        page.enter_a_new_address_button().click()
-        page.wait_overlay_closed()
+        page.click_enter_a_new_address_button()
         AddressBookPage(driver, url=page.current_url).add_new_address(self.state, *deleting_address_info)
         page = AddressBookPage(driver, url=AddressBookPage.URL_USER_HAVE_ADDRESS)
         page.open()

@@ -12,6 +12,7 @@ class CheckoutPageLocators:
     POSTCODE_FIELD = (By.XPATH, "//*[@name='postcode']")
     PHONE_NUMBER_FIELD = (By.XPATH, "//*[@name='telephone']")
 
+
     SHIPPING_BEST_WAY = (By.XPATH, "//*[@id='label_carrier_bestway_tablerate']")
     SHIPPING_FLAT_RATE = (By.XPATH, "//*[@id='label_carrier_flatrate_flatrate']")
 
@@ -23,12 +24,16 @@ class CheckoutPageLocators:
 
     CHECKOUT_STEP_2_NEXT_BUTTON = (By.XPATH, "//*[@class='button action continue primary']")
     PLACE_ORDER_BUTTON = (By.XPATH, "//button[@title='Place Order']")
-    ADDITIONAL_ADDRESS = (By.XPATH,"//div[@class='shipping-address-item not-selected-item']")
-    CURRENT_DELIVERY_ADDRESS = (By.XPATH,"//div[@class='shipping-address-item selected-item']")
+    # ADDITIONAL_ADDRESS = (By.XPATH, "//div[@class='shipping-address-item not-selected-item']")
+    ALL_SHIPPING_ADDRESSES_BLOCK = (By.XPATH, "//div[@class='shipping-address-items']")
+    CURRENT_DELIVERY_ADDRESS = (By.XPATH, "//div[@class='shipping-address-item selected-item']")
     STATE_OF_ADDITIONAL_ADDRESS = (By.XPATH, "//div[@class='shipping-address-item not-selected-item']/span")
-    SHIP_HERE_BUTTON = (By.XPATH,"//*[text()='Ship Here']")
+    SHIP_HERE_BUTTON = (By.XPATH, "//*[text()='Ship Here']")
 
     OVERLAY = (By.XPATH, "//*[@data-role='loader']")
+    BODY_OVERLAY = (By.XPATH, "//body//div[@class='loader']")
+    SHIPPING_METHODS_OVERLAY = (By.XPATH, "//li[@id='opc-shipping_method']//div[@data-role='loader']")
+    SHIPPING_ADDRESSES_OVERLAY = (By.XPATH, "//*[@id='checkout']//div[@data-role='checkout-loader']")
 
     EMAIL_FIELD_ERROR = (By.XPATH, "//div[@id='customer-email-error']")
     FIRST_NAME_FIELD_ERROR = (By.XPATH, "//*[@name='firstname']//following-sibling::div[@class='field-error']")
@@ -51,4 +56,3 @@ class MultipleAddressesPageLocators:
     TEXT_HEADER_USER_HAS_AN_ADDRESS = 'Ship to Multiple Addresses'
     TEXT_HEADER_USER_HAS_NO_ONE_ADDRESS = 'Create Shipping Address'
     TEXT_SUCCESSFUL_MSG_SAVE_NEW_ADDRESS = 'You saved the address.'
-
