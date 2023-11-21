@@ -23,10 +23,10 @@ class TestProductPage:
         assert page.price_block_is_visible()
 
     def test_add_to_block_is_visible(self, driver):
-        """TC_014.001.001"""
+        """TC_002.005.009/1"""
         page = ProductPage(driver, PRODUCT_PAGE_EXAMPLE)
         page.open()
-        assert page.add_to_block_is_visible()
+        assert page.product_add_to_block_is_visible()
 
     def test_availability_block_is_displayed(self, driver):
         """TC_002.005.004"""
