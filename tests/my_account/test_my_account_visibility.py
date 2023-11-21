@@ -1,5 +1,3 @@
-import time
-
 from pages.account.create_account import CreateAccountPage
 from pages.account.sign_in import SignInPage
 from pages.login.logout_page import LogoutPage
@@ -83,7 +81,7 @@ from locators.my_account_page_locators import MyAccountPageLocators as mapl
         Street address, city, state,zip code, country and phone fields are visible in “Default Shipping Address” section and they are not empty"""
 
 
-class TestMyAccountTitleVisibility:
+class TestMyAccountTitlesVisibility:
     def test_my_account_visibility(self, driver):
         page = CreateAccountPage(driver)
         password_current = page.password

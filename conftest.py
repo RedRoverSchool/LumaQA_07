@@ -18,6 +18,7 @@ def pytest_configure(config):
 def options():
     options = Options()
     options.add_argument('--window-size=2880,1800')
+    options.add_argument('--headless')
     options.add_argument("--ignore-certificate-errors")
     if os.environ.get('PYTHONDONTWRITEBYTECODE') == '1':
         options.add_argument('--headless')
