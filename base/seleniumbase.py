@@ -1,5 +1,5 @@
-from os import path, pardir
-from time import strftime
+from os.path import abspath, dirname, join, pardir
+from time import sleep, strftime
 
 from selenium.common import TimeoutException
 from selenium.webdriver import ActionChains
@@ -9,6 +9,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait as wait
 
 from locators.base_page_locators import BasePageLocators
+
+IMG = join(dirname(abspath(__file__)), pardir, "img")
 
 
 class BasePage:
@@ -83,14 +85,11 @@ class BasePage:
     def header(self) -> WebElement:
         return self.is_visible(BasePageLocators.HEADER)
 
-    def wait_overlay_closed(self):
-        return self.is_invisible(BasePageLocators.OVERLAY)
-
     def hold_mouse_on_element(self, locator):
         ActionChains(self.driver).move_to_element(self.is_visible(locator)).perform()
 
     def hold_mouse_on_element_and_click(self, locator):
-        ActionChains(self.driver).move_to_element(self.is_visible(locator)).move_by_offset(40, 0).click().perform()
+        ActionChains(self.driver).move_to_element(self.is_visible(locator)).move_by_offset(40,0).click().perform()
 
     def is_invisible(self, locator: tuple, timeout: int = TIMEOUT) -> WebElement:
         return wait(self.driver, timeout).until(EC.invisibility_of_element_located(locator))
@@ -145,46 +144,44 @@ class BasePage:
                 locator=element_locator), f"'{element_value}' isn't clickable in {location} of page with the url = '{self.url}'"
 
     def visible(self, locator: (str, str), timeout: int = TIMEOUT) -> WebElement:
+        # self.is_loading()
         try:
             return wait(self.driver, timeout).until(EC.visibility_of_element_located(locator))
         except TimeoutException:
             self.shot("visible_timeout")
-            raise TimeoutException(f"{timeout}s wait to be visible of {locator}")
+            raise AssertionError(f"{timeout}s wait to be visible of {locator}")
 
     def clickable(self, locator: tuple[str, str], timeout: int = TIMEOUT) -> WebElement:
+        # self.is_loading()
         try:
             return wait(self.driver, timeout).until(EC.element_to_be_clickable(locator))
         except TimeoutException:
             self.shot("clickable_timeout")
-            raise TimeoutException(f"{timeout}s wait to be clickable of {locator}")
+            raise AssertionError(f"{timeout}s wait to be clickable of {locator}")
 
     def redirect(self, url, timeout: int = TIMEOUT):
         try:
-            return wait(self.driver, timeout).until(EC.url_to_be(url))
+            return wait(self.driver, timeout, 0.5, [TimeoutException]).until(EC.url_to_be(url))
         except TimeoutException:
             self.shot("redirect_timeout")
-            raise TimeoutException(f"{timeout}s wait to be redirected to {url}")
+            raise AssertionError(f"{timeout}s wait to be redirected to {url}")
 
-    def shot(self, file_name='shot'):
-        self.driver.save_screenshot(
-            path.join(path.dirname(path.abspath(__file__)),
-                      pardir, "screenshots", f'{strftime("%H%M%S")}_{file_name}.png'))
+    def is_loading(self):
+        trigger = False
+        while self.driver.execute_script("return document.querySelector('div.loader:not(.hidden)') != null;"):
+            sleep(0.6)
+            trigger = True
+        if trigger:
+            self.shot("loading_wait_done")
+
+    def shot(self, file_name_prefix='shot'):
+        self.driver.save_screenshot(join(IMG, f'{file_name_prefix}_{strftime("%H%M%S")}.png'))
 
     def item_count(self, locator):
         return len(self.driver.find_elements(*locator))
 
-    def scroll_to_element(self, locator) -> WebElement:
+    def scroll_to_element(self, locator):
         ActionChains(self.driver).scroll_to_element(self.driver.find_element(*locator)).perform()
-        return self.driver.find_element(*locator)
 
     def is_visible_all_elements(self, locator, timeout: int = TIMEOUT) -> list[WebElement]:
         return wait(self.driver, timeout).until(EC.visibility_of_all_elements_located(locator))
-
-    def the_presence_of_element_located(self, locator, timeout: int = TIMEOUT) -> WebElement:
-        return wait(self.driver, timeout).until(EC.presence_of_element_located(locator))
-
-    def get_text(self, locatorOrWebelement) -> str:
-        if type(locatorOrWebelement) == WebElement:
-            return locatorOrWebelement.text
-        else:
-            return self.is_visible(locatorOrWebelement).text

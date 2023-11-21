@@ -1,5 +1,4 @@
 from pages.other_pages.what_is_new import NewPage
-import pytest
 from locators.whats_new_page_locators import WhatsNewPageLocators
 
 
@@ -17,11 +16,13 @@ def test_widget_yoga(driver):
     assert widget_title == NewPage.YOGA_WIDGET_TITLE, (f'Expected text: {NewPage.YOGA_WIDGET_TITLE}, but got: '
                                                        f'{widget_title}')
 
+
 def test_widget_subtitle(driver):
     page = NewPage(driver, url=NewPage.URL)
     page.open()
     subtitle = page.widget_subtitle()
     assert subtitle == NewPage.YOGA_SUBTITLE_TEXT, f'Expected text: {NewPage.YOGA_SUBTITLE_TEXT}, but got: {subtitle}'
+
 
 def test_widget_title_text(driver):
     whats_new_page = NewPage(driver, url=NewPage.URL)
@@ -30,4 +31,3 @@ def test_widget_title_text(driver):
     title_element_text = whats_new_page.get_text(title_element)
     expected_title = whats_new_page.SENSE_RENEWAL_TITLE_TEXT
     assert title_element_text == expected_title, f'Expected text: {expected_title}, but got: {title_element_text}'
-
