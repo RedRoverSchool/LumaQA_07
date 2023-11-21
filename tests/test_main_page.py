@@ -75,3 +75,10 @@ class TestMainPage:
         page.is_clickable(BasePageLocators.SHOP_ECO_FRIENDLY).click()
         assert driver.current_url == EcoFriendlyPage.URL
 
+    def test_main_page_eco_friendly_is_clickable2(self, driver):
+        page = MainPage(driver, url=MainPage.URL)
+        page.open()
+        page.scroll_down_to_shop_eco_friendly()
+        page.is_clickable(BasePageLocators.SHOP_ECO_FRIENDLY).click()
+        assert driver.current_url == EcoFriendlyPage.URL
+
