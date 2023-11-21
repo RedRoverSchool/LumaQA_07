@@ -89,7 +89,7 @@ class BasePage:
     def wait_url_redirection(self, redirect_url, timeout: int = TIMEOUT):
         return wait(self.driver, timeout).until(EC.url_to_be(redirect_url))
 
-    def hold_mou_on_elementse(self, locator):
+    def hold_mouse_on_element(self, locator):
         ActionChains(self.driver).move_to_element(self.is_visible(locator)).perform()
 
     def hold_mouse_on_element_and_click(self, locator):
