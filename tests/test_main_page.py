@@ -5,22 +5,21 @@ from data.men_page_url import MEN_PAGE, TOPS_MEN_PAGE
 from pages.performance_fabrics.performance_fabrics import PerformanceFabricsPage
 
 
-
 class TestMainPage:
     def test_verify_visibility_the_title(self, driver):
         page = MainPage(driver, url=MainPage.URL)
         page.open()
-        page.check_visibility_the_title()
+        assert page.check_visibility_the_title(), "The title not found"
 
     def test_visibility_of_erin_recommends_widget(self, driver):
         page = MainPage(driver, url=MainPage.URL)
         page.open()
-        page.check_visibility_of_erin_recommends_widget()
+        assert page.check_visibility_of_erin_recommends_widget(), "widget not found"
 
     def test_clickability_of_erin_recommends_widget(self, driver):
         page = MainPage(driver, url=MainPage.URL)
         page.open()
-        page.check_clickability_of_erin_recommends_widget()
+        assert page.check_clickability_of_erin_recommends_widget(), "widget not clicked"
 
     def test_main_page_erin_recommends_is_clickable(self, driver):
         page = MainPage(driver, url=MainPage.URL)
