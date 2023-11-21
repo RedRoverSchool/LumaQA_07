@@ -3,24 +3,24 @@ from locators.base_page_locators import BasePageLocators
 from pages.erin_recommends.erin_recommends import ErinRecommendsPage
 from data.men_page_url import MEN_PAGE, TOPS_MEN_PAGE
 from pages.performance_fabrics.performance_fabrics import PerformanceFabricsPage
-
+from pages.eco_friendly.eco_friendly import EcoFriendlyPage
 
 
 class TestMainPage:
     def test_verify_visibility_the_title(self, driver):
         page = MainPage(driver, url=MainPage.URL)
         page.open()
-        page.check_visibility_the_title()
+        assert page.check_visibility_the_title(), "The title not found"
 
     def test_visibility_of_erin_recommends_widget(self, driver):
         page = MainPage(driver, url=MainPage.URL)
         page.open()
-        page.check_visibility_of_erin_recommends_widget()
+        assert page.check_visibility_of_erin_recommends_widget(), "widget not found"
 
     def test_clickability_of_erin_recommends_widget(self, driver):
         page = MainPage(driver, url=MainPage.URL)
         page.open()
-        page.check_clickability_of_erin_recommends_widget()
+        assert page.check_clickability_of_erin_recommends_widget(), "widget not clicked"
 
     def test_main_page_erin_recommends_is_clickable(self, driver):
         page = MainPage(driver, url=MainPage.URL)
@@ -67,3 +67,11 @@ class TestMainPage:
         page.open()
         results = page.check_images_boxes_on_page()
         assert all(results), "Not all blocks are present on the page"
+
+    def test_main_page_eco_friendly_is_clickable(self, driver):
+        page = MainPage(driver, url=MainPage.URL)
+        page.open()
+        page.scroll_down_to_shop_eco_friendly()
+        page.is_clickable(BasePageLocators.SHOP_ECO_FRIENDLY).click()
+        assert driver.current_url == EcoFriendlyPage.URL
+

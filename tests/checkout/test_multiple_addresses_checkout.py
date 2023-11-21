@@ -120,6 +120,7 @@ class TestMultipleAddressCheckout(FakeData):
                                                                       street, city, postcode)
         page.back_to_cart_link().click()
         CartPage(driver, page.current_url).proceed_to_checkout_button().click()
+        page.wait_overlay_closed()
 
         assert page.current_url == page.URL_USER_HAVE_ADDRESS, 'Не открылась страница с выбором шиппинг адреса'
         assert page.check_data_availability(new_address_info,

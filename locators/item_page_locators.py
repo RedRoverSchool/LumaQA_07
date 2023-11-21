@@ -56,9 +56,8 @@ class ItemPageRatingLocators:
     LINK_ADD_YOUR_REVIEWS = (By.CSS_SELECTOR, '.reviews-actions .add')
 
 
-
-
-
-
-
-
+class ColorSizeBlockLocators:
+    COLOR = (By.XPATH, "//div[contains(@class, 'swatch-option color')][1]")
+    SIZE = (By.XPATH, "//div[contains(@class, 'swatch-option text')][1]")
+    SELECTED_SIZE = (By.XPATH, "//div[@attribute-code='size']//span[@class='swatch-attribute-selected-option']")
+    SELECTED_COLOR = (By.XPATH, "//div[@attribute-code='color']//span[@class='swatch-attribute-selected-option']")

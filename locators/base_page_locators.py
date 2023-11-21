@@ -58,6 +58,7 @@ class BasePageLocators:
 
     SHOP_ERIN_RECOMMENDS = (By.CSS_SELECTOR, "a[class='block-promo home-erin'] span[class='action more icon']")
     SHOP_PERFORMANCE = (By.XPATH, "//span[normalize-space()='Shop Performance'][1]")
+    SHOP_ECO_FRIENDLY = (By.XPATH, "//span[normalize-space()='Shop Eco-Friendly']")
     BLOCK_PROMO = (By.XPATH, "//*[@class='block-promo-wrapper block-promo-hp']")
 
     BLOCK_1 = (By.XPATH, "//*[@class='block-promo home-main']")
