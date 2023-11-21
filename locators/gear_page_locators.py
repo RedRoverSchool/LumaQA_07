@@ -21,3 +21,5 @@ class BannerLocators:
     BAGS_BANNER = (By.XPATH, '//a[@class="block-promo gear-category-bags"]')
     FITNESS_EUQIPMENT_BANNER = (By.XPATH, '//a[@class="block-promo gear-category-equipment"]')
     WATCHES_BANNER = (By.XPATH, '//a[@class="block-promo gear-category-watches"]')
+    # Gear page buttons
+    SPRITE_YOGA_COMPANION_KIT_BANNER_BUTTON = (By.XPATH, '//span[@class="more button"]')

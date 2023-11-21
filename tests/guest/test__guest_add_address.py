@@ -5,7 +5,7 @@ from pages.item_page import ItemPage
 
 
 class TestX(FakeData):
-    def teOFFst_guest_add_shipping_address_with_select_state(self, driver):
+    def test_guest_add_shipping_address_with_select_state(self, driver):
         # page = ItemDetailsPage(driver)
         # page.add_to_cart().click()
         # assert page.msg == ItemDetailsPage.SUCCESS
@@ -16,10 +16,10 @@ class TestX(FakeData):
 
 
         page = GuestShippingAddressPage(driver)
-        page.is_loading()
+        # page.is_loading()
 
         page.email = self.email
-        page.is_loading()
+        # page.is_loading()
 
         page.first_name = self.first_name
         page.last_name = self.last_name
@@ -33,8 +33,11 @@ class TestX(FakeData):
         page.street_2 = self.street_address
         page.street_3 = f"{city} {state} {postcode}"
         page.telephone = self.phone_number
-        page.is_loading()
+        # page.is_loading()
+        page.shipping_method().click()
 
         page.button_next().click()
-        page.redirect(GuestShippingAddressPage.URL_DONE, 20)
+        page.wait_close_loader_one()
+
+        page.redirect(GuestShippingAddressPage.URL_DONE)
         assert page.current_url == GuestShippingAddressPage.URL_DONE

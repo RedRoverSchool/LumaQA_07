@@ -27,3 +27,9 @@ class TestProductPage:
         page = ProductPage(driver, PRODUCT_PAGE_EXAMPLE)
         page.open()
         assert page.add_to_block_is_visible()
+
+    def test_availability_block_is_displayed(self, driver):
+        """TC_002.005.004"""
+        page = ProductPage(driver, PRODUCT_PAGE_EXAMPLE)
+        page.open()
+        assert page.availability_block_is_displayed(), "Availability is not displayed"

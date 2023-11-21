@@ -19,3 +19,7 @@ class ProductPage(BasePage):
     def product_add_to_block_is_visible(self):
         product_add_to_block = self.is_visible(self.locators.ADD_TO_BLOCK)
         return product_add_to_block.is_displayed()
+
+    def availability_block_is_displayed(self):
+        availability_block = self.is_visible(self.locators.AVAILABILITY_BLOCK)
+        return availability_block.is_displayed()

@@ -11,7 +11,20 @@ from pages.main_page import MainPage
 import importlib
 
 
-# TC_004.001.001 | Authorization >Anonym user > Accessibility of site pages > Menu sections
+""" TC_004.001.001 | Authorization >Anonym user > Accessibility of site pages > Menu sections
+    Pre-conditions:
+        User is not logged in
+        The page Home Page is opened
+
+    Steps:
+        Click “What’s New“ menu section
+    
+    Expected results:
+        The What's New page is opened
+    
+    *Make the same test for all menu items of all menu sections (“Women”, “Men”, “Gear”, “Training”, “Sale”)"""
+
+
 @pytest.mark.parametrize("locator, assert_page",   [(bpl.LINK_WHATS_NEW, WHATS_NEW_PAGE),
                                                     (bpl.LINK_WOMEN, WOMEN_PAGE),
                                                     (bpl.LINK_WOMEN_TOPS, WOMEN_TOPS_PAGE),
