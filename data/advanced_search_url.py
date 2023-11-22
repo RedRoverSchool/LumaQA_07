@@ -1,0 +1,1 @@
+ADVANCED_SEARCH_URL = 'https://magento.softwaretestingboard.com/catalogsearch/advanced/'
