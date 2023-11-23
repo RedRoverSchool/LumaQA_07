@@ -1,6 +1,14 @@
 # Используем базовый образ Python 3.11-slim-bookworm
 FROM python:3.11-slim-bookworm
 
+# Установка Java
+RUN apt-get update \
+    && apt-get install -y openjdk-17-jdk \
+    && apt-get clean;
+
+# Установка переменной среды JAVA_HOME для Java
+ENV JAVA_HOME=/url/lib/jvm/java-11-openjdk-amd64/
+
 # Установка переменной среды PYTHONUNBUFFERED для Python, чтобы вывод был буферизованным
 # Полезно когда вывод необходимо получать в реальном времени. Отрицательно влияет на производительность
 ENV PYTHONUNBUFFERED=1
