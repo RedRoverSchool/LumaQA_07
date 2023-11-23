@@ -61,3 +61,16 @@ class ColorSizeBlockLocators:
     SIZE = (By.XPATH, "//div[contains(@class, 'swatch-option text')][1]")
     SELECTED_SIZE = (By.XPATH, "//div[@attribute-code='size']//span[@class='swatch-attribute-selected-option']")
     SELECTED_COLOR = (By.XPATH, "//div[@attribute-code='color']//span[@class='swatch-attribute-selected-option']")
+
+
+class ItemPageJacketsJupiterTrainerLocators:
+    COLOR = (By.XPATH, "//div[contains(@class, 'swatch-option color')][2]")
+    SIZE = (By.XPATH, "//div[contains(@class, 'swatch-option text')][2]")
+    FIELD_QTY = (By.XPATH, '//*[@id="qty"]')
+    BUTTON_ADD_TO_CART = (By.XPATH, '//*[@id="product-addtocart-button"]')
+    LINK_SHOPPING_CART = (By.XPATH, '//*[@data-ui-id="message-success"]'
+                                    '//a[@href="https://magento.softwaretestingboard.com/checkout/cart/"]')
+    SUBTOTAL = (By.XPATH, '//tr[@class="totals sub"]//span')
+    DISCOUNT = (By.XPATH, '//tr[@class="totals"]//td[@class="amount"]//span[@class="price"]')
+
+

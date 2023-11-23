@@ -98,6 +98,7 @@ class BasePage:
     def is_invisible(self, locator: tuple, timeout: int = TIMEOUT) -> WebElement:
         return wait(self.driver, timeout).until(EC.invisibility_of_element_located(locator))
 
+
     def clear_and_send_keys(self, el: WebElement, val: str) -> None:
         el.clear()
         el.send_keys(val)
