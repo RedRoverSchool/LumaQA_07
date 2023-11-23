@@ -1,5 +1,10 @@
 from pages.product_page.product_main_info import ProductPage
 from data.product_page_data import PRODUCT_PAGE_EXAMPLE
+from pages.account.sign_in import SignInPage
+from locators.product_page_locators import ProductPageLocators
+from tests.login.test__sign_in import TestX
+import time
+
 
 class TestProductPage:
 
@@ -34,7 +39,7 @@ class TestProductPage:
         page.open()
         assert page.availability_block_is_displayed(), "Availability is not displayed"
 
-    def test_clickability_add_to_cart(self, driver,):
+    def test_clickability_add_to_cart(self, driver):
         """TC_002.015.002"""
         page = ProductPage(driver, PRODUCT_PAGE_EXAMPLE)
         page.open()
@@ -44,3 +49,9 @@ class TestProductPage:
 
         assert page.counter_number_is_visible(), "'Add to cart' button is not clickability"
 
+    def test_add_to_wish_list_is_clickable(self, driver):
+        """TC_002.016.001"""
+        TestX.test_correct_credentials_login(self, driver)
+        page = ProductPage(driver, PRODUCT_PAGE_EXAMPLE)
+        page.open()
+        assert page.visible(ProductPageLocators.ADD_WISH_ELEMENT), "Element 'Add to wish list' is invisible"
