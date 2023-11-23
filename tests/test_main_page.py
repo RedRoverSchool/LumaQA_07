@@ -30,6 +30,7 @@ class TestMainPage:
         assert driver.current_url == ErinRecommendsPage.URL
 
     def test_redirect_men_page_by_clicking_men_btn(self, driver):
+        """TC_008.001.001 | Main page > Men page > user able to select Men catalog on the Main page"""
         page = MainPage(driver, url=MainPage.URL)
         page.open()
         page.men_btn_catalog().click()
@@ -37,12 +38,14 @@ class TestMainPage:
         assert driver.current_url == MEN_PAGE
 
     def test_select_tops_from_men_dropdown_menu(self, driver):
+        """TC_008.002.001 | Men Page > Select item Tops from Men BTN dropdown menu"""
         page = MainPage(driver, url=MainPage.URL)
         page.open()
         page.select_tops_from_mens_dropdown_menu()
         assert page.visibility_of_men_tops_secondary_dropdown_menu(), "element is not visible"
 
     def test_select_bottoms_from_men_dropdown_menu(self, driver):
+        """TC_008.002.002| Men Page > Select item Bottoms from Men BTN dropdown menu"""
         page = MainPage(driver, url=MainPage.URL)
         page.open()
         page.select_bottoms_from_mens_dropdown_menu()
