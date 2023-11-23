@@ -142,6 +142,10 @@ class ItemPageJacketsJupiterTrainer(BasePage):
     def subtotal(self):
         return float(self.is_visible(ItemPageJacketsJupiterTrainerLocators.SUBTOTAL).text[1:])
 
+    def discount_display(self):
+        return bool(self.item_count(ItemPageJacketsJupiterTrainerLocators.DISCOUNT))
+
+
 
 
 
