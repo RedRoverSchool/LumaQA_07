@@ -12,6 +12,9 @@ def pytest_configure(config):
     shot = os.path.join(os.path.dirname(os.path.abspath(__file__)), "screenshots")
     rmtree(shot, ignore_errors=True)
     os.makedirs(shot, exist_ok=True)
+    allure_results = os.path.join(os.path.dirname(os.path.abspath(__file__)), "allure-results")
+    rmtree(allure_results, ignore_errors=True)
+    os.makedirs(allure_results, exist_ok=True)
 
 
 @pytest.fixture
