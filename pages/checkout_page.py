@@ -177,6 +177,7 @@ class GuestShippingAddressPage(BasePage):
     URL_DONE = "https://magento.softwaretestingboard.com/checkout/#payment"
 
     EMAIL = (By.CSS_SELECTOR, "input#customer-email")
+    EMAIL_POST = (By.CSS_SELECTOR, "fieldset#customer-email-fieldset._block-content-loading")
 
     FIRST_NAME = (By.CSS_SELECTOR, 'input[name="firstname"]')
     LAST_NAME = (By.CSS_SELECTOR, 'input[name="lastname"]')
@@ -190,6 +191,8 @@ class GuestShippingAddressPage(BasePage):
     REGION = (By.CSS_SELECTOR, 'input[name="region"]')
     ZIP = (By.CSS_SELECTOR, 'input[name="postcode"]')
     COUNTRY = (By.CSS_SELECTOR, 'select[name="country_id"]')
+    ESTIMATE_SHIPPING_POST = (By.CSS_SELECTOR, "li#opc-shipping_method._block-content-loading")
+
     PHONE = (By.CSS_SELECTOR, 'input[name="telephone"]')
 
     BUTTON_NEXT = (By.CSS_SELECTOR, "button.continue")
@@ -199,6 +202,8 @@ class GuestShippingAddressPage(BasePage):
     SHIPPING_METHOD = (By.CSS_SELECTOR, ".table-checkout-shipping-method > tbody > tr")
     LOADER = (By.CSS_SELECTOR, "div.loader")
     LOADER_ONE = (By.XPATH, "//*[@data-role='loader']")
+
+    CHECKOUT_LOADER = (By.CSS_SELECTOR, "div#checkout-loader")
 
     def __init__(self, driver, url=URL):
         super().__init__(driver, url)
@@ -210,7 +215,10 @@ class GuestShippingAddressPage(BasePage):
 
     @email.setter
     def email(self, val: str):
+        self.is_invisible(self.CHECKOUT_LOADER)
         self.clear_and_send_keys(self.email, val)
+        # self.the_presence_of_element_located(self.EMAIL_POST)
+        # self.is_invisible(self.EMAIL_POST)
 
     @property
     def first_name(self):
@@ -283,6 +291,8 @@ class GuestShippingAddressPage(BasePage):
     @region.setter
     def region(self, val):
         self.clear_and_send_keys(self.region, val)
+        self.the_presence_of_element_located(self.ESTIMATE_SHIPPING_POST)
+        self.is_invisible(self.ESTIMATE_SHIPPING_POST)
 
     @property
     def postcode(self):
@@ -291,6 +301,8 @@ class GuestShippingAddressPage(BasePage):
     @postcode.setter
     def postcode(self, val: str):
         self.clear_and_send_keys(self.postcode, val)
+        self.the_presence_of_element_located(self.ESTIMATE_SHIPPING_POST)
+        self.is_invisible(self.ESTIMATE_SHIPPING_POST)
 
     @property
     def state(self):
@@ -299,6 +311,8 @@ class GuestShippingAddressPage(BasePage):
     @state.setter
     def state(self, text):
         Select(self.is_clickable(self.STATE)).select_by_visible_text(text)
+        self.the_presence_of_element_located(self.ESTIMATE_SHIPPING_POST)
+        self.is_invisible(self.ESTIMATE_SHIPPING_POST)
 
     @property
     def country(self):
@@ -306,18 +320,17 @@ class GuestShippingAddressPage(BasePage):
 
     @country.setter
     def country(self, val):
+        selected = Select(self.is_clickable(self.COUNTRY)).first_selected_option.get_attribute('value')
         Select(self.is_clickable(self.COUNTRY)).select_by_value(val)
-
-    def button_next(self):
-        self.available()
-        return self.is_clickable(self.BUTTON_NEXT)
+        if selected != val:
+            self.the_presence_of_element_located(self.ESTIMATE_SHIPPING_POST)
+            self.is_invisible(self.ESTIMATE_SHIPPING_POST)
 
     def shipping_method(self):
-        self.available()
         return self.is_clickable(self.SHIPPING_METHOD)
 
-    def available(self):
-        return self.is_invisible(self.LOADER)
+    def button_next(self):
+        return self.is_clickable(self.BUTTON_NEXT)
 
-    def wait_close_loader_one(self):
-        return self.is_invisible(self.LOADER_ONE)
+
+
