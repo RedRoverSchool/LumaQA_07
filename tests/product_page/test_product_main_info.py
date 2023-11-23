@@ -49,8 +49,8 @@ class TestProductPage:
 
         assert page.counter_number_is_visible(), "'Add to cart' button is not clickability"
 
-    def test_add_to_wish_list_is_clickable(self, driver):
-        """TC_002.016.001"""
+    def test_add_to_wish_list_is_visible(self, driver):
+        """TC_002.016.002"""
         TestX.test_correct_credentials_login(self, driver)
         page = ProductPage(driver, PRODUCT_PAGE_EXAMPLE)
         page.open()
