@@ -7,6 +7,21 @@ from locators.item_page_locators import ItemPageReviewsLocators
 from locators.item_page_locators import ItemPageRatingLocators
 
 
+class ItemDetailsPage(BasePage):
+    URL = "https://magento.softwaretestingboard.com/luma-analog-watch.html"
+    ADD_TO_CART = (By.CSS_SELECTOR, "button.tocart")
+    SUCCESS = "You added Luma Analog Watch to your shopping cart."
+
+    def __init__(self, driver, url=URL):
+        super().__init__(driver, url)
+        self.current_url = url
+
+    def add_to_cart(self):
+        el = self.is_clickable(self.ADD_TO_CART)
+        # self.is_loading()
+        return el
+
+
 class ItemPage(BasePage):
     URL_DRIVEN_BACKPACK = "https://magento.softwaretestingboard.com/driven-backpack.html"
     URL_PUSH_IT_MESSENGER_BAG = "https://magento.softwaretestingboard.com/push-it-messenger-bag.html"
