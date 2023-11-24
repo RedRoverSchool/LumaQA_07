@@ -1,9 +1,9 @@
 from pages.product_page.product_main_info import ProductPage
 from data.product_page_data import PRODUCT_PAGE_EXAMPLE
-from pages.account.sign_in import SignInPage
 from locators.product_page_locators import ProductPageLocators
+from locators.base_page_locators import BasePageLocators as BP
+from data.home_page_url import HOME_PAGE
 from tests.login.test__sign_in import TestX
-import time
 
 
 class TestProductPage:
@@ -55,3 +55,12 @@ class TestProductPage:
         page = ProductPage(driver, PRODUCT_PAGE_EXAMPLE)
         page.open()
         assert page.visible(ProductPageLocators.ADD_WISH_ELEMENT), "Element 'Add to wish list' is invisible"
+
+    def test_main_logo_redirect_to_main_page(self, driver):
+        """TC_003.001.002"""
+        page = ProductPage(driver, PRODUCT_PAGE_EXAMPLE)
+        page.open()
+        page.visible(BP.LOGO_TITLE).click()
+        assert driver.current_url == HOME_PAGE
+
+
