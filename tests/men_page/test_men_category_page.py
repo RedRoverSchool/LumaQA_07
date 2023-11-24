@@ -134,3 +134,19 @@ class TestTeesFilter:
         assert (
                 page.driver.current_url == mp_url.STRIKE_ENDURANCE
         ), "Failed to go to the product page by title"
+
+
+class TestMenTopsPage:
+    def test_redirect_to_tees(self, page_tops):
+        """
+        TC_008.016.001 | Tops Page > select "Tees" > redirected to Tees Page
+        """
+
+        page = page_tops
+
+        page.driver.find_element(*MCL.CATEGORY_BUTTON).click()
+        page.driver.find_element(*MCL.TEES_FILTER).click()
+
+        assert (
+            page.driver.current_url == mp_url.TEES_FILTER
+        ), "The page didn't redirect to the Tees page"

@@ -30,3 +30,17 @@ def page_with_tees_filter(driver) -> MenCategoryPage:
     page.open()
 
     return page
+
+
+@pytest.fixture
+def page_tops(driver) -> MenCategoryPage:
+    """
+    Returns the open MenCategoryPage
+    with the open "Tops" category.
+
+    """
+
+    page = MenCategoryPage(driver, url=mp_url.TOPS_MEN_PAGE)
+    page.open()
+
+    return page
