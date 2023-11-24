@@ -21,3 +21,8 @@ class TestMenTopsPage:
         page.open()
         page.click_men_tops_product_title()
         assert driver.current_url == CASSIUS_SPARRING_TANK, "It's not a cassius sparring tank page"
+
+    def test_grid_is_visible(self, driver):
+        page = MenTops(driver, TOPS_MEN_PAGE)
+        page.open()
+        assert page.check_visibility_grid(), "It is not visible"

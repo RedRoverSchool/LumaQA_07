@@ -12,3 +12,6 @@ class MenTops(BasePage):
 
     def click_men_tops_product_title(self):
         return self.is_clickable(MenTopsPageLocators.TOP_MEN_PRODUCT_TITLE).click()
+
+    def check_visibility_grid(self):
+        return self.is_visible(MenPageLocators.MEN_TOPS_GRID)
