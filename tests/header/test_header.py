@@ -23,3 +23,11 @@ def test_popup_window_is_displayed_after_clicking(driver):
 
     assert page.is_visible(BasePageLocators.BLOCK_MINICART)
     assert cart_counter_number == block_minicart_item_quantity and cart_counter_number == '1'
+
+
+@pytest.mark.parametrize('URL', HEADER_TEST_URLS)
+def test_tc_003_001_003_logo_redirects_main_page(driver, URL):
+    page = Header(driver, URL)
+    page.open()
+    page.hold_mouse_on_element_and_click(BasePageLocators.LOGO_TITLE)
+    page.check_logo_redirection()
