@@ -12,6 +12,7 @@ class BasePageLocators:
     BLOCK_MINICART_ITEM_QUANTITY = (By.XPATH, '//div[@class="product-item-pricing"]//input')
     LINK_HEADER_SIGN_IN = (By.XPATH, "//header[@class='page-header']//child::a[contains(text(), 'Sign In')]")
     LINK_HEADER_CREATE_ACCOUNT = (By.XPATH, "//header[@class='page-header']//child::a[contains(text(), 'Create an Account')]")
+    HEADER_SEARCHBAR = (By.ID, "search")
     ERIN_SECTION = (By.CSS_SELECTOR, '.home-erin')
     OVERLAY = (By.XPATH, "//*[@data-role='loader']")
     WELCOME_MENU_BUTTON = (By.XPATH, '//span[@class="customer-name"]/button[@data-action="customer-menu-toggle"]')

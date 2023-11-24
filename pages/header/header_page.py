@@ -10,3 +10,6 @@ class Header(BasePage):
 
     def check_logo_redirection(self):
         assert self.current_url == HOME_PAGE, "Logo doesn't redirect to the main page!"
+
+    def check_header_visibility(self):
+        assert self.is_visible(BasePageLocators.HEADER_SEARCHBAR)

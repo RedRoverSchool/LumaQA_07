@@ -20,7 +20,6 @@ TEST_URL_LIST = [
 HEADER_TEST_URLS = ['https://magento.softwaretestingboard.com/what-is-new.html',
         'https://magento.softwaretestingboard.com/women.html',
         'https://magento.softwaretestingboard.com/men.html',
-        'https://openweathermap.org/weather-dashboard',
         'https://magento.softwaretestingboard.com/gear.html',
         'https://magento.softwaretestingboard.com/training.html',
         'https://magento.softwaretestingboard.com/sale.html',
