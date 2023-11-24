@@ -87,7 +87,9 @@ class TestFooterElementsVisibleClickable:
     def test_check_visibility_or_clickability_of_the_search_terms_title(
         self, param, any_url, driver, any_page_precondition
     ):
-        """TC_012.003.001 | Footer > "Search terms" link > Visibility and clickability > Visibility of the 'Search Terms' link
+        """
+        TC_012.003.001 | Footer > "Search terms" link > Visibility and clickability > Visibility of the 'Search Terms' link
+        TC_012.003.002 | Footer > "Search terms" link > Visibility and clickability > Verify The 'Search Terms' link is clickable
         """
 
         expected_link = "https://magento.softwaretestingboard.com/search/term/popular/"
@@ -98,4 +100,4 @@ class TestFooterElementsVisibleClickable:
             element_value=f"The link to the '{expected_link}'",
             element_locator=BasePageLocators.LINK_SEARCH_TERMS,
             location="the footer",
-            )
+        )
