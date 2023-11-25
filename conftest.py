@@ -1,7 +1,13 @@
 import os
 import subprocess
 import time
+<<<<<<< Updated upstream
 from shutil import rmtree, move
+=======
+from shutil import rmtree
+import allure
+import subprocess
+>>>>>>> Stashed changes
 
 import allure
 import pytest
@@ -77,3 +83,4 @@ def save_screenshot(request, driver):
         driver.get_screenshot_as_file(full_file_path)
 
         allure.attach.file(full_file_path, name=file_name, attachment_type=allure.attachment_type.PNG)
+
