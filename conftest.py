@@ -3,6 +3,7 @@ import subprocess
 import time
 from shutil import rmtree, move
 
+import allure
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -74,3 +75,5 @@ def save_screenshot(request, driver):
         file_name = f"{time_string}.png"
         full_file_path = os.path.join(run_directory, file_name)
         driver.get_screenshot_as_file(full_file_path)
+
+        allure.attach.file(full_file_path, name=file_name, attachment_type=allure.attachment_type.PNG)
