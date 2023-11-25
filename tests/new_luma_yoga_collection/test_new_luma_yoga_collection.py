@@ -73,7 +73,7 @@ class TestPriceLevelsVisibleClickable:
 
     @pytest.mark.parametrize("param", PARAMETERS)
     @pytest.mark.parametrize("price_level_locator,price_level", collect_test_data())
-    def test_check_visibility_or_clickability_of_the_title_write_for_us(
+    def test_check_visibility_or_clickability_of_price_levels_in_the_price_tab(
         self,
         param,
         price_level_locator,
