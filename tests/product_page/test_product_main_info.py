@@ -92,3 +92,21 @@ class TestProductPage:
         page = ProductPage(driver, PRODUCT_PAGE_EXAMPLE)
         page.open()
         assert page.quantity_choice_block_is_displayed(), "Quantity choice block is not displayed"
+
+    def test_add_to_cart_element_is_displayed(self, driver):
+        """TC_002.005.008"""
+        page = ProductPage(driver, PRODUCT_PAGE_EXAMPLE)
+        page.open()
+        assert page.add_to_cart_element_is_displayed(), "Add to cart element is not displayed"
+
+    def test_add_to_wish_list_element_is_displayed(self, driver):
+        """TC_002.005.009"""
+        page = ProductPage(driver, PRODUCT_PAGE_EXAMPLE)
+        page.open()
+        assert page.add_to_wish_list_element_is_displayed(), "Add to wish list element is not displayed"
+
+    def test_add_to_compare_element_is_displayed(self, driver):
+        """TC_002.005.010"""
+        page = ProductPage(driver, PRODUCT_PAGE_EXAMPLE)
+        page.open()
+        assert page.add_to_compare_element_is_displayed(), "Add to compare element is not displayed"

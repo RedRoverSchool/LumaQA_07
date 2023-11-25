@@ -36,6 +36,10 @@ class ProductPageLocators:
     SIZE_BLOCK = (By.XPATH, "//div[@class = 'swatch-attribute size']")
     COLOR_CHOICE = (By.XPATH, "//div[@class = 'swatch-attribute color']")
     QUANTITY_BLOCK = (By.XPATH, "//div[@class = 'field qty'] ")
+    ADD_TO_CARD = (By.XPATH, "//button[@title = 'Add to Cart']")
+    ADD_TO_WISH_LIST = (By.XPATH, "//div[@class='product-addto-links']/a[@data-action='add-to-wishlist']")
+    ADD_TO_COMPARE = (By.CLASS_NAME, "action.tocompare")
+
 
 
 
