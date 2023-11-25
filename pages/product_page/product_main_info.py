@@ -39,3 +39,7 @@ class ProductPage(BasePage):
     def counter_number_is_visible(self):
         counter_number_is_visible = self.is_visible(self.locators.COUNTER_NUMBER)
         return counter_number_is_visible.is_displayed()
+
+    def size_choice_block_is_displayed(self):
+        size_block = self.is_visible(self.locators.SIZE_BLOCK)
+        return size_block.is_displayed()

@@ -75,3 +75,8 @@ class TestProductPage:
         page.visible(loc.ADD_WISH_ELEMENT).click()
         assert driver.find_element(*loc.NAME_OF_WISH_LIST).text == "My Wish List"
 
+    def test_size_choice_block_is_displayed(self, driver):
+        """TC_002.005.005"""
+        page = ProductPage(driver, PRODUCT_PAGE_EXAMPLE)
+        page.open()
+        assert page.size_choice_block_is_displayed(), "Size choice block is not displayed"

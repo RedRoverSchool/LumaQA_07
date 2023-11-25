@@ -33,6 +33,7 @@ class ProductPageLocators:
     PRODUCT_QUANTITY = (By.XPATH, '//input[@id="qty"]')
     ADD_WISH_ELEMENT = (By.XPATH, '//div[@class="product-addto-links"]/a[@data-action="add-to-wishlist"]')
     NAME_OF_WISH_LIST = (By.XPATH, '//span[@class="base"]')
+    SIZE_BLOCK = (By.XPATH, "//div[@class = 'swatch-attribute size']")
 
     # class="product media"
 
