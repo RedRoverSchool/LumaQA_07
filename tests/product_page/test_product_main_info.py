@@ -80,3 +80,15 @@ class TestProductPage:
         page = ProductPage(driver, PRODUCT_PAGE_EXAMPLE)
         page.open()
         assert page.size_choice_block_is_displayed(), "Size choice block is not displayed"
+
+    def test_color_choice_block_is_displayed(self, driver):
+        """TC_002.005.006"""
+        page = ProductPage(driver, PRODUCT_PAGE_EXAMPLE)
+        page.open()
+        assert page.color_choice_block_is_displayed(), "Color choice block is not displayed"
+
+    def test_quantity_color_choice_block_is_displayed(self, driver):
+        """TC_002.005.007"""
+        page = ProductPage(driver, PRODUCT_PAGE_EXAMPLE)
+        page.open()
+        assert page.quantity_choice_block_is_displayed(), "Quantity choice block is not displayed"

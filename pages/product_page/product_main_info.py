@@ -43,3 +43,11 @@ class ProductPage(BasePage):
     def size_choice_block_is_displayed(self):
         size_block = self.is_visible(self.locators.SIZE_BLOCK)
         return size_block.is_displayed()
+
+    def color_choice_block_is_displayed(self):
+        color_block = self.is_visible(self.locators.COLOR_CHOICE)
+        return color_block.is_displayed()
+
+    def quantity_choice_block_is_displayed(self):
+        quantity_block = self.is_visible(self.locators.QUANTITY_BLOCK)
+        return quantity_block.is_displayed()
