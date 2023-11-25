@@ -1,20 +1,8 @@
 import pytest
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium import webdriver
 from selenium.webdriver.common.by import By
-from LumaQA_07.pages.sale_page import SalePage, TeesPage
-from LumaQA_07.pages.main_page import MainPage
+from pages.sale_page import SalePage, TeesPage
+from pages.main_page import MainPage
 import time
-
-
-@pytest.fixture()
-def driver():
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
-    driver.maximize_window()
-    yield driver
-    print('\nquit browser...')
-    driver.quit()
 
 
 @pytest.fixture()

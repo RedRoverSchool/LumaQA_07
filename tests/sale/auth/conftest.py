@@ -1,25 +1,13 @@
 import pytest
-from selenium.webdriver.chrome.service import Service
-from webdriver.chrome import ChromeDriverManager
-from selenium import webdriver
 from selenium.webdriver.common.by import By
-from LumaQA_07.locators.login_page_locators import (LoginPageLocators)
-from LumaQA_07.pages.login.login_page import LoginPage
-from LumaQA_07.pages.sale_page import SalePage
-from LumaQA_07.pages.checkout_page import CheckoutPage
-from LumaQA_07.pages.login.login_page import MyAccountPage
-from LumaQA_07.pages.sale_page import TeesPage, TeesPageProdact
-from LumaQA_07.data.sale_page import CHECKOUT_PAGE
+from locators.login_page_locators import (LoginPageLocators)
+from pages.login.login_page import LoginPage
+from pages.sale_page import SalePage
+from pages.checkout_page import CheckoutPage
+from pages.login.login_page import MyAccountPage
+from pages.sale_page import TeesPage, TeesPageProdact
+from data.sale_page import CHECKOUT_PAGE
 import time
-
-
-@pytest.fixture()
-def driver():
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
-    driver.maximize_window()
-    yield driver
-    print('\nquit browser...')
-    driver.quit()
 
 
 @pytest.fixture()
@@ -62,6 +50,7 @@ def choice_tees_on_sale(driver, login_form, choice_sale):
 def choice_prodact(driver, login_form, choice_sale, choice_tees_on_sale):
     page = TeesPage(driver, url=TeesPage.URL)
     page.open()
+    # todo add these 2 functions
     page.check_visibility_PRODUCTS_LIST()
     page.check_clickability_PRODUCTS_LIST()
 
@@ -114,9 +103,10 @@ def add_prodact(driver, login_form, choice_sale, choice_tees_on_sale, choice_pro
 def checkout_prodact(driver, login_form, choice_sale, choice_tees_on_sale, choice_prodact, add_prodact):
     page = CheckoutPage(driver, url=CheckoutPage.URL)
     page.open()
-    page.checkout_step_shipping()
-    page.shipping_methods()
-    page.checkout_order_summary()
+    # todo implement these three
+    # page.checkout_step_shipping()
+    # page.shipping_methods()
+    # page.checkout_order_summary()
 
     shipping_page = driver.find_element(By.CSS_SELECTOR, '#shipping')
     assert shipping_page

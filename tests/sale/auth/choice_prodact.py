@@ -1,7 +1,7 @@
 '''TC_011.006.02.03 | Shop Tees >Tees>choice_prodact'''
 
 from selenium.webdriver.common.by import By
-from LumaQA_07.pages.sale_page import TeesPage
+from pages.sale_page import TeesPage
 import time
 
 
@@ -34,5 +34,3 @@ def test_choice_prodact(driver, login_form, choice_sale, choice_tees_on_sale):
 
     message = driver.find_element(By.XPATH, '//*[contains(text(), "You added Tiffany Fitness Tee to your")]')
     assert message
-
-    driver.quit()

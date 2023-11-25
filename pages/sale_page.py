@@ -1,11 +1,6 @@
 import random
-from LumaQA_07.base.seleniumbase import BasePage
-from LumaQA_07.locators.sale_page_locators import SalePageLocators, ItemsLocators
-from LumaQA_07.data.sale_page import SALE_PAGE
-
-class SealPage(BasePage):
-    def __init__(self, driver):
-        super().__init__(url=SALE_PAGE, driver=driver)
+from base.seleniumbase import BasePage
+from locators.sale_page_locators import SalePageLocators, ItemsLocators
 
 
 class SalePage(BasePage):
@@ -51,7 +46,14 @@ class TeesPage(BasePage):
     def check_clickability_add_to_card(self):
         return self.is_clickable(SalePageLocators.ADD_TO_CARD)
 
+    # todo 3 pass functions
     def check_visibility_cart_prodact(self):
+        pass
+
+    def check_visibility_PRODUCTS_LIST(self):
+        pass
+
+    def check_clickability_PRODUCTS_LIST(self):
         pass
 
 
@@ -59,9 +61,10 @@ class ItemsPage(BasePage):
     locators = ItemsLocators()
 
     def click_random_item(self):
-        item_list = self.are_visible(self.locators.ITEMS_LIST)
+        item_list = self.is_visible_all_elements(self.locators.ITEMS_LIST)
         item = item_list[random.randint(1, 11)]
-        self.go_to_element(item)
+        # todo random item click
+        # self.go_to_element(item)
         item.click()
 
 

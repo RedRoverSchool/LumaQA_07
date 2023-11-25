@@ -1,8 +1,8 @@
 import pytest
 from selenium.webdriver.remote.webelement import WebElement
-from LumaQA_07.base.seleniumbase import BasePage
-from LumaQA_07.locators.login_page_locators import LoginPageLocators
-from LumaQA_07.locators.base_page_locators import BasePageLocators
+from base.seleniumbase import BasePage
+from locators.login_page_locators import LoginPageLocators
+from locators.base_page_locators import BasePageLocators
 
 
 

@@ -1,7 +1,8 @@
+from selenium.webdriver.common.by import By
+
 from base.seleniumbase import BasePage
 from locators.base_page_locators import BasePageLocators
 from locators.item_page_locators import ItemPageLocators
-
 
 
 class MainPage(BasePage):
@@ -58,3 +59,8 @@ class MainPage(BasePage):
     def scroll_down_to_shop_eco_friendly(self):
         self.scroll_to_element(BasePageLocators.SHOP_ECO_FRIENDLY)
 
+    def check_visibility_of_sale_section(self):
+        return self.is_visible(BasePageLocators.SALE_SECTION)
+
+    def check_clickability_of_sale_section(self):
+        return self.is_clickable(BasePageLocators.SALE_SECTION)

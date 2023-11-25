@@ -1,7 +1,7 @@
 '''TC_011.006.02.01 | Sale'''
 
 from selenium.webdriver.common.by import By
-from LumaQA_07.pages.login.login_page import MyAccountPage
+from pages.login.login_page import MyAccountPage
 
 
 def test_choice_sale(driver, login_form):
@@ -16,5 +16,4 @@ def test_choice_sale(driver, login_form):
     text_name_page = driver.find_element(By.XPATH, '//span[@data-ui-id="page-title-wrapper"]')
     assert text_name_page
 
-    driver.quit()
 

@@ -1,7 +1,8 @@
 '''TC_011.006.02.02.01 | Shop Tees>Tees>choice_tees_on_sale'''
+import time
 
 from selenium.webdriver.common.by import By
-from LumaQA_07.pages.sale_page import TeesPage
+from pages.sale_page import TeesPage
 
 
 def test_choice_prodact(driver, choice_sale, choice_tees_on_sale):
@@ -26,4 +27,9 @@ def test_choice_prodact(driver, choice_sale, choice_tees_on_sale):
     text_name_page = driver.find_element(By.CSS_SELECTOR, 'div[id="option-label-size-143-item-167"]' and 'div[id="option-label-color-93-item-58"]')
     assert text_name_page
 
-    driver.quit()
+    add_to_card = driver.find_element(By.CSS_SELECTOR, 'button[id="product-addtocart-button"]')
+    add_to_card.click()
+    time.sleep(5)
+
+    message = driver.find_element(By.XPATH, '//*[contains(text(), "You added Tiffany Fitness Tee to your")]')
+    assert message

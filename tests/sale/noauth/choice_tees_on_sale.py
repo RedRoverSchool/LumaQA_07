@@ -1,7 +1,7 @@
 '''TC_011.006.02.02.01 | Shop Tees>Tees>choice_tees_on_sale'''
 
 from selenium.webdriver.common.by import By
-from LumaQA_07.pages.sale_page import SalePage
+from pages.sale_page import SalePage
 
 
 def test_choice_tees_on_sale(driver, choice_sale):
@@ -15,5 +15,3 @@ def test_choice_tees_on_sale(driver, choice_sale):
 
     text_name_page = driver.find_element(By.CSS_SELECTOR, 'h1[id="page-title-heading"]')
     assert text_name_page
-
-    driver.quit()
