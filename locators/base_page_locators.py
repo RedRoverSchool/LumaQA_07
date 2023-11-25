@@ -78,3 +78,4 @@ class BasePageLocators:
     ]
     SHOP_NEW_YOGA = (By.XPATH, "//span[@class='action more button']")
 
+    SALE_SECTION = (By.CSS_SELECTOR, '#ui-id-8')
