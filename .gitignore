@@ -33,3 +33,5 @@ Dockerfile_*
 screenshots/
 
 allure-results/
+
+allure-report/
