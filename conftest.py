@@ -1,7 +1,9 @@
 import os
+import subprocess
 import time
-from shutil import rmtree
+from shutil import rmtree, move
 
+import allure
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
