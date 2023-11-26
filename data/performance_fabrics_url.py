@@ -1,0 +1,1 @@
+PERFORMANCE_FABRICS_URL = 'https://magento.softwaretestingboard.com/collections/performance-fabrics.html'
