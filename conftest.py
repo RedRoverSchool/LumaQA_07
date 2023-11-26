@@ -17,7 +17,7 @@ def pytest_configure(config):
 @pytest.fixture
 def options():
     options = Options()
-    options.add_argument('--window-size=2880,1800')
+    options.add_argument('--window-size=1000,800')
     # options.add_argument('--headless')
     options.add_argument("--ignore-certificate-errors")
     if os.environ.get('PYTHONDONTWRITEBYTECODE') == '1':
@@ -30,6 +30,7 @@ def options():
 @pytest.fixture 
 def driver(options):
     driver = webdriver.Chrome(options=options)
+    # print(f"Created driver: {driver}")
     yield driver 
     driver.quit()
 
