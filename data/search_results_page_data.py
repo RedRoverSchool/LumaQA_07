@@ -1,3 +1,2 @@
-HOODIE_ITEM_SEARCH_RESULT_URL = 'https://magento.softwaretestingboard.com/catalogsearch/result/?q=HOODIE'
-HOODIE_ITEM_SEARCH_RESULT_TITLE = "Search results for: 'HOODIE'"
-HOODIE_ITEM_SEARCH_RESULT_HEADING = "Search results for: 'HOODIE'"
+SEARCH_RESULT_PAGE_URL_FOR_ANY_ITEM = 'https://magento.softwaretestingboard.com/catalogsearch/result/?q='
+TEXT_SEARCH_RESULT_FOR = "Search results for: "
