@@ -2,9 +2,25 @@ import math
 from selenium.webdriver.common.by import By
 from base.seleniumbase import BasePage
 from locators.base_page_locators import BasePageLocators
-from locators.item_page_locators import ItemPageLocators
+from locators.item_page_locators import ItemPageLocators, ItemPageJacketsJupiterTrainerLocators
 from locators.item_page_locators import ItemPageReviewsLocators
 from locators.item_page_locators import ItemPageRatingLocators
+
+
+class ItemDetailsPage(BasePage):
+    URL = "https://magento.softwaretestingboard.com/luma-analog-watch.html"
+    ADD_TO_CART = (By.CSS_SELECTOR, "button.tocart")
+    SUCCESS = "You added Luma Analog Watch to your shopping cart."
+
+    def __init__(self, driver, url=URL):
+        super().__init__(driver, url)
+        self.current_url = url
+
+    def add_to_cart(self):
+        el = self.is_clickable(self.ADD_TO_CART)
+        # self.is_loading()
+        return el
+
 
 class ItemPage(BasePage):
     URL_DRIVEN_BACKPACK = "https://magento.softwaretestingboard.com/driven-backpack.html"
@@ -115,6 +131,46 @@ class ItemRatingBlock(BasePage):
 
     def link_add_your_reviews(self):
         return self.is_visible(ItemPageRatingLocators.LINK_ADD_YOUR_REVIEWS)
+
+
+class ItemPageJacketsJupiterTrainer(BasePage):
+    URL = 'https://magento.softwaretestingboard.com/jupiter-all-weather-trainer.html'
+
+    def size_item(self):
+        return self.is_clickable(ItemPageJacketsJupiterTrainerLocators.SIZE)
+
+    def color_item(self):
+        return self.is_clickable(ItemPageJacketsJupiterTrainerLocators.COLOR)
+
+    def qty_item(self):
+        return self.is_visible(ItemPageJacketsJupiterTrainerLocators.FIELD_QTY)
+
+    def add_to_cart(self):
+        return self.is_clickable(ItemPageJacketsJupiterTrainerLocators.BUTTON_ADD_TO_CART)
+
+    def link_shopping_cart(self):
+        return self.is_clickable(ItemPageJacketsJupiterTrainerLocators.LINK_SHOPPING_CART)
+
+    def discount_in_summary(self):
+        return float(self.is_visible(ItemPageJacketsJupiterTrainerLocators.DISCOUNT).text[2:])
+
+    def subtotal(self):
+        return float(self.is_visible(ItemPageJacketsJupiterTrainerLocators.SUBTOTAL).text[1:])
+
+    def discount_display(self):
+        return bool(self.item_count(ItemPageJacketsJupiterTrainerLocators.DISCOUNT))
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

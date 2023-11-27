@@ -1,6 +1,8 @@
 from data.training_page import *
 from pages.account.create_account import CreateAccountPage
 from pages.erin_recommends.erin_recommends import ErinRecommendsPage
+from locators.training_page_locators import TrainingPageLocators as tpl
+
 
 from locators.training_page_locators import TrainingPageLocators as tpl
 

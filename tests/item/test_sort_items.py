@@ -1,5 +1,4 @@
 import pytest
-
 from locators.sort_items_locators import SortItemsLocators, ShowItemsPerPageLocators
 from pages.men_category_page.sort_items import SortItemsByProduct, ShowItemsPerPage
 
@@ -65,6 +64,8 @@ def test_show_items_per_page_list(driver, qty):
     page.modes_list_active()
     page.select_show_items().select_by_value(str(qty))
     assert page.item_count(ShowItemsPerPageLocators.NAME_ITEMS) == qty, 'Не верное количество'
+
+
 
 
 

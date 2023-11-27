@@ -40,6 +40,7 @@ RUN apt-get update && apt-get install -y \
     libu2f-udev \
     libvulkan1 \
     unzip \
+    openjdk-17-jre \
     && rm -rf /var/lib/apt/lists/*
 
 # Скачиваем и устанавливаем Google Chrome и ChromeDriver
@@ -52,6 +53,14 @@ RUN curl -L 'https://googlechromelabs.github.io/chrome-for-testing/last-known-go
     && ln -s /usr/local/share/chromedriver-linux64/chromedriver /usr/bin/chromedriver \
     && rm 'chrome-linux64.zip' && rm 'chromedriver-linux64.zip'
 
+# JAVA_HOME
+RUN export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+
+# Скачиваем и устанавливаем allure
+RUN curl -LO 'https://github.com/allure-framework/allure2/releases/download/2.24.1/allure_2.24.1-1_all.deb' \
+    && dpkg -i 'allure_2.24.1-1_all.deb' \
+    && rm 'allure_2.24.1-1_all.deb'
+
 # Копируем файл requirements.txt и устанавливаем зависимости Python
 COPY requirements.txt requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
@@ -60,4 +69,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Запускаем проект 
-CMD ["pytest", "-s", "-v"]
+CMD ["pytest", "-n4", "-s", "-v"]

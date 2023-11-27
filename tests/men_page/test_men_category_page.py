@@ -121,3 +121,32 @@ class TestTeesFilter:
                 page.driver.current_url == mp_url.STRIKE_ENDURANCE
         ), "Failed to go to the product page by image"
 
+    def test_redirect_by_product_title(self, page_with_tees_filter):
+        """
+        TC_008.017.005 | Men > Tops > Tees filter
+                        > Redirect to the product page by product title
+        """
+
+        page = page_with_tees_filter
+
+        page.driver.find_element(*MCL.ITEM_TITLE).click()
+
+        assert (
+                page.driver.current_url == mp_url.STRIKE_ENDURANCE
+        ), "Failed to go to the product page by title"
+
+
+class TestMenTopsPage:
+    def test_redirect_to_tees(self, page_tops):
+        """
+        TC_008.016.001 | Tops Page > select "Tees" > redirected to Tees Page
+        """
+
+        page = page_tops
+
+        page.driver.find_element(*MCL.CATEGORY_BUTTON).click()
+        page.driver.find_element(*MCL.TEES_FILTER).click()
+
+        assert (
+            page.driver.current_url == mp_url.TEES_FILTER
+        ), "The page didn't redirect to the Tees page"

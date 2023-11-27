@@ -31,3 +31,7 @@ Dockerfile_*
 
 #Игнорировать директрорию проекта "screenshots"
 screenshots/
+
+allure-results/
+
+allure-report/

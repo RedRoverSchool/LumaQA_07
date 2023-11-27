@@ -16,6 +16,7 @@ class AccountEditPage(BasePage):
     PASSWORD_CONFIRM = (By.CSS_SELECTOR, "input#password-confirmation")
     MESSAGE_CHANGE_PASSWORD_ERROR = (By.CSS_SELECTOR, '#password-error')
     MESSAGE_CONFIRM_CHANGE_PASSWORD_ERROR = (By.CSS_SELECTOR, '#password-confirmation-error')
+    MESSAGE_CURRENT_PASSWORD_ERROR = (By.CSS_SELECTOR, '#current-password-error')
 
     SAVE = (By.CSS_SELECTOR, "button.save")
 
@@ -91,4 +92,8 @@ class AccountEditPage(BasePage):
 
     def message_confirm_change_password_error(self):
         confirm_pass_error_msg = self.driver.find_element(*AccountEditPage.MESSAGE_CONFIRM_CHANGE_PASSWORD_ERROR).text
+        return confirm_pass_error_msg
+
+    def message_current_password_error(self):
+        confirm_pass_error_msg = self.driver.find_element(*AccountEditPage.MESSAGE_CURRENT_PASSWORD_ERROR).text
         return confirm_pass_error_msg

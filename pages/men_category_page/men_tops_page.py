@@ -1,4 +1,5 @@
 from base.seleniumbase import BasePage
+from locators.men_tops_page_locators import MenTopsPageLocators
 from locators.men_page_locators import MenPageLocators, MenCategoryPageLocators
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait as wait
@@ -20,7 +21,6 @@ class MenTops(BasePage):
 
     def check_visibility_grid(self):
         return self.is_visible(MenPageLocators.MEN_TOPS_GRID)
-
 
     def hover_to_cart(self, position):
         cart = self.is_visible(MenCategoryPageLocators.get_position_cart(position))

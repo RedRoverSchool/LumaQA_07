@@ -79,3 +79,25 @@ class TestFooterElementsVisibleClickable:
             copyright_info.text == expected_text
         ), f"""
             The copiright information from this page {any_url} = '{copyright_info.text}' and mismatch to the expected text ('{expected_text}')"""
+
+
+    @pytest.mark.long
+    @pytest.mark.parametrize("param", PARAMETERS)
+    @pytest.mark.parametrize("any_url", TEST_URL_LIST)
+    def test_check_visibility_or_clickability_of_the_search_terms_title(
+        self, param, any_url, driver, any_page_precondition
+    ):
+        """
+        TC_012.003.001 | Footer > "Search terms" link > Visibility and clickability > Visibility of the 'Search Terms' link
+        TC_012.003.002 | Footer > "Search terms" link > Visibility and clickability > Verify The 'Search Terms' link is clickable
+        """
+
+        expected_link = "https://magento.softwaretestingboard.com/search/term/popular/"
+
+        any_page = any_page_precondition
+        any_page.verify_visability_or_clickability_of_the_element_in_location(
+            param=param,
+            element_value=f"The link to the '{expected_link}'",
+            element_locator=BasePageLocators.LINK_SEARCH_TERMS,
+            location="the footer",
+        )

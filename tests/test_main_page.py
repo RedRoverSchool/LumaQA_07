@@ -4,6 +4,7 @@ from pages.erin_recommends.erin_recommends import ErinRecommendsPage
 from data.men_page_url import MEN_PAGE, TOPS_MEN_PAGE
 from pages.performance_fabrics.performance_fabrics import PerformanceFabricsPage
 from pages.eco_friendly.eco_friendly import EcoFriendlyPage
+from data.performance_fabrics_url import PERFORMANCE_FABRICS_URL
 
 
 class TestMainPage:
@@ -30,6 +31,7 @@ class TestMainPage:
         assert driver.current_url == ErinRecommendsPage.URL
 
     def test_redirect_men_page_by_clicking_men_btn(self, driver):
+        """TC_008.001.001 | Main page > Men page > user able to select Men catalog on the Main page"""
         page = MainPage(driver, url=MainPage.URL)
         page.open()
         page.men_btn_catalog().click()
@@ -37,12 +39,14 @@ class TestMainPage:
         assert driver.current_url == MEN_PAGE
 
     def test_select_tops_from_men_dropdown_menu(self, driver):
+        """TC_008.002.001 | Men Page > Select item Tops from Men BTN dropdown menu"""
         page = MainPage(driver, url=MainPage.URL)
         page.open()
         page.select_tops_from_mens_dropdown_menu()
         assert page.visibility_of_men_tops_secondary_dropdown_menu(), "element is not visible"
 
     def test_select_bottoms_from_men_dropdown_menu(self, driver):
+        """TC_008.002.002| Men Page > Select item Bottoms from Men BTN dropdown menu"""
         page = MainPage(driver, url=MainPage.URL)
         page.open()
         page.select_bottoms_from_mens_dropdown_menu()
@@ -75,3 +79,9 @@ class TestMainPage:
         page.is_clickable(BasePageLocators.SHOP_ECO_FRIENDLY).click()
         assert driver.current_url == EcoFriendlyPage.URL
 
+    def test_correct_switch_to_shop_performance(self, driver):
+        "TC_001.003.002"
+        page = MainPage(driver, url=MainPage.URL)
+        page.open()
+        page.is_clickable(BasePageLocators.BLOCK_5).click()
+        assert driver.current_url == PERFORMANCE_FABRICS_URL
