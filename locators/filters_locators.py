@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 
 class FiltersLocators:
     URL = 'https://magento.softwaretestingboard.com/men/tops-men.html'
+    URL_WOMEN_JACkETS = 'https://magento.softwaretestingboard.com/women/tops-women/jackets-women.html'
 
     SELECT_SIZE = (By.XPATH, "//div[@data-role='title'][text()='Size']")
     SELECT_PRICE = (By.XPATH, "//div[@data-role='title'][text()='Price']")
@@ -14,6 +15,17 @@ class FiltersLocators:
     MATERIAL_POLYESTER_MORE_INFORMATION = (By.XPATH, '//td[@data-th="Material"]')
     SIZE = (By.XPATH, "//div[contains(@class, 'swatch-option text')][3]")
     ITEMS_MEN_TOPS_WITH_FILTER = (By.XPATH, '//*[@class="product photo product-item-photo"]')
+
+    SELECT_PERFORMANCE_FABRIC = (By.XPATH, "//div[@data-role='title'][text()='Performance Fabric']")
+    SELECT_PERFORMANCE_FABRIC_YES = (By.XPATH, "//*[text()='Performance Fabric']/..//*[text()[contains(.,'Yes')]]")
+    SELECT_CLIMATE = (By.XPATH, "//div[@data-role='title'][text()='Climate']")
+    SELECT_CLIMATE_RAINY = (By.XPATH, '//*[text()[contains(.,"Rainy")]]')
+    CLIMATE_MORE_INFORMATION = (By.XPATH, '//td[@data-th="Climate"]')
+
+
+
+
+
 
 
 
