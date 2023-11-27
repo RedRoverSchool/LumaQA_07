@@ -58,7 +58,7 @@ class BasePageLocators:
     LINK_PRIVACY_AND_COOKIE_POLICY = (By.XPATH, '//footer//a[@href="https://magento.softwaretestingboard.com/privacy-policy-cookie-restriction-mode/"]')
     LINK_ADVANCED_SEARCH = (By.XPATH, '//footer//a[@href="https://magento.softwaretestingboard.com/catalogsearch/advanced/"]')
     LINK_ORDERS_AND_RETURNS = (By.XPATH, '//footer//a[@href="https://magento.softwaretestingboard.com/sales/guest/form/"]')
-
+    LINK_DISABLED = (By.XPATH, "//footer//strong")
 
 
     COPYRIGHT_INFO = (By.XPATH,"//footer/following-sibling::*[@class='copyright']")

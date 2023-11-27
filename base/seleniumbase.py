@@ -194,3 +194,10 @@ class BasePage:
             return locatorOrWebelement.text
         else:
             return self.is_visible(locatorOrWebelement).text
+
+
+    def action_move_to_element(self, element):
+        action = ActionChains(self.driver)
+        action.move_to_element(element)
+        action.perform()
+

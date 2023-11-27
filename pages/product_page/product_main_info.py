@@ -39,3 +39,28 @@ class ProductPage(BasePage):
     def counter_number_is_visible(self):
         counter_number_is_visible = self.is_visible(self.locators.COUNTER_NUMBER)
         return counter_number_is_visible.is_displayed()
+
+    def size_choice_block_is_displayed(self):
+        size_block = self.is_visible(self.locators.SIZE_BLOCK)
+        return size_block.is_displayed()
+
+    def color_choice_block_is_displayed(self):
+        color_block = self.is_visible(self.locators.COLOR_CHOICE)
+        return color_block.is_displayed()
+
+    def quantity_choice_block_is_displayed(self):
+        quantity_block = self.is_visible(self.locators.QUANTITY_BLOCK)
+        return quantity_block.is_displayed()
+
+    def add_to_cart_element_is_displayed(self):
+        add_to_cart = self.is_visible(self.locators.ADD_TO_CARD)
+        return add_to_cart.is_displayed()
+
+    def add_to_wish_list_element_is_displayed(self):
+        add_to_wish_list = self.is_visible(self.locators.ADD_TO_WISH_LIST)
+        return add_to_wish_list.is_displayed()
+
+    def add_to_compare_element_is_displayed(self):
+        add_to_compare = self.is_visible(self.locators.ADD_TO_COMPARE)
+        return add_to_compare.is_displayed()
+

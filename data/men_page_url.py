@@ -16,3 +16,8 @@ TEES_FILTER = 'https://magento.softwaretestingboard.com/men/tops-men.html?cat=16
 MARCO_LIGHTWEIGHT = 'https://magento.softwaretestingboard.com/marco-lightweight-active-hoodie.html'
 STRIKE_ENDURANCE = 'https://magento.softwaretestingboard.com/strike-endurance-tee.html'
 CASSIUS_SPARRING_TANK = 'https://magento.softwaretestingboard.com/cassius-sparring-tank.html'
+
+MEN_TOPS_CARDS = [(1, 'https://magento.softwaretestingboard.com/cassius-sparring-tank.html'),
+                  (2, 'https://magento.softwaretestingboard.com/atlas-fitness-tank.html'),
+                  (3, 'https://magento.softwaretestingboard.com/tiberius-gym-tank.html'),
+                  (4, 'https://magento.softwaretestingboard.com/sinbad-fitness-tank.html')]

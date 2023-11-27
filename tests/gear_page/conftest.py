@@ -1,4 +1,3 @@
-from data.gear_page_urls import GEAR_PAGE
 import pytest
 from pages.gear_page.gear_page import GearPage
 from selenium import webdriver

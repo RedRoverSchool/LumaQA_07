@@ -2,6 +2,7 @@ from selenium.webdriver.remote.webelement import WebElement
 
 from base.seleniumbase import BasePage
 from locators.base_page_locators import BasePageLocators
+from selenium.webdriver.common.by import By
 
 
 class FooterPage(BasePage):
@@ -18,3 +19,8 @@ class FooterPage(BasePage):
     def click_advanced_search_link(self):
         """This method clicks on the advanced search link"""
         self.check_clickability_advanced_search_link().click()
+
+
+    def check_visibility_footer_diabled_link(self):
+        """This method heck if an element with <strong> tag in footer is visible"""
+        return self.is_visible(self.locators.LINK_DISABLED)

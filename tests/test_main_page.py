@@ -4,6 +4,7 @@ from pages.erin_recommends.erin_recommends import ErinRecommendsPage
 from data.men_page_url import MEN_PAGE, TOPS_MEN_PAGE
 from pages.performance_fabrics.performance_fabrics import PerformanceFabricsPage
 from pages.eco_friendly.eco_friendly import EcoFriendlyPage
+from data.performance_fabrics_url import PERFORMANCE_FABRICS_URL
 
 
 class TestMainPage:
@@ -78,3 +79,9 @@ class TestMainPage:
         page.is_clickable(BasePageLocators.SHOP_ECO_FRIENDLY).click()
         assert driver.current_url == EcoFriendlyPage.URL
 
+    def test_correct_switch_to_shop_performance(self, driver):
+        "TC_001.003.002"
+        page = MainPage(driver, url=MainPage.URL)
+        page.open()
+        page.is_clickable(BasePageLocators.BLOCK_5).click()
+        assert driver.current_url == PERFORMANCE_FABRICS_URL

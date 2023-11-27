@@ -10,24 +10,34 @@ class MenPageLocators:
     SIDE_BAR_JACKETS = (By.XPATH, "//a[@id='ui-id-19']//span[contains(text(),'Jackets')]")
     MEN_TOPS_GRID = (By.XPATH, "//div[2]/div[1]/strong[2]")
 
+
 class MenCategoryPageLocators:
     CATEGORY_BUTTON = (
         By.XPATH,
         '//div[@class="filter-options-title" and text()="Category"]'
-        )
+    )
     TEES_FILTER = (
         By.XPATH,
         '//div[@class="filter-options-content"]//a[contains(text(), "Tees")]'
-        )
+    )
     ITEM = (By.CLASS_NAME, 'product-item-info')
     ITEM_PHOTO = (By.CLASS_NAME, 'product-image-photo')
     ITEM_TITLE = (By.CLASS_NAME, 'product-item-link')
     ADD_TO_CART = (By.CLASS_NAME, 'action.tocart.primary')
+    ADD_TO_CART_4 = (By.CSS_SELECTOR, "li[class = 'item product product-item']:nth-child(4)")
+    BUTTON_ADD_TO_CART = (By.CSS_SELECTOR, "li[class = 'item product product-item']:nth-child(4) button")
     ADD_TO_WISH_LIST = (By.CLASS_NAME, 'action.towishlist')
     ADD_TO_COMPARE = (By.CLASS_NAME, 'action.tocompare')
+    TITLE_ITEM = (By.CSS_SELECTOR, 'span[class="base"]')
+
+    @staticmethod
+    def get_position_cart(position):
+        return By.CSS_SELECTOR, f"li[class = 'item product product-item']:nth-child({position})"
+
+    @staticmethod
+    def get_position_button(position):
+        return By.CSS_SELECTOR, f"li[class = 'item product product-item']:nth-child({position}) button"
 
 
 class TopsMenPageLocators:
     URL = 'https://magento.softwaretestingboard.com/men/tops-men.html'
-
-

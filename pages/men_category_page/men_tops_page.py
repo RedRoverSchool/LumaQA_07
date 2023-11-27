@@ -1,9 +1,15 @@
 from base.seleniumbase import BasePage
-from locators.men_page_locators import MenPageLocators
 from locators.men_tops_page_locators import MenTopsPageLocators
+from locators.men_page_locators import MenPageLocators, MenCategoryPageLocators
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait as wait
+
+# from locators.men_tops_page_locators import MenTopsPageLocators
 
 
 class MenTops(BasePage):
+    locator = MenCategoryPageLocators()
+
     def check_clickability_grid(self):
         return self.is_clickable(MenPageLocators.MEN_TOPS_GRID)
 
@@ -15,3 +21,18 @@ class MenTops(BasePage):
 
     def check_visibility_grid(self):
         return self.is_visible(MenPageLocators.MEN_TOPS_GRID)
+
+    def hover_to_cart(self, position):
+        cart = self.is_visible(MenCategoryPageLocators.get_position_cart(position))
+        self.action_move_to_element(cart)
+        # time.sleep(2)
+
+    def check_button(self, position):
+        button = self.is_visible(MenCategoryPageLocators.get_position_button(position))
+        button.click()
+
+    def wait_url(self, url, timeout: int = 5):
+        wait(self.driver, timeout).until(EC.url_to_be(url))
+
+
+
