@@ -1,27 +1,26 @@
+import allure
+from data.fake_data import FakeData
+
 from pages.main_page import MainPage
 from pages.account.create_account import CreateAccountPage
 from pages.account.account_edit import AccountEditPage
-from pages.account.sign_in import SignInPage
-from data.fake_data import FakeData
+from pages.account.account_add_address import AddressAddPage
+
 from locators.base_page_locators import BasePageLocators as bpl
 from locators.my_account_page_locators import MyAccountPageLocators as mapl
-import allure
 
 
 class TestMyAccountDataEditing(FakeData):
     @allure.title("TC_004.015.007 | Authorization> User's account > My account > Changing password > Positive")
-    # @allure.description("This test attempts to log into the website using a login and a password. Fails if any error happens.\n\nNote that this test does not test 2-Factor Authentication.")
     @allure.tag("Authorization", "My account", "Changing password")
     @allure.severity(allure.severity_level.NORMAL)
     @allure.label("owner", "valdemards")
-    # @allure.link("https://dev.example.com/", name="Website")
-    # @allure.issue("AUTH-123")
     @allure.testcase("https://trello.com/c/UbzNXcU5/319-tc004015007-authorization-users-account-my-account-changing-password-positive", "TC_004.015.007")
     def test_change_password_positive(self, driver):
         password_current = CreateAccountPage(driver).password
         page = AccountEditPage(driver, MainPage.URL)
-        png_bytes = driver.get_screenshot_as_png()
-        allure.attach(png_bytes, name='test', attachment_type=allure.attachment_type.PNG)
+        # png_bytes = driver.get_screenshot_as_png()
+        # allure.attach(png_bytes, name='test', attachment_type=allure.attachment_type.PNG)
         with allure.step("Click “Welcome,…” dropdown menu"):
             page.is_clickable(bpl.WELCOME_MENU_BUTTON).click()
         with allure.step("Choose “My account” option"):
@@ -67,3 +66,104 @@ class TestMyAccountDataEditing(FakeData):
             assert page.message_change_password_error() == AccountEditPage.CHANGE_PASSWORD_ERROR
         with allure.step("“This is a required field.“ alert under “Confirm New Password” field of “Change Password” block is displayed"):
             assert page.message_confirm_change_password_error() == AccountEditPage.CHANGE_PASSWORD_ERROR
+
+    @allure.title("TC_004.015.005 | Authorization> User's account > My account > Contact information editing > Positive")
+    @allure.tag("Authorization", "My account", "Edit contact information")
+    @allure.severity(allure.severity_level.NORMAL)
+    @allure.label("owner", "valdemards")
+    @allure.testcase(
+        "https://trello.com/c/VE2067zt/321-tc004015005-authorization-users-account-my-account-contact-information-editing-positive",
+        "TC_004.015.005")
+    def test_edit_contact_information_positive(self, driver):
+        current_password = CreateAccountPage(driver).password
+        page = AccountEditPage(driver, MainPage.URL)
+
+        with allure.step('Click “Welcome,…” dropdown menu'):
+            page.is_clickable(bpl.WELCOME_MENU_BUTTON).click()
+        with allure.step('Choose “My account” option'):
+            page.is_clickable(bpl.WELCOME_MENU_MY_ACCOUNT_BUTTON).click()
+        with allure.step('Click “Edit” button'):
+            page.is_clickable(mapl.EDIT_BUTTON).click()
+        with allure.step('Type “Bob” in “First Name” field of “Account Information” block'):
+            page.first_name = 'Bob'
+        with allure.step('Type “Ivanov” in “LastName” field of “Account Information” block'):
+            page.last_name = 'Ivanov'
+        with allure.step('Check “Change Email” checkbox'):
+            page.change_email().click()
+        with allure.step('Type new email in “Email” field of “Change Email” block'):
+            page.email = self.email
+        with allure.step('Type current account password in “Current Password” field of “Change Email” block'):
+            page.password_current = current_password
+        with allure.step('Click “Save” button'):
+            page.save().click()
+        with allure.step('“You saved the account information” alert is visible'):
+            assert page.message == AccountEditPage.SUCCESS, 'Couldn\'t change contact information'
+
+    @allure.title("TC_004.015.010 | Authorization> User's account > My account > Adding new address > Positive")
+    @allure.tag("Authorization", "My account", "Add new address")
+    @allure.severity(allure.severity_level.NORMAL)
+    @allure.label("owner", "valdemards")
+    @allure.testcase(
+        "https://trello.com/c/V3z2NigL/326-tc004015010-authorization-users-account-my-account-adding-new-address-positive",
+        "TC_004.015.010")
+    def test_add_new_address_positive(self, driver):
+        CreateAccountPage(driver)
+        page = AddressAddPage(driver, MainPage.URL)
+        with allure.step('Click “Welcome,…” dropdown menu'):
+            page.is_clickable(bpl.WELCOME_MENU_BUTTON).click()
+        with allure.step('Choose “My account” option'):
+            page.is_clickable(bpl.WELCOME_MENU_MY_ACCOUNT_BUTTON).click()
+        with allure.step('Click “Manage Addresses” button in “Address Book” block'):
+            page.is_clickable(mapl.MANAGE_ADDRESSES_BUTTON).click()
+        with allure.step('Type “street 6” in upper “Street Address” field of “Address” block'):
+            page.street_1 = 'street 6'
+        with allure.step('Type “city” in “City” field of “Address” block'):
+            page.city = 'city'
+        with allure.step('Choose “Alabama” in “State/Province” dropdown menu of “Address” block'):
+            page.state = 'Alabama'
+        with allure.step('Type “12345” in “Zip/Postal Code” field of “Address” block'):
+            page.postcode = '12345'
+        with allure.step('Type “123” in “Phone Number” field of “Contact information” block'):
+            page.telephone = '123'
+        with allure.step('Click “Save Address” button'):
+            page.save().click()
+        with allure.step('You saved the address.” alert is visible'):
+            assert page.message_success == AddressAddPage.SUCCESS, 'Couldn\'t add new address'
+
+    @allure.title("TC_004.015.011 | Authorization> User's account > My account > Adding new address > Negative")
+    @allure.tag("Authorization", "My account", "Add new address")
+    @allure.severity(allure.severity_level.NORMAL)
+    @allure.label("owner", "valdemards")
+    @allure.testcase(
+        "https://trello.com/c/bk23eFop/327-tc004015011-authorization-users-account-my-account-adding-new-address-negative",
+        "TC_004.015.011")
+    def test_add_new_address_negative(self, driver):
+        CreateAccountPage(driver)
+        page = AddressAddPage(driver, MainPage.URL)
+        with allure.step('Click “Welcome,…” dropdown menu'):
+            page.is_clickable(bpl.WELCOME_MENU_BUTTON).click()
+        with allure.step('Choose “My account” option'):
+            page.is_clickable(bpl.WELCOME_MENU_MY_ACCOUNT_BUTTON).click()
+        with allure.step('Click “Manage Addresses” button in “Address Book” block'):
+            page.is_clickable(mapl.MANAGE_ADDRESSES_BUTTON).click()
+        with allure.step('Type “ ” in upper “Street Address” field of “Address” block'):
+            page.street_1 = ' '
+        with allure.step('Type “ ” in “City” field of “Address” block'):
+            page.city = ' '
+        with allure.step('Type “ ” in “Zip/Postal Code” field of “Address” block'):
+            page.postcode = ' '
+        with allure.step('Type “ ” in “Phone Number” field of “Contact information” block'):
+            page.telephone = ' '
+        with allure.step('Click “Save Address” button'):
+            page.save().click()
+        with allure.step('“This is a required field.“  alert under “Street Address” field of “Address” block is displayed'):
+            assert page.message_street_1_error() == AddressAddPage.REQUIRED_FIELD_ERROR
+        with allure.step('“This is a required field.“  alert under “City” field of “Address” block is displayed'):
+            assert page.message_city_error() == AddressAddPage.REQUIRED_FIELD_ERROR
+        with allure.step('“Please select an option“  alert under “State/Province” dropdown menu of “Address” block is displayed'):
+            assert page.message_state_error() == AddressAddPage.PLEASE_SELECT_ERROR
+        with allure.step('“This is a required field.“  alert under “Zip/Postal Code” field of “Address” block is displayed'):
+            assert page.message_postal_error() == AddressAddPage.REQUIRED_FIELD_ERROR
+        with allure.step('“This is a required field.“  alert under “Phone Number” field of “Contact Information” block is displayed'):
+            assert page.message_phone_error() == AddressAddPage.REQUIRED_FIELD_ERROR
+

@@ -33,6 +33,13 @@ class AddressAddPage(BasePage):
     SAVE = (By.CSS_SELECTOR, "button.save")
 
     SUCCESS = "You saved the address."
+    REQUIRED_FIELD_ERROR = 'This is a required field.'
+    PLEASE_SELECT_ERROR = 'Please select an option.'
+    MESSAGE_STREET_1_ERROR = (By.XPATH, '//div[@for="street_1"]')
+    MESSAGE_CITY_ERROR = (By.XPATH, '//div[@for="city"]')
+    MESSAGE_STATE_ERROR = (By.XPATH, '//div[@for="region_id"]')
+    MESSAGE_POSTAL_ERROR = (By.XPATH, '//div[@for="zip"]')
+    MESSAGE_PHONE_ERROR = (By.XPATH, '//div[@for="telephone"]')
 
     def __init__(self, driver, url=URL):
         super().__init__(driver, url)
@@ -144,3 +151,24 @@ class AddressAddPage(BasePage):
 
     def save(self):
         return self.is_clickable(self.SAVE)
+
+    def message_street_1_error(self):
+        message_street_1_error = self.is_visible(self.MESSAGE_STREET_1_ERROR).text
+        return message_street_1_error
+
+    def message_city_error(self):
+        message_city_error = self.is_visible(self.MESSAGE_CITY_ERROR).text
+        return message_city_error
+
+    def message_state_error(self):
+        message_state_error = self.is_visible(self.MESSAGE_STATE_ERROR).text
+        return message_state_error
+
+    def message_postal_error(self):
+        message_postal_error = self.is_visible(self.MESSAGE_POSTAL_ERROR).text
+        return message_postal_error
+
+    def message_phone_error(self):
+        message_phone_error = self.is_visible(self.MESSAGE_PHONE_ERROR).text
+        return message_phone_error
+

@@ -11,6 +11,8 @@ class MyAccountPageLocators:
     STORED_PAYMENT_METHODS_BUTTON = (By.XPATH, "(//ul[@class='nav items']/li)[8]")
     MY_PRODUCT_REVIEWS_BUTTON = (By.XPATH, "(//ul[@class='nav items']/li)[10]")
     CHANGE_PASSWORD_BUTTON = (By.XPATH, '//a[@class="action change-password"]')
+    MANAGE_ADDRESSES_BUTTON = (By.XPATH, '//div[@class="block-title"]/a[@class="action edit"]')
+    EDIT_BUTTON = (By.XPATH, '//div[@class="box box-information"]//a[@class="action edit"]')
 
     MY_ACCOUNT_TITLE = (By.XPATH,"//span[@data-ui-id='page-title-wrapper']")
     ACCOUNT_INFORMATION_BLOCK_TITLE = (By.XPATH,"//div[@class='block block-dashboard-info']/div[@class='block-title']")

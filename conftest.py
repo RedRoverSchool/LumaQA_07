@@ -1,13 +1,7 @@
 import os
 import subprocess
 import time
-<<<<<<< Updated upstream
 from shutil import rmtree, move
-=======
-from shutil import rmtree
-import allure
-import subprocess
->>>>>>> Stashed changes
 
 import allure
 import pytest
