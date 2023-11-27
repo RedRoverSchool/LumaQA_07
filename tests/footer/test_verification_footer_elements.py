@@ -90,6 +90,7 @@ class TestFooterElementsVisibleClickable:
         """
         TC_012.003.001 | Footer > "Search terms" link > Visibility and clickability > Visibility of the 'Search Terms' link
         TC_012.003.002 | Footer > "Search terms" link > Visibility and clickability > Verify The 'Search Terms' link is clickable
+        TC_012.004.001 | Footer > "Search terms" link > Redirection > Verify opening the 'Popular Search Terms' page
         """
 
         expected_link = "https://magento.softwaretestingboard.com/search/term/popular/"
