@@ -13,6 +13,8 @@ class MyAccountPageLocators:
     CHANGE_PASSWORD_BUTTON = (By.XPATH, '//a[@class="action change-password"]')
     MANAGE_ADDRESSES_BUTTON = (By.XPATH, '//div[@class="block-title"]/a[@class="action edit"]')
     EDIT_BUTTON = (By.XPATH, '//div[@class="box box-information"]//a[@class="action edit"]')
+    EDIT_BILLING_ADDRESS_BUTTON = (By.XPATH, '//div[@class="box box-billing-address"]//a[@class="action edit"]')
+    EDIT_SHIPPING_ADDRESS_BUTTON = (By.XPATH, '//div[@class="box box-shipping-address"]//a[@class="action edit"]')
 
     MY_ACCOUNT_TITLE = (By.XPATH,"//span[@data-ui-id='page-title-wrapper']")
     ACCOUNT_INFORMATION_BLOCK_TITLE = (By.XPATH,"//div[@class='block block-dashboard-info']/div[@class='block-title']")

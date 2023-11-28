@@ -64,7 +64,7 @@ class BasePage:
             TimeoutException: Если элемент не появился в течение указанного времени.
         """
         return wait(self.driver, timeout).until(EC.visibility_of_element_located(locator))
-
+EC.
     def is_clickable(self, locator: tuple, timeout: int = TIMEOUT) -> WebElement:
         """
         Ожидает, что элемент, заданный локатором, станет кликабельным в течение указанного времени.

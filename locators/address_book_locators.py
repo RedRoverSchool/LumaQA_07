@@ -37,6 +37,7 @@ class AddressBookLocators:
 
     ADDITIONAL_ADDRESS_BLOCK = (By.XPATH, "//div[@class= 'block block-addresses-list']")
     DEFAULT_SHIPPING_ADDRESS_BLOCK = (By.XPATH,"//div[@class='box box-address-shipping']")
+    DEFAULT_BILLING_ADDRESS_BLOCK = (By.XPATH, "//div[@class='box box-address-billing']")
     OK_BUTTON_ON_POPUP_WINDOW = (By.XPATH,"//button[@class='action-primary action-accept']")
     ALL_ADDRESSES_BLOCK = (By.XPATH, "//div[@class='column main']")
     ADDITIONAL_ADDRESSES_BLOCK = (By.XPATH, "")
