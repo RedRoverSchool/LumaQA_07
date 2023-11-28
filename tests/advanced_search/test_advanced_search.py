@@ -1,7 +1,7 @@
+import pytest
 from pages.advanced_search.advanced_search_form_page import AdvancedSearchFormPage
 from data.advanced_search_url import ADVANCED_SEARCH_URL
 from locators.advanced_search_locators import AdvancedSearchLocators as locators
-import pytest
 
 
 class TestAdvancedSearch:
@@ -25,3 +25,9 @@ class TestAdvancedSearch:
         except:
             error_message = advanced_search_page.the_presence_of_element_located(locators.ERROR_MESSAGE, 1)
             assert error_message.is_displayed(), 'No error message displayed'
+
+    def test_verify_search_button_is_clickable(self, driver):
+        page = AdvancedSearchFormPage(driver, ADVANCED_SEARCH_URL)
+        page.open()
+        assert page.button_clickable(), 'The button is not clickable'
+
