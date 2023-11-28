@@ -24,3 +24,6 @@ class AdvancedSearchFormPage(BasePage):
 
     def button_clickable(self):
         return self.is_clickable(locator.SEARCH_BUTTON)
+
+    def button_visible(self):
+        return self.is_visible(locator.SEARCH_BUTTON)

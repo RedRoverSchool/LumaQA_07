@@ -31,3 +31,9 @@ class TestAdvancedSearch:
         page.open()
         assert page.button_clickable(), 'The button is not clickable'
 
+
+    def test_verify_search_button_is_visible(self, driver):
+        page = AdvancedSearchFormPage(driver, ADVANCED_SEARCH_URL)
+        page.open()
+        assert page.button_visible(), 'The button is not visible'
+
