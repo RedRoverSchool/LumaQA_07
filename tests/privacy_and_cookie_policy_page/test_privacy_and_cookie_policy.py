@@ -52,3 +52,15 @@ def test_text_block_format_titled_list_of_cookie_files_we_collect(driver):
     element = driver.find_element(By.XPATH, PrivacyCookiePolicyPageLocators.LIST_OF_COOKIE_FILES_WE_COLLECT_CONTENT_LOCATOR)
     element_format = element.tag_name
     assert element_format == 'table', f"The text of the block is NOT presented in a tabular format"
+
+def test_list_of_cookies_we_collect_text_is_displayed_as_blue_link(driver):
+    """TC_012.014.001 | Footer > "Privacy and Cookie Policy" > Navigation within text >
+    Visability of the "List of cookies we collect" text in the section "The Information We Collect."""
+    page = BasePage(driver, url=PRIVACY_AND_COOKIE_POLICY_PAGE)
+    page.open()
+    link = driver.find_element(By.XPATH, PrivacyCookiePolicyPageLocators.LIST_OF_COOKIE_FILES_WE_COLLECT_LINK_IN_TEXT_BLOCK)
+    link_color = link.value_of_css_property('color')
+    assert link.is_enabled()
+    assert link_color == 'rgba(0, 107, 180, 1)'
+
+
