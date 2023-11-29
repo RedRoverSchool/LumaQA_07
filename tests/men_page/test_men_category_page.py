@@ -178,3 +178,17 @@ class TestMenBottomsPage:
 
         for name, element in page.get_limit_options():
             assert element.is_displayed(), f'Option "{name}" is not displayed'
+
+    def test_list_is_options_displayed(self, page_bottoms):
+        """
+        TC_008.034.002 | Men > Bottoms > List mode > Limit controller
+                        > Limit elements are displayed
+        """
+
+        page = page_bottoms
+
+        page.click_list_mode()
+        page.click_limit_button()
+
+        for name, element in page.get_limit_options(mode='list'):
+            assert element.is_displayed(), f'Option "{name}" is not displayed'
