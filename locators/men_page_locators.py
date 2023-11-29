@@ -31,6 +31,7 @@ class MenCategoryPageLocators:
     TITLE_ITEM = (By.CSS_SELECTOR, 'span[class="base"]')
     CLEAR_ALL = (By.CLASS_NAME, 'action.clear')
     LIMITER = (By.XPATH, '(//select[@id="limiter"])[2]')
+    LIST_MODE = (By.XPATH, '(//a[@id="mode-list"])[1]')
 
     @staticmethod
     def get_position_cart(position):
