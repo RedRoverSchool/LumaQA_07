@@ -102,10 +102,34 @@ def test_contact_us_text_is_displayed_as_blue_link(driver):
     (PrivacyCookiePolicyAnchorLinksLocators.ACCEPTANCE, True),
     (PrivacyCookiePolicyAnchorLinksLocators.QUESTIONS_FOR_LUMA, True)]
                          )
-def test_anchor_links_in_the_left_navbar_is_displayed(driver, anchor_link_locator, expected_result):
+def test_anchor_links_in_the_left_navbar_are_displayed(driver, anchor_link_locator, expected_result):
     """TC_012.005.001 | Footer > "Privacy and Cookie Policy" > Visibility and clickability >
     Visability of the anchor links"""
     page = BasePage(driver, url=PRIVACY_AND_COOKIE_POLICY_PAGE)
     page.open()
     link = driver.find_element(By.XPATH, anchor_link_locator).is_displayed()
+    assert link == expected_result
+
+@pytest.mark.parametrize('anchor_link_locator, expected_result', [
+    (PrivacyCookiePolicyAnchorLinksLocators.LUMA_SECURITY, True),
+    (PrivacyCookiePolicyAnchorLinksLocators.LUMA_PRIVACY_POLICY, True),
+    (PrivacyCookiePolicyAnchorLinksLocators.THE_INFORMATION_WE_COLLECT, True),
+    (PrivacyCookiePolicyAnchorLinksLocators.HOW_WE_USE_THE_INFORMATION_WE_COLLECT, True),
+    (PrivacyCookiePolicyAnchorLinksLocators.SECURITY, True),
+    (PrivacyCookiePolicyAnchorLinksLocators.OTHERS_WITH_WHOM_WE_SHARE_YOUR_INFORMATION, True),
+    (PrivacyCookiePolicyAnchorLinksLocators.YOUR_CHOICES_REGARDING_USE_OF_THE_INFORMATION_WE_COLLECT, True),
+    (PrivacyCookiePolicyAnchorLinksLocators.YOUR_CALIFORNIA_PRIVACY_RIGHTS, True),
+    (PrivacyCookiePolicyAnchorLinksLocators.COOKIES_WEB_BEACONS_AND_HOW_WE_USE_THEM, True),
+    (PrivacyCookiePolicyAnchorLinksLocators.LIST_OF_COOKIES_WE_COLLECT, True),
+    (PrivacyCookiePolicyAnchorLinksLocators.ONLINE_ACCOUNT_REGISTRATION, True),
+    (PrivacyCookiePolicyAnchorLinksLocators.EMAILS, True),
+    (PrivacyCookiePolicyAnchorLinksLocators.ACCEPTANCE, True),
+    (PrivacyCookiePolicyAnchorLinksLocators.QUESTIONS_FOR_LUMA, True)]
+                         )
+def test_anchor_links_in_the_left_navbar_are_clickable(driver, anchor_link_locator, expected_result):
+    """TC_012.005.001 | Footer > "Privacy and Cookie Policy" > Visibility and clickability >
+    Visability of the anchor links"""
+    page = BasePage(driver, url=PRIVACY_AND_COOKIE_POLICY_PAGE)
+    page.open()
+    link = driver.find_element(By.XPATH, anchor_link_locator).is_enabled()
     assert link == expected_result
