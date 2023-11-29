@@ -75,3 +75,12 @@ def test_list_of_cookies_we_collects_section_is_displayed(driver):
     assert current_position == LIST_OF_COOKIES_WE_COLLECT_SECTION, "The 'List of cookies we collect' section doesn`t displayed"
 
 
+def test_contact_us_text_is_displayed_as_blue_link(driver):
+    """TC_012.015.001 | Footer > Privacy and Cookie Policy Page > Contact us link >
+     Visibility of the "Contact Us" text in the "Questions for Luma?" section"""
+    page = BasePage(driver, url=PRIVACY_AND_COOKIE_POLICY_PAGE)
+    page.open()
+    link = driver.find_element(By.XPATH, PrivacyCookiePolicyPageLocators.CONTACT_US_LINK_LOCATOR)
+    link_color = link.value_of_css_property('color')
+    assert link.is_enabled()
+    assert link_color == 'rgba(0, 107, 180, 1)'
