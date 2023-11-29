@@ -30,3 +30,9 @@ class MyAccountPage(BasePage):
 
     def my_product_reviews_button(self) -> WebElement:
         return self.is_clickable(MyAccountPageLocators.MY_PRODUCT_REVIEWS_BUTTON)
+
+    def edit_button(self) -> WebElement:
+        return self.is_clickable(MyAccountPageLocators.EDIT_BUTTON)
+
+    def change_password_button(self) -> WebElement:
+        return self.is_clickable(MyAccountPageLocators.CHANGE_PASSWORD_BUTTON)

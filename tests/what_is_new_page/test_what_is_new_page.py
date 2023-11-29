@@ -31,3 +31,14 @@ def test_widget_title_text(driver):
     expected_title = whats_new_page.SENSE_RENEWAL_TITLE_TEXT
     assert title_element_text == expected_title, f'Expected text: {expected_title}, but got: {title_element_text}'
 
+def test_shop_new_yoga_btn(driver):
+    """TC _006.003.004| What’s New page > Search New Yoga Collection widget > Button “Shop New Yoga” is clickable and
+        after should be redirected to page “New Luma Yoga Collection”
+    """
+    page = NewPage(driver, url=NewPage.URL)
+    page.open()
+    page.shop_new_yoga_btn()
+    title_txt = NewPage.NEW_LUMA_YOGA_TEXT
+    url = NewPage.URL_NEW_LUMA
+    assert title_txt == page.new_luma_yoga_page(), f'Expected text: {title_txt}, but got: {page.new_luma_yoga_page()}'
+    assert page.current_url == url, f'Expected text: {url},but got: { page.current_url}'

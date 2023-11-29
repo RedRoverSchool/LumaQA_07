@@ -136,13 +136,13 @@ class MultipleAddressesPage(CheckoutPage):
         return label + ' ' + element.strip('"')
 
     def wait_body_overlay_closed(self):
-        # self.is_visible(CheckoutPageLocators.BODY_OVERLAY)
-        self.is_invisible(CheckoutPageLocators.BODY_OVERLAY)
+        self.is_invisible(CheckoutPageLocators.BODY_OVERLAY,25)
 
     def wait_enter_new_address_overlay_closed(self):
         self.wait_body_overlay_closed()
 
     def click_enter_a_new_address_button(self):
+        self.hold_mouse_on_element(MultipleAddressesPageLocators.ENTER_A_NEW_ADDRESS_BUTTON)
         self.is_clickable(MultipleAddressesPageLocators.ENTER_A_NEW_ADDRESS_BUTTON).click()
         self.wait_enter_new_address_overlay_closed()
 

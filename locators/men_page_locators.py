@@ -29,6 +29,7 @@ class MenCategoryPageLocators:
     ADD_TO_WISH_LIST = (By.CLASS_NAME, 'action.towishlist')
     ADD_TO_COMPARE = (By.CLASS_NAME, 'action.tocompare')
     TITLE_ITEM = (By.CSS_SELECTOR, 'span[class="base"]')
+    CLEAR_ALL = (By.CLASS_NAME, 'action.clear')
 
     @staticmethod
     def get_position_cart(position):

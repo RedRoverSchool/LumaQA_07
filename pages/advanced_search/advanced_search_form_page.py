@@ -21,3 +21,9 @@ class AdvancedSearchFormPage(BasePage):
         for title_element in title_element_list:
             title_list.append(title_element.text)
         return title_list
+
+    def button_clickable(self):
+        return self.is_clickable(locator.SEARCH_BUTTON)
+
+    def button_visible(self):
+        return self.is_visible(locator.SEARCH_BUTTON)

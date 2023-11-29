@@ -1,6 +1,6 @@
 from base.seleniumbase import BasePage
 from selenium.webdriver.common.by import By
-from data.privacy_and_cookie_policy_page_urls import PRIVACY_AND_COOKIE_POLICY_PAGE
+from data.privacy_and_cookie_policy_page_urls import PRIVACY_AND_COOKIE_POLICY_PAGE, LIST_OF_COOKIES_WE_COLLECT_SECTION
 from data.privacy_and_cookie_policy_page_fonts import PrivacyCookiePolicyFonts
 from locators.privacy_and_cookie_policy_page_locators import PrivacyCookiePolicyPageLocators
 import language_tool_python
@@ -52,3 +52,35 @@ def test_text_block_format_titled_list_of_cookie_files_we_collect(driver):
     element = driver.find_element(By.XPATH, PrivacyCookiePolicyPageLocators.LIST_OF_COOKIE_FILES_WE_COLLECT_CONTENT_LOCATOR)
     element_format = element.tag_name
     assert element_format == 'table', f"The text of the block is NOT presented in a tabular format"
+
+def test_list_of_cookies_we_collect_text_is_displayed_as_blue_link(driver):
+    """TC_012.014.001 | Footer > "Privacy and Cookie Policy" > Navigation within text >
+    Visability of the "List of cookies we collect" text in the section "The Information We Collect."""
+    page = BasePage(driver, url=PRIVACY_AND_COOKIE_POLICY_PAGE)
+    page.open()
+    link = driver.find_element(By.XPATH, PrivacyCookiePolicyPageLocators.LIST_OF_COOKIE_FILES_WE_COLLECT_LINK_IN_TEXT_BLOCK)
+    link_color = link.value_of_css_property('color')
+    assert link.is_enabled()
+    assert link_color == 'rgba(0, 107, 180, 1)'
+
+
+def test_list_of_cookies_we_collects_section_is_displayed(driver):
+    """TC_012.014.002 | Footer > "Privacy and Cookie Policy" > Navigation within text >
+     Verify redirection of the "List of cookies we collect" section"""
+    page = BasePage(driver, url=PRIVACY_AND_COOKIE_POLICY_PAGE)
+    page.open()
+    link = driver.find_element(By.XPATH, PrivacyCookiePolicyPageLocators.LIST_OF_COOKIE_FILES_WE_COLLECT_LINK_IN_TEXT_BLOCK)
+    link.click()
+    current_position = driver.current_url
+    assert current_position == LIST_OF_COOKIES_WE_COLLECT_SECTION, "The 'List of cookies we collect' section doesn`t displayed"
+
+
+def test_contact_us_text_is_displayed_as_blue_link(driver):
+    """TC_012.015.001 | Footer > Privacy and Cookie Policy Page > Contact us link >
+     Visibility of the "Contact Us" text in the "Questions for Luma?" section"""
+    page = BasePage(driver, url=PRIVACY_AND_COOKIE_POLICY_PAGE)
+    page.open()
+    link = driver.find_element(By.XPATH, PrivacyCookiePolicyPageLocators.CONTACT_US_LINK_LOCATOR)
+    link_color = link.value_of_css_property('color')
+    assert link.is_enabled()
+    assert link_color == 'rgba(0, 107, 180, 1)'

@@ -135,6 +135,20 @@ class TestTeesFilter:
                 page.driver.current_url == mp_url.STRIKE_ENDURANCE
         ), "Failed to go to the product page by title"
 
+    def test_redirect_after_clear(self, page_with_tees_filter):
+        """
+        TC_008.018.001 | Men > Tops > Tees filter > Clear all
+                           > Redirected to Tops page
+        """
+
+        page = page_with_tees_filter
+
+        page.click_clear_all()
+
+        assert (
+            page.driver.current_url == mp_url.TOPS_MEN_PAGE
+        ), "The page didn't redirect to the Tops page"
+
 
 class TestMenTopsPage:
     def test_redirect_to_tees(self, page_tops):

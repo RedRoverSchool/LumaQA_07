@@ -43,3 +43,10 @@ class MenCategoryPage(BasePage):
         }
 
         return options
+
+    def click_clear_all(self) -> None:
+        """
+        Clicks on the "clear All" button
+        """
+
+        self.driver.find_element(*MCL.CLEAR_ALL).click()

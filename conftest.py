@@ -78,3 +78,4 @@ def save_screenshot(request, driver):
         driver.get_screenshot_as_file(full_file_path)
 
         allure.attach.file(full_file_path, name=file_name, attachment_type=allure.attachment_type.PNG)
+
