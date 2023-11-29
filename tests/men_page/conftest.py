@@ -44,3 +44,17 @@ def page_tops(driver) -> MenCategoryPage:
     page.open()
 
     return page
+
+
+@pytest.fixture
+def page_bottoms(driver) -> MenCategoryPage:
+    """
+    Returns the open MenCategoryPage
+    with the open "Bottoms" category.
+
+    """
+
+    page = MenCategoryPage(driver, url=mp_url.MEN_BOTTOMS_PAGE)
+    page.open()
+
+    return page

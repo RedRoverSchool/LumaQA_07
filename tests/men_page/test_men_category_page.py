@@ -164,3 +164,17 @@ class TestMenTopsPage:
         assert (
             page.driver.current_url == mp_url.TEES_FILTER
         ), "The page didn't redirect to the Tees page"
+
+
+class TestMenBottomsPage:
+    def test_grid_is_options_displayed(self, page_bottoms):
+        """TC_008.034.001 | Men > Bottoms > Grid mode > Limit controller
+                           > Limit elements are displayed
+        """
+
+        page = page_bottoms
+
+        page.click_limit_button()
+
+        for name, element in page.get_limit_options():
+            assert element.is_displayed(), f'Option "{name}" is not displayed'

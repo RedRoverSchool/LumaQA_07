@@ -30,6 +30,7 @@ class MenCategoryPageLocators:
     ADD_TO_COMPARE = (By.CLASS_NAME, 'action.tocompare')
     TITLE_ITEM = (By.CSS_SELECTOR, 'span[class="base"]')
     CLEAR_ALL = (By.CLASS_NAME, 'action.clear')
+    LIMITER = (By.XPATH, '(//select[@id="limiter"])[2]')
 
     @staticmethod
     def get_position_cart(position):
@@ -38,6 +39,10 @@ class MenCategoryPageLocators:
     @staticmethod
     def get_position_button(position):
         return By.CSS_SELECTOR, f"li[class = 'item product product-item']:nth-child({position}) button"
+
+    @staticmethod
+    def get_option_locator(option):
+        return By.XPATH, f'(//option[@value="{option}"])[2]'
 
 
 class TopsMenPageLocators:
