@@ -75,3 +75,10 @@ class MenCategoryPage(BasePage):
         Clicks on the Limit button
         """
         self.driver.find_element(*MCL.LIMITER).click()
+
+    def click_list_mode(self) -> None:
+        """
+        Waits for the "List" button to become clickable, then clicks on it
+        """
+
+        self.is_clickable(MCL.LIST_MODE).click()
