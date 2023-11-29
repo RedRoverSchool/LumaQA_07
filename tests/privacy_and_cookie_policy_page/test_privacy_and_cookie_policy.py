@@ -1,6 +1,7 @@
 from base.seleniumbase import BasePage
 from selenium.webdriver.common.by import By
 from data.privacy_and_cookie_policy_page_urls import PRIVACY_AND_COOKIE_POLICY_PAGE, LIST_OF_COOKIES_WE_COLLECT_SECTION
+from data.contact_us_page_urls import CONTACT_US_PAGE
 from data.privacy_and_cookie_policy_page_fonts import PrivacyCookiePolicyFonts
 from locators.privacy_and_cookie_policy_page_locators import PrivacyCookiePolicyPageLocators
 import language_tool_python
@@ -84,3 +85,13 @@ def test_contact_us_text_is_displayed_as_blue_link(driver):
     link_color = link.value_of_css_property('color')
     assert link.is_enabled()
     assert link_color == 'rgba(0, 107, 180, 1)'
+
+def test_contact_us_page_opening_after_clicking_on_contact_us_link(driver):
+    """TC_012.015.002 | Footer > "Privacy and Cookie Policy" > Navigation within text >
+     Verify opening the contact page"""
+    page = BasePage(driver, url=PRIVACY_AND_COOKIE_POLICY_PAGE)
+    page.open()
+    link = driver.find_element(By.XPATH, PrivacyCookiePolicyPageLocators.CONTACT_US_LINK_LOCATOR)
+    link.click()
+    current_url = driver.current_url
+    assert current_url == CONTACT_US_PAGE
