@@ -96,3 +96,4 @@ class TestMainPage:
         assert page.is_visible(BasePageLocators.SHOP_ECO_FRIENDLY), "element is not visible"
 
 
+
