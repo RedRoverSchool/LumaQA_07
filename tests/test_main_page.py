@@ -1,3 +1,4 @@
+import time
 
 from pages.main_page import MainPage
 from locators.base_page_locators import BasePageLocators
@@ -91,7 +92,6 @@ class TestMainPage:
         page = MainPage(driver, url=MainPage.URL)
         page.open()
         page.scroll_down_to_shop_eco_friendly()
-        page.is_visible(BasePageLocators.SHOP_ECO_FRIENDLY)
         assert page.is_visible(BasePageLocators.SHOP_ECO_FRIENDLY), "element is not visible"
 
 
