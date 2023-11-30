@@ -1,4 +1,3 @@
-import time
 
 from pages.main_page import MainPage
 from locators.base_page_locators import BasePageLocators
