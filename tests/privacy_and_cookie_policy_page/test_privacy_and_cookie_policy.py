@@ -93,12 +93,8 @@ def test_contact_us_page_opening_after_clicking_on_contact_us_link(driver):
      Verify opening the contact page"""
     page = BasePage(driver, url=PRIVACY_AND_COOKIE_POLICY_PAGE)
     page.open()
-    link = driver.find_element(By.XPATH, PrivacyCookiePolicyPageLocators.CONTACT_US_LINK_LOCATOR)
-    link.click()
-    current_url = driver.current_url
-    current_title = driver.title
-    assert current_url == CONTACT_US_PAGE and current_title.title != '404 Not Found'
-
+    page.is_clickable(locator=PrivacyCookiePolicyPageLocators.CONTACT_US_LINK_LOCATOR).click()
+    assert page.current_url == CONTACT_US_PAGE
 
 @pytest.mark.parametrize('anchor_link_locator, expected_result', [
     (PrivacyCookiePolicyAnchorLinksLocators.LUMA_SECURITY, True),
