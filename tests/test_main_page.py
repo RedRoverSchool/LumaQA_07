@@ -1,3 +1,5 @@
+import time
+
 from pages.main_page import MainPage
 from locators.base_page_locators import BasePageLocators
 from pages.erin_recommends.erin_recommends import ErinRecommendsPage
@@ -85,3 +87,12 @@ class TestMainPage:
         page.open()
         page.is_clickable(BasePageLocators.BLOCK_5).click()
         assert driver.current_url == PERFORMANCE_FABRICS_URL
+
+    def test_main_page_eco_friendly_is_visible(self, driver):
+        page = MainPage(driver, url=MainPage.URL)
+        page.open()
+        page.scroll_down_to_shop_eco_friendly()
+        assert page.is_visible(BasePageLocators.SHOP_ECO_FRIENDLY), "element is not visible"
+
+
+

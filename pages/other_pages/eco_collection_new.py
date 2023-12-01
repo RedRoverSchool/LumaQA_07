@@ -18,6 +18,7 @@ class CollectionPage(BasePage):
     STELLAR_TITLE = (By.CSS_SELECTOR, 'a[title="Stellar Solar Jacket"]')
     ELISA_TITLE = (By.CSS_SELECTOR, 'a[title="Elisa EverCool&trade; Tee"]')
     ITEMS = (By.XPATH, '//ol[@class="product-items widget-product-grid"]/li')
+    ITEMS_IMAGES = (By.CSS_SELECTOR, 'span.product-image-container')
     ITEM_TITLE = (By.CSS_SELECTOR, 'span[data-ui-id="page-title-wrapper"]')
 
     TITLE_TEXT = 'Eco Collection New'
@@ -56,3 +57,6 @@ class CollectionPage(BasePage):
 
     def items(self) -> list:
         return self.is_visible_all_elements(self.ITEMS)
+
+    def images(self) -> list:
+        return self.is_visible_all_elements(self.ITEMS_IMAGES)

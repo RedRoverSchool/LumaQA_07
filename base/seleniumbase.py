@@ -132,6 +132,10 @@ class BasePage:
     def message_error(self) -> str:
         return self.is_visible(self.MESSAGE_ERROR).text
 
+    @property
+    def messages_error_list(self):
+        return [x.text for x in self.driver.find_elements(*self.MESSAGE_ERROR)]
+
     def verify_visability_or_clickability_of_the_element_in_location(self, param: str, element_value: str,
                                                                      element_locator: tuple, location: str):
         """ 

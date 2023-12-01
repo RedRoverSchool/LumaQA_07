@@ -47,3 +47,15 @@ class MenCategoryPageLocators:
 
 class TopsMenPageLocators:
     URL = 'https://magento.softwaretestingboard.com/men/tops-men.html'
+
+
+class MenShortsPageLocators:
+    ITEM_PRODUCT = (By.CLASS_NAME, 'product-item-link')
+
+    @staticmethod
+    def get_position_title(title):
+        return By.XPATH, f"//a[normalize-space()='{title}']"
+
+    @staticmethod
+    def get_title_on_new_page(title):
+        return By.XPATH, f"//span[text()='{title}']"

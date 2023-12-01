@@ -241,3 +241,76 @@ class TestMyAccountDataEditing(FakeData):
             assert page.message_postal_error() == AddressAddPage.REQUIRED_FIELD_ERROR
         with allure.step('“This is a required field.“  alert under “Phone Number” field of “Contact Information” block is displayed'):
             assert page.message_phone_error() == AddressAddPage.REQUIRED_FIELD_ERROR
+
+    @allure.title("TC_004.015.016 | Authorization> User's account > My account > Default Shipping Address editing > Positive")
+    @allure.tag("Authorization", "My account", "Default Shipping Address")
+    @allure.severity(allure.severity_level.NORMAL)
+    @allure.label("owner", "valdemards")
+    @allure.testcase(
+        "https://trello.com/c/QBs5SaWC/331-tc004015016-authorization-users-account-my-account-default-shipping-address-editing-positive",
+        "TC_004.015.016")
+    def test_edit_default_shipping_address_positive(self, driver):
+        CreateAccountPage(driver)
+        page = AddressAddPage(driver, MainPage.URL)
+        with allure.step('Click “Welcome,…” dropdown menu'):
+            page.is_clickable(bpl.WELCOME_MENU_BUTTON).click()
+        with allure.step('Choose “My account” option'):
+            page.is_clickable(bpl.WELCOME_MENU_MY_ACCOUNT_BUTTON).click()
+        with allure.step('Click “Edit Address” button in “Default Shipping Address” section of “Address Book” block'):
+            page.is_clickable(mapl.EDIT_SHIPPING_ADDRESS_BUTTON).click()
+        with allure.step('Type “street 7” in upper “Street Address” field of “Address” block'):
+            page.street_1 = 'street 7'
+        with allure.step('Type “city” in “City” field of “Address” block'):
+            page.city = 'city'
+        with allure.step('Choose “Alabama” in “State/Province” dropdown menu of “Address” block'):
+            page.state = 'Alabama'
+        with allure.step('Type “12345” in “Zip/Postal Code” field of “Address” block'):
+            page.postcode = '12345'
+        with allure.step('Type “123” in “Phone Number” field of “Contact information” block'):
+            page.telephone = '123'
+        with allure.step('Click “Save Address” button'):
+            page.save().click()
+        default_billing_address = page.is_visible(apl.DEFAULT_SHIPPING_ADDRESS_BLOCK).text.split('\n')
+        with allure.step('New Street address, city, state,zip code, country and phone are visible in “Default Shipping Address” section'):
+            assert default_billing_address[2] == 'street 7', 'Wrong data in Street 1 field'
+            assert default_billing_address[3].split(',')[0] == 'city', 'Wrong data in City field'
+            assert default_billing_address[3].split(', ')[1] == 'Alabama', 'Wrong data in State field'
+            assert default_billing_address[3].split(', ')[2] == '12345', 'Wrong data in street Postal code field'
+            assert default_billing_address[5].split(': ')[1] == '123', 'Wrong data in Phone field'
+
+    @allure.title("TC_004.015.017 | Authorization> User's account > My account > Default Shipping Address editing > Negative")
+    @allure.tag("Authorization", "My account", "Default Shipping Address")
+    @allure.severity(allure.severity_level.NORMAL)
+    @allure.label("owner", "valdemards")
+    @allure.testcase(
+        "https://trello.com/c/itDxm4Zl/332-tc004015017-authorization-users-account-my-account-default-shipping-address-editing-negative",
+        "TC_004.015.017")
+    def test_edit_default_shipping_address_negative(self, driver):
+        CreateAccountPage(driver)
+        page = AddressAddPage(driver, MainPage.URL)
+        with allure.step('Click “Welcome,…” dropdown menu'):
+            page.is_clickable(bpl.WELCOME_MENU_BUTTON).click()
+        with allure.step('Choose “My account” option'):
+            page.is_clickable(bpl.WELCOME_MENU_MY_ACCOUNT_BUTTON).click()
+        with allure.step('Click “Edit Address” button in “Default Shipping Address” section of “Address Book” block'):
+            page.is_clickable(mapl.EDIT_SHIPPING_ADDRESS_BUTTON).click()
+        with allure.step('Type “ ” in upper “Street Address” field of “Address” block'):
+            page.street_1 = ' '
+        with allure.step('Type “ ” in “City” field of “Address” block'):
+            page.city = ' '
+        with allure.step('Type “ ” in “Zip/Postal Code” field of “Address” block'):
+            page.postcode = ' '
+        with allure.step('Type “ ” in “Phone Number” field of “Contact information” block'):
+            page.telephone = ' '
+        with allure.step('Click “Save Address” button'):
+            page.save().click()
+        with allure.step('“This is a required field.“  alert under “Street Address” field of “Address” block is displayed'):
+            assert page.message_street_1_error() == AddressAddPage.REQUIRED_FIELD_ERROR
+        with allure.step('“This is a required field.“  alert under “City” field of “Address” block is displayed'):
+            assert page.message_city_error() == AddressAddPage.REQUIRED_FIELD_ERROR
+        with allure.step('“Please select an option“  alert under “State/Province” dropdown menu of “Address” block is displayed'):
+            assert page.message_state_error() == AddressAddPage.PLEASE_SELECT_ERROR
+        with allure.step('“This is a required field.“  alert under “Zip/Postal Code” field of “Address” block is displayed'):
+            assert page.message_postal_error() == AddressAddPage.REQUIRED_FIELD_ERROR
+        with allure.step('“This is a required field.“  alert under “Phone Number” field of “Contact Information” block is displayed'):
+            assert page.message_phone_error() == AddressAddPage.REQUIRED_FIELD_ERROR

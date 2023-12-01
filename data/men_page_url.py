@@ -21,3 +21,17 @@ MEN_TOPS_CARDS = [(1, 'https://magento.softwaretestingboard.com/cassius-sparring
                   (2, 'https://magento.softwaretestingboard.com/atlas-fitness-tank.html'),
                   (3, 'https://magento.softwaretestingboard.com/tiberius-gym-tank.html'),
                   (4, 'https://magento.softwaretestingboard.com/sinbad-fitness-tank.html')]
+
+MEN_SHORTS_CARDS = [('Pierce Gym Short', 'https://magento.softwaretestingboard.com/pierce-gym-short.html'),
+                    ('Arcadio Gym Short', 'https://magento.softwaretestingboard.com/arcadio-gym-short.html'),
+                    ('Sol Active Short', 'https://magento.softwaretestingboard.com/sol-active-short.html'),
+                    ('Troy Yoga Short', 'https://magento.softwaretestingboard.com/troy-yoga-short.html'),
+                    ('Orestes Fitness Short', 'https://magento.softwaretestingboard.com/orestes-fitness-short.html'),
+                    ('Rapha Sports Short', 'https://magento.softwaretestingboard.com/rapha-sports-short.html'),
+                    ('Lono Yoga Short', 'https://magento.softwaretestingboard.com/lono-yoga-short.html'),
+                    ('Hawkeye Yoga Short', 'https://magento.softwaretestingboard.com/hawkeye-yoga-short.html'),
+                    ('Torque Power Short', 'https://magento.softwaretestingboard.com/torque-power-short.html'),
+                    ('Meteor Workout Short', 'https://magento.softwaretestingboard.com/meteor-workout-short.html'),
+                    ('Apollo Running Short', 'https://magento.softwaretestingboard.com/apollo-running-short.html'),
+                    ('Cobalt CoolTech™ Fitness Short',
+                     'https://magento.softwaretestingboard.com/cobalt-cooltech-trade-fitness-short.html')]

@@ -11,6 +11,7 @@ class ItemDetailsPage(BasePage):
     URL = "https://magento.softwaretestingboard.com/luma-analog-watch.html"
     ADD_TO_CART = (By.CSS_SELECTOR, "button.tocart")
     SUCCESS = "You added Luma Analog Watch to your shopping cart."
+    ADD_TO_WISH_LIST = (By.XPATH, '//*[@class="product-addto-links"]/a[1]')
 
     def __init__(self, driver, url=URL):
         super().__init__(driver, url)
@@ -20,6 +21,9 @@ class ItemDetailsPage(BasePage):
         el = self.is_clickable(self.ADD_TO_CART)
         # self.is_loading()
         return el
+
+    def add_to_wish_list(self):
+        return self.is_clickable(self.ADD_TO_WISH_LIST)
 
 
 class ItemPage(BasePage):
