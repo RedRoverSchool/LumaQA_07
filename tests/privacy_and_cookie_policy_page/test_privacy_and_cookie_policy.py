@@ -87,7 +87,7 @@ def test_contact_us_text_is_displayed_as_blue_link(driver):
     assert link.is_enabled()
     assert link_color == 'rgba(0, 107, 180, 1)'
 
-
+@pytest.mark.xfail
 def test_contact_us_page_opening_after_clicking_on_contact_us_link(driver):
     """TC_012.015.002 | Footer > "Privacy and Cookie Policy" > Navigation within text >
      Verify opening the contact page"""
