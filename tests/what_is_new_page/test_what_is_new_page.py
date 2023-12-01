@@ -42,3 +42,5 @@ def test_shop_new_yoga_btn(driver):
     url = NewPage.URL_NEW_LUMA
     assert title_txt == page.new_luma_yoga_page(), f'Expected text: {title_txt}, but got: {page.new_luma_yoga_page()}'
     assert page.current_url == url, f'Expected text: {url},but got: { page.current_url}'
+
+

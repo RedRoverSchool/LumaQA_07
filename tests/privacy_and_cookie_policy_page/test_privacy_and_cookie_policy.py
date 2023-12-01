@@ -1,8 +1,9 @@
+import pytest
 from base.seleniumbase import BasePage
 from selenium.webdriver.common.by import By
 from data.privacy_and_cookie_policy_page_urls import PRIVACY_AND_COOKIE_POLICY_PAGE, LIST_OF_COOKIES_WE_COLLECT_SECTION
 from data.privacy_and_cookie_policy_page_fonts import PrivacyCookiePolicyFonts
-from locators.privacy_and_cookie_policy_page_locators import PrivacyCookiePolicyPageLocators
+from locators.privacy_and_cookie_policy_page_locators import PrivacyCookiePolicyPageLocators, PrivacyCookiePolicyAnchorLinksLocators
 import language_tool_python
 
 def test_text_block_font_family_titled_your_choices_regarding_use_of_the_information_we_collect(driver):
@@ -84,3 +85,51 @@ def test_contact_us_text_is_displayed_as_blue_link(driver):
     link_color = link.value_of_css_property('color')
     assert link.is_enabled()
     assert link_color == 'rgba(0, 107, 180, 1)'
+
+@pytest.mark.parametrize('anchor_link_locator, expected_result', [
+    (PrivacyCookiePolicyAnchorLinksLocators.LUMA_SECURITY, True),
+    (PrivacyCookiePolicyAnchorLinksLocators.LUMA_PRIVACY_POLICY, True),
+    (PrivacyCookiePolicyAnchorLinksLocators.THE_INFORMATION_WE_COLLECT, True),
+    (PrivacyCookiePolicyAnchorLinksLocators.HOW_WE_USE_THE_INFORMATION_WE_COLLECT, True),
+    (PrivacyCookiePolicyAnchorLinksLocators.SECURITY, True),
+    (PrivacyCookiePolicyAnchorLinksLocators.OTHERS_WITH_WHOM_WE_SHARE_YOUR_INFORMATION, True),
+    (PrivacyCookiePolicyAnchorLinksLocators.YOUR_CHOICES_REGARDING_USE_OF_THE_INFORMATION_WE_COLLECT, True),
+    (PrivacyCookiePolicyAnchorLinksLocators.YOUR_CALIFORNIA_PRIVACY_RIGHTS, True),
+    (PrivacyCookiePolicyAnchorLinksLocators.COOKIES_WEB_BEACONS_AND_HOW_WE_USE_THEM, True),
+    (PrivacyCookiePolicyAnchorLinksLocators.LIST_OF_COOKIES_WE_COLLECT, True),
+    (PrivacyCookiePolicyAnchorLinksLocators.ONLINE_ACCOUNT_REGISTRATION, True),
+    (PrivacyCookiePolicyAnchorLinksLocators.EMAILS, True),
+    (PrivacyCookiePolicyAnchorLinksLocators.ACCEPTANCE, True),
+    (PrivacyCookiePolicyAnchorLinksLocators.QUESTIONS_FOR_LUMA, True)]
+                         )
+def test_anchor_links_in_the_left_navbar_are_displayed(driver, anchor_link_locator, expected_result):
+    """TC_012.005.001 | Footer > "Privacy and Cookie Policy" > Visibility and clickability >
+    Visability of the anchor links"""
+    page = BasePage(driver, url=PRIVACY_AND_COOKIE_POLICY_PAGE)
+    page.open()
+    link = driver.find_element(By.XPATH, anchor_link_locator).is_displayed()
+    assert link == expected_result
+
+@pytest.mark.parametrize('anchor_link_locator, expected_result', [
+    (PrivacyCookiePolicyAnchorLinksLocators.LUMA_SECURITY, True),
+    (PrivacyCookiePolicyAnchorLinksLocators.LUMA_PRIVACY_POLICY, True),
+    (PrivacyCookiePolicyAnchorLinksLocators.THE_INFORMATION_WE_COLLECT, True),
+    (PrivacyCookiePolicyAnchorLinksLocators.HOW_WE_USE_THE_INFORMATION_WE_COLLECT, True),
+    (PrivacyCookiePolicyAnchorLinksLocators.SECURITY, True),
+    (PrivacyCookiePolicyAnchorLinksLocators.OTHERS_WITH_WHOM_WE_SHARE_YOUR_INFORMATION, True),
+    (PrivacyCookiePolicyAnchorLinksLocators.YOUR_CHOICES_REGARDING_USE_OF_THE_INFORMATION_WE_COLLECT, True),
+    (PrivacyCookiePolicyAnchorLinksLocators.YOUR_CALIFORNIA_PRIVACY_RIGHTS, True),
+    (PrivacyCookiePolicyAnchorLinksLocators.COOKIES_WEB_BEACONS_AND_HOW_WE_USE_THEM, True),
+    (PrivacyCookiePolicyAnchorLinksLocators.LIST_OF_COOKIES_WE_COLLECT, True),
+    (PrivacyCookiePolicyAnchorLinksLocators.ONLINE_ACCOUNT_REGISTRATION, True),
+    (PrivacyCookiePolicyAnchorLinksLocators.EMAILS, True),
+    (PrivacyCookiePolicyAnchorLinksLocators.ACCEPTANCE, True),
+    (PrivacyCookiePolicyAnchorLinksLocators.QUESTIONS_FOR_LUMA, True)]
+                         )
+def test_anchor_links_in_the_left_navbar_are_clickable(driver, anchor_link_locator, expected_result):
+    """TC_012.005.001 | Footer > "Privacy and Cookie Policy" > Visibility and clickability >
+    Visability of the anchor links"""
+    page = BasePage(driver, url=PRIVACY_AND_COOKIE_POLICY_PAGE)
+    page.open()
+    link = driver.find_element(By.XPATH, anchor_link_locator).is_enabled()
+    assert link == expected_result
