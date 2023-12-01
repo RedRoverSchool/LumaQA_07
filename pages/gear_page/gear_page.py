@@ -1,8 +1,11 @@
 from base.seleniumbase import BasePage
 from data.gear_page_urls import GEAR_PAGE
 from selenium.webdriver.remote.webelement import WebElement
+
+from locators.base_page_locators import BasePageLocators
 from pages.gear_page import category_page
 from locators.gear_page_locators import GearPageLocators
+from pages.gear_page.items import GearWatchEndurance, GearItem, GearWatchClamber
 
 
 class GearPage(BasePage):
@@ -43,3 +46,17 @@ class GearPage(BasePage):
         category.click()
         self.redirect(url=category_url)
         return category_page.CategoryPage(driver=self.driver, url=category_url)
+
+    def add_clamber_watch_from_gear_catalog_to_cart(self, quantity=1):
+        self.add_gear_item_to_cart(GearWatchClamber(), quantity)
+
+    def add_endurance_watch_from_gear_catalog_to_cart(self, quantity=1):
+        self.add_gear_item_to_cart(GearWatchEndurance(), quantity)
+
+    def add_gear_item_to_cart(self, item: GearItem, quantity: int):
+        for _ in range(quantity):
+            self.hold_mouse_on_element(item.nav_locator)
+            self.is_clickable(item.nav_list_item_locator).click()
+            self.hold_mouse_on_element(item.item_locator)
+            self.is_clickable(item.add_to_cart_locator).click()
+            self.is_visible(BasePageLocators.MSG_SUCCESS)

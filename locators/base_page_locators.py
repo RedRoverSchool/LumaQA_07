@@ -9,7 +9,7 @@ class BasePageLocators:
     CART_ICON = (By.XPATH, '//a[@class="action showcart"]')
     CART_COUNTER_NUMBER = (By.XPATH, '//span[@class="counter-number"]')
     BLOCK_MINICART = (By.XPATH, '//div[@class="block block-minicart ui-dialog-content ui-widget-content"]')
-    BLOCK_MINICART_ITEM_QUANTITY = (By.XPATH, '//div[@class="product-item-pricing"]//input')
+    BLOCK_MINICART_ITEM_QUANTITY = (By.XPATH, '//div[@id="minicart-content-wrapper"]//span[@class="count"]')
     LINK_HEADER_SIGN_IN = (By.XPATH, "//header[@class='page-header']//child::a[contains(text(), 'Sign In')]")
     LINK_HEADER_CREATE_ACCOUNT = (By.XPATH, "//header[@class='page-header']//child::a[contains(text(), 'Create an Account')]")
     HEADER_SEARCHBAR = (By.ID, "search")
@@ -60,7 +60,6 @@ class BasePageLocators:
     LINK_ORDERS_AND_RETURNS = (By.XPATH, '//footer//a[@href="https://magento.softwaretestingboard.com/sales/guest/form/"]')
     LINK_DISABLED = (By.XPATH, "//footer//strong")
 
-
     COPYRIGHT_INFO = (By.XPATH,"//footer/following-sibling::*[@class='copyright']")
 
     SHOP_ERIN_RECOMMENDS = (By.CSS_SELECTOR, "a[class='block-promo home-erin'] span[class='action more icon']")
@@ -77,4 +76,3 @@ class BasePageLocators:
         BLOCK_1, BLOCK_2, BLOCK_3, ERIN_SECTION, BLOCK_5, BLOCK_6
     ]
     SHOP_NEW_YOGA = (By.XPATH, "//span[@class='action more button']")
-
