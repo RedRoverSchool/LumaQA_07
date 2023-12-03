@@ -24,3 +24,6 @@ class FooterPage(BasePage):
     def check_visibility_footer_diabled_link(self):
         """This method heck if an element with <strong> tag in footer is visible"""
         return self.is_visible(self.locators.LINK_DISABLED)
+
+    def chech_visibility_footer_sign_in_link(self):
+        return self.is_visible(BasePageLocators.LINK_HEADER_SIGN_IN).click()

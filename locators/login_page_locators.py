@@ -14,6 +14,7 @@ class LoginPageLocators:
     SUCCESS_MESSAGE = (By.CSS_SELECTOR, 'h1.page-title')
 
 
+
 class ResetPageLocators:
     URL = 'https://magento.softwaretestingboard.com/customer/account/login'
     FORGOT_PASS_URL = 'https://magento.softwaretestingboard.com/customer/account/forgotpassword/'
