@@ -64,3 +64,6 @@ class ProductPage(BasePage):
         add_to_compare = self.is_visible(self.locators.ADD_TO_COMPARE)
         return add_to_compare.is_displayed()
 
+    def in_stock_is_displayed(self):
+        text = self.visible(self.locators.IN_STOCK)
+        return text.text
