@@ -4,7 +4,7 @@ from faker import Faker
 from base.seleniumbase import BasePage
 from locators.login import LOGIN_PAGE, LOGAUT_PAGE
 from pages.account.create_account import CreateAccountPage
-from pages.item_page import ItemPage
+from pages.item_page import ItemPage, ItemDetailsPage
 from pages.login.login_page import LoginPage
 from pages.my_account.address_book_page import AddressBookPage
 
@@ -88,3 +88,16 @@ def any_page_precondition(driver, any_url):
     base_page = BasePage(driver=driver, url=any_url)
     base_page.open()
     return base_page
+
+@pytest.fixture()
+def add_items_to_wish_list(driver):
+    lst = ['https://magento.softwaretestingboard.com/breathe-easy-tank.html',
+           'https://magento.softwaretestingboard.com/push-it-messenger-bag.html',
+           'https://magento.softwaretestingboard.com/ina-compression-short.html',
+           'https://magento.softwaretestingboard.com/clamber-watch.html',
+           'https://magento.softwaretestingboard.com/tiffany-fitness-tee.html',
+           'https://magento.softwaretestingboard.com/ida-workout-parachute-pant.html']
+    for href in lst:
+        page = ItemDetailsPage(driver, url=href)
+        page.add_to_wish_list().click()
+        assert page.message.endswith('has been added to your Wish List. Click here to continue shopping.')
