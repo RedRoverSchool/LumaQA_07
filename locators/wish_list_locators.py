@@ -6,5 +6,9 @@ class WishListLocators:
     WISH_LIST_SIDEBAR = (By.ID, 'wishlist-sidebar')
     WISH_LIST_SIDEBAR_ITEMS = (By.CSS_SELECTOR, '#wishlist-sidebar .product-item')
 
+    PAGINATION = (By.XPATH, '//*[@class="pages"]')
+    SELECT_SHOW_ITEMS_QTY = (By.XPATH, "//*[@id='limiter']")
+
+
 
 
