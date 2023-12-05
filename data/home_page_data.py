@@ -1,0 +1,1 @@
+TYPED_WORD = 'top'
