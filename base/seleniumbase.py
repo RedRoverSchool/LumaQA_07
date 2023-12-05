@@ -199,9 +199,10 @@ class BasePage:
         else:
             return self.is_visible(locatorOrWebelement).text
 
-
     def action_move_to_element(self, element):
         action = ActionChains(self.driver)
         action.move_to_element(element)
         action.perform()
 
+    def find_element_and_click(self, locator):
+        self.driver.find_element(*locator).click()

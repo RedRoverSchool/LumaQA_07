@@ -27,7 +27,7 @@ def pytest_unconfigure(config):
     report_history = os.path.join(cwd_report, "history")
     result_history = os.path.join(cwd_result, "history")
 
-    allure = "allure" if os.environ.get('PYTHONDONTWRITEBYTECODE') == '1' else "allure.bat"
+    allure = "allure"  # if os.environ.get('PYTHONDONTWRITEBYTECODE') == '1' else "allure.bat"
     subprocess.run([allure, "generate", "--clean"])
 
     rmtree(result_history, ignore_errors=True)
@@ -45,7 +45,7 @@ def options():
         options.add_argument('--headless')
         options.add_argument('--no-sandbox')
         options.add_argument('--disable-dev-shm-usage')
-    return options 
+    return options
 
 
 @pytest.fixture 
