@@ -67,3 +67,11 @@ class ProductPage(BasePage):
     def in_stock_is_displayed(self):
         text = self.visible(self.locators.IN_STOCK)
         return text.text
+
+    def check_page_title_for_guest_user(self):
+        title = self.driver.title()
+        return title.text
+
+
+
+
