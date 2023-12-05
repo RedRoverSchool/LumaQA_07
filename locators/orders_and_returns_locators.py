@@ -8,7 +8,7 @@ class OrdersAndReturnsPageLocators:
     BILLING_LASTNAME_FIELD = (By.XPATH, "//*[@id='oar-billing-lastname']")
     BILLING_LASTNAME_FIELD_MESSAGE_ERROR = (By.XPATH, "//*[@id='oar-billing-lastname-error']")
 
-    FIND_ORDER_BY_DROPDOWN = (By.XPATH, "//*[@id='quick-search-type-id']")
+    FIND_ORDER_BY_DROPDOWN = (By.ID, "quick-search-type-id")
     FIND_ORDER_BY_EMAIL_DROPDOWN = (By.XPATH, "//option[@value='email']")
     FIND_ORDER_BY_POSTCODE_DROPDOWN = (By.XPATH, "//option[@value='zip']")
 

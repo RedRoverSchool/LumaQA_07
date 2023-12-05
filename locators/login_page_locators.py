@@ -11,6 +11,8 @@ class LoginPageLocators:
     TEXT_ERROR_MSG_LOGIN = 'The account sign-in was incorrect or your account is disabled temporarily. Please wait and try again later.'
     RESET_PASS_MESS = (By.CSS_SELECTOR, 'div[data-ui-id="message-success"]')
     TEXT_RESET_PASS = 'If there is an account associated with test@test.com you will receive an email with a link to reset your password.'
+    SUCCESS_MESSAGE = (By.CSS_SELECTOR, 'h1.page-title')
+
 
 
 class ResetPageLocators:

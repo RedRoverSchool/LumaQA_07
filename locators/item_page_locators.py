@@ -24,12 +24,18 @@ class ItemPageLocators:
         By.XPATH, "//div/a[@href='https://magento.softwaretestingboard.com/clamber-watch.html']")
     ADD_TO_CART_CLAMBER_WATCH_BUTTON = (By.XPATH, "//input[@value='43']/following-sibling::button")
 
+    # Endurance Watch Locators
+    LINK_ENDURANCE_WATCH = (
+        By.XPATH, "//div/a[@href='https://magento.softwaretestingboard.com/endurance-watch.html']")
+    ADD_TO_CART_ENDURANCE_WATCH_BUTTON = (By.XPATH, "//input[@value='37']/following-sibling::button")
+
     # Echo Fit Compression Short (EFCS)
     LINK_EFCS_SIZE_28 = (By.XPATH, '//a[@href="https://magento.softwaretestingboard.com/echo-fit-compression-short.html"]/following-sibling::div[@class="product details product-item-details"]//child::div[@option-label="28"]')
     LINK_EFCS_SIZE_BLACK = (By.XPATH, '//a[@href="https://magento.softwaretestingboard.com/echo-fit-compression-short.html"]/following-sibling::div[@class="product details product-item-details"]//child::div[@option-label="Black"]')
     LINK_EFCS_ADD_TO_CART = (By.XPATH, '//a[@href="https://magento.softwaretestingboard.com/echo-fit-compression-short.html"]/following-sibling::div[@class="product details product-item-details"]//child::button[@title="Add to Cart"]')
     LINK_EFCS_SIZE_29 = (By.XPATH, '//div[@class="swatch-option text"]')
     LINK_EFCS_SIZE_BLUE = (By.XPATH, '//div[@aria-label = "Blue"]')
+
 
 class ItemPageReviewsLocators:
     URL = 'https://magento.softwaretestingboard.com/breathe-easy-tank.html'
@@ -72,5 +78,3 @@ class ItemPageJacketsJupiterTrainerLocators:
                                     '//a[@href="https://magento.softwaretestingboard.com/checkout/cart/"]')
     SUBTOTAL = (By.XPATH, '//tr[@class="totals sub"]//span')
     DISCOUNT = (By.XPATH, '//tr[@class="totals"]//td[@class="amount"]//span[@class="price"]')
-
-

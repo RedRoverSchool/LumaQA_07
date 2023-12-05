@@ -34,5 +34,9 @@ class MenTops(BasePage):
     def wait_url(self, url, timeout: int = 5):
         wait(self.driver, timeout).until(EC.url_to_be(url))
 
+    def click_image(self, position):
+        image = self.is_clickable(MenCategoryPageLocators.get_product_image(position))
+        image.click()
+
 
 

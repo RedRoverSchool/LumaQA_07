@@ -110,3 +110,10 @@ class TestProductPage:
         page = ProductPage(driver, PRODUCT_PAGE_EXAMPLE)
         page.open()
         assert page.add_to_compare_element_is_displayed(), "Add to compare element is not displayed"
+
+    def test_in_stock_is_displayed(self, driver):
+        """TC_002.011.001"""
+        page = ProductPage(driver, PRODUCT_PAGE_EXAMPLE)
+        page.open()
+        text = page.in_stock_is_displayed()
+        assert text == 'IN STOCK'

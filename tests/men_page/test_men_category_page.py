@@ -1,3 +1,5 @@
+import pytest
+
 import data.men_page_url as mp_url
 from locators.men_page_locators import MenCategoryPageLocators as MCL
 
@@ -178,3 +180,50 @@ class TestMenBottomsPage:
 
         for name, element in page.get_limit_options():
             assert element.is_displayed(), f'Option "{name}" is not displayed'
+
+    def test_list_is_options_displayed(self, page_bottoms):
+        """
+        TC_008.034.002 | Men > Bottoms > List mode > Limit controller
+                        > Limit elements are displayed
+        """
+
+        page = page_bottoms
+
+        page.click_list_mode()
+        page.click_limit_button()
+
+        for name, element in page.get_limit_options(mode='list'):
+            assert element.is_displayed(), f'Option "{name}" is not displayed'
+
+    @pytest.mark.parametrize('option', ['12', '24', '36'])
+    def test_grid_choosing_limit_option(self, page_bottoms, option):
+        """
+        TC_008.034.003 | Men > Bottoms > Grid mode > Limit controller
+                        > Choosing of quantity displaying items on the page
+        """
+
+        page = page_bottoms
+
+        page.click_limit_button()
+        page.click_option(option)
+
+        assert (
+            len([el for el in page.get_all_products() if el.is_displayed()]) <= int(option)
+            ), f'The number of items exceeds the limit: {option}'
+
+    @pytest.mark.parametrize('option', ['5', '10', '15', '20', '25'])
+    def test_list_choosing_limit_option(self, page_bottoms, option):
+        """
+        TC_008.034.004 | Men > Bottoms > List mode > Limit controller
+                        > Choosing of quantity displaying items on the page
+        """
+
+        page = page_bottoms
+
+        page.click_list_mode()
+        page.click_limit_button()
+        page.click_option(option)
+
+        assert (
+                len([el for el in page.get_all_products() if el.is_displayed()]) <= int(option)
+        ), f'The number of items exceeds the limit: {option}'

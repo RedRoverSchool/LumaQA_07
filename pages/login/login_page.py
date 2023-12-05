@@ -5,6 +5,7 @@ from locators.login_page_locators import LoginPageLocators
 from locators.base_page_locators import BasePageLocators
 
 
+
 class LoginPage(BasePage):
     def email(self) -> WebElement:
         return self.is_visible(LoginPageLocators.EMAIL)
@@ -23,5 +24,28 @@ class LoginPage(BasePage):
         self.password().send_keys('Zaqxsw100')
         self.button_sign_in().click()
         assert self.header().text == 'My Account', "Не удалось войти"
+
+
+
+
+    def set_email(self, login):
+        self.email().send_keys(login)
+
+    def set_password(self,password):
+        self.password().send_keys(password)
+
+    def click_sign_in_button(self):
+        self.is_visible(LoginPageLocators.BUTTON_SIGN_IN).click()
+
+
+    def get_text_message(self):
+        return self.get_text(LoginPageLocators.SUCCESS_MESSAGE)
+
+
+
+
+
+
+
 
 

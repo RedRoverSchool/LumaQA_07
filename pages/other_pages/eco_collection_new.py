@@ -20,6 +20,10 @@ class CollectionPage(BasePage):
     ITEMS = (By.XPATH, '//ol[@class="product-items widget-product-grid"]/li')
     ITEMS_IMAGES = (By.CSS_SELECTOR, 'span.product-image-container')
     ITEM_TITLE = (By.CSS_SELECTOR, 'span[data-ui-id="page-title-wrapper"]')
+    ITEM_PRICES = (By.CSS_SELECTOR, 'span.price')
+    ITEM_COLORS = (By.CSS_SELECTOR, 'div[aria-label="Color"]')
+    SELECT_FRAME = (By.CLASS_NAME, 'selected')
+    ITEM_SIZES = (By.CSS_SELECTOR, 'div.product-item-info #option-label-size-143-item-166')
 
     TITLE_TEXT = 'Eco Collection New'
     BANNER_TEXT = 'Eco-friendly, ego-friendly'
@@ -35,6 +39,7 @@ class CollectionPage(BasePage):
     ITEMS_TEXT = ["Bruno Compete Hoodie", "Layla Tee", "Fiona Fitness Short", "Stellar Solar Jacket",
                   "Elisa EverCool™ "
                   "Tee"]
+    PRICE_TEXT = ['$63.00', '$29.00', '$75.00']
 
     def __init__(self, driver, url=URL):
         super().__init__(driver, url)
@@ -60,3 +65,16 @@ class CollectionPage(BasePage):
 
     def images(self) -> list:
         return self.is_visible_all_elements(self.ITEMS_IMAGES)
+
+    def prices(self) -> list:
+        return self.is_visible_all_elements(self.ITEM_PRICES)
+
+    def colors(self) -> list:
+        return self.is_visible_all_elements(self.ITEM_COLORS)
+
+    def sizes(self) -> list:
+        return self.is_visible_all_elements(self.ITEM_SIZES)
+
+    def select_frame(self) :
+        return self.is_visible(self.SELECT_FRAME)
+

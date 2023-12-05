@@ -8,3 +8,4 @@ class MyWishListPage(BasePage):
     def all_to_cart(self):
         return self.is_clickable(WishListLocators.BUTTON_ALL_TO_CART)
 
+

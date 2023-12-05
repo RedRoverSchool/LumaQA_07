@@ -9,6 +9,11 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 
+from base.seleniumbase import BasePage
+from data.home_page_url import HOME_PAGE
+from locators.login_page_locators import LoginPageLocators
+from locators.base_page_locators import BasePageLocators
+
 
 def pytest_configure(config):
     shot = os.path.join(os.path.dirname(os.path.abspath(__file__)), "screenshots")
@@ -78,4 +83,18 @@ def save_screenshot(request, driver):
         driver.get_screenshot_as_file(full_file_path)
 
         allure.attach.file(full_file_path, name=file_name, attachment_type=allure.attachment_type.PNG)
+
+@pytest.fixture()
+def open_main_page(driver):
+    base_page = BasePage(driver=driver, url=HOME_PAGE)
+    base_page.open()
+    return base_page
+
+@pytest.fixture
+def sign_in(driver):
+    driver.find_element(*BasePageLocators.LINK_HEADER_SIGN_IN).click()
+    driver.find_element(*LoginPageLocators.EMAIL).send_keys('testTestpro@gmail.com')
+    driver.find_element(*LoginPageLocators.PASSWORD).send_keys('Zaqxsw100')
+    driver.find_element(*LoginPageLocators.BUTTON_SIGN_IN).click()
+
 

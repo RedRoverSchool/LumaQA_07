@@ -39,6 +39,7 @@ class ProductPageLocators:
     ADD_TO_CARD = (By.XPATH, "//button[@title = 'Add to Cart']")
     ADD_TO_WISH_LIST = (By.XPATH, "//div[@class='product-addto-links']/a[@data-action='add-to-wishlist']")
     ADD_TO_COMPARE = (By.CLASS_NAME, "action.tocompare")
+    IN_STOCK = (By.XPATH, "//*[contains(text(), 'In stock')] ")
 
 
 

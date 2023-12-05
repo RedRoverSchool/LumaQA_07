@@ -1,5 +1,5 @@
 import time
-
+import pytest
 from pages.main_page import MainPage
 from locators.base_page_locators import BasePageLocators
 from pages.erin_recommends.erin_recommends import ErinRecommendsPage
@@ -7,7 +7,7 @@ from data.men_page_url import MEN_PAGE, TOPS_MEN_PAGE
 from pages.performance_fabrics.performance_fabrics import PerformanceFabricsPage
 from pages.eco_friendly.eco_friendly import EcoFriendlyPage
 from data.performance_fabrics_url import PERFORMANCE_FABRICS_URL
-
+from data.home_page_url import HOME_PAGE
 
 class TestMainPage:
     def test_verify_visibility_the_title(self, driver):
@@ -94,5 +94,8 @@ class TestMainPage:
         page.scroll_down_to_shop_eco_friendly()
         assert page.is_visible(BasePageLocators.SHOP_ECO_FRIENDLY), "element is not visible"
 
-
-
+    @pytest.mark.parametrize('link_1', BasePageLocators.LIST_MENU_BAR)
+    def test_elements_of_menu_bar_is_visible_and_clickable(self, driver, link_1):
+        page = MainPage(driver, HOME_PAGE)
+        page.open()
+        page.check_visible_of_menu_bar(link_1)
