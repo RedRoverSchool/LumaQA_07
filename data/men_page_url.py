@@ -35,3 +35,15 @@ MEN_SHORTS_CARDS = [('Pierce Gym Short', 'https://magento.softwaretestingboard.c
                     ('Apollo Running Short', 'https://magento.softwaretestingboard.com/apollo-running-short.html'),
                     ('Cobalt CoolTech™ Fitness Short',
                      'https://magento.softwaretestingboard.com/cobalt-cooltech-trade-fitness-short.html')]
+
+MEN_TOPS_JACKETS_EXPECTED_URLS = [(1, 'https://magento.softwaretestingboard.com/proteus-fitness-jackshirt.html'),
+                  (2, 'https://magento.softwaretestingboard.com/montana-wind-jacket.html'),
+                  (3, 'https://magento.softwaretestingboard.com/jupiter-all-weather-trainer.html'),
+                  (4, 'https://magento.softwaretestingboard.com/typhon-performance-fleece-lined-jacket.html'),
+                  (5, 'https://magento.softwaretestingboard.com/mars-heattech-trade-pullover.html'),
+                  (6, 'https://magento.softwaretestingboard.com/taurus-elements-shell.html'),
+                  (7, 'https://magento.softwaretestingboard.com/lando-gym-jacket.html'),
+                  (8, 'https://magento.softwaretestingboard.com/orion-two-tone-fitted-jacket.html'),
+                  (9, 'https://magento.softwaretestingboard.com/kenobi-trail-jacket.html'),
+                  (10, 'https://magento.softwaretestingboard.com/hyperion-elements-jacket.html'),
+                  (11, 'https://magento.softwaretestingboard.com/beaumont-summit-kit.html')]
