@@ -26,6 +26,7 @@ class MenCategoryPageLocators:
     ADD_TO_CART = (By.CLASS_NAME, 'action.tocart.primary')
     ADD_TO_CART_4 = (By.CSS_SELECTOR, "li[class = 'item product product-item']:nth-child(4)")
     BUTTON_ADD_TO_CART = (By.CSS_SELECTOR, "li[class = 'item product product-item']:nth-child(4) button")
+    JACKETS_IMAGE_CARD = (By.CSS_SELECTOR, "li[class='item product product-item']:nth-child(4)")
     ADD_TO_WISH_LIST = (By.CLASS_NAME, 'action.towishlist')
     ADD_TO_COMPARE = (By.CLASS_NAME, 'action.tocompare')
     TITLE_ITEM = (By.CSS_SELECTOR, 'span[class="base"]')
@@ -40,6 +41,10 @@ class MenCategoryPageLocators:
     @staticmethod
     def get_position_button(position):
         return By.CSS_SELECTOR, f"li[class = 'item product product-item']:nth-child({position}) button"
+
+    @staticmethod
+    def get_product_image(position: int):
+        return By.CSS_SELECTOR, f"li[class='item product product-item']:nth-child({position})"
 
     @staticmethod
     def get_option_locator(option):

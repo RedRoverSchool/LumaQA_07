@@ -11,3 +11,4 @@ def test_whatever_widget(driver):
     page.find_widget_perfomance_fabrics()
     assert 'Performance Sportswear New' in driver.page_source
 
+

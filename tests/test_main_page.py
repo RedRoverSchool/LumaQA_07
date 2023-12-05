@@ -8,6 +8,7 @@ from pages.performance_fabrics.performance_fabrics import PerformanceFabricsPage
 from pages.eco_friendly.eco_friendly import EcoFriendlyPage
 from data.performance_fabrics_url import PERFORMANCE_FABRICS_URL
 from data.home_page_url import HOME_PAGE
+from data.home_page_data import TYPED_WORD
 
 class TestMainPage:
     def test_verify_visibility_the_title(self, driver):
@@ -99,3 +100,10 @@ class TestMainPage:
         page = MainPage(driver, HOME_PAGE)
         page.open()
         page.check_visible_of_menu_bar(link_1)
+
+    def test_search_suggestions_contains_the_typed_word_in_the_search_bar(self, driver):
+        # type_word = 'top'
+        page = MainPage(driver, HOME_PAGE)
+        page.open()
+        page.compare_words(TYPED_WORD)
+

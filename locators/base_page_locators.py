@@ -77,3 +77,4 @@ class BasePageLocators:
     ]
     SHOP_NEW_YOGA = (By.XPATH, "//span[@class='action more button']")
     LIST_MENU_BAR = [LINK_WHATS_NEW, LINK_WOMEN, LINK_MEN, LINK_GEAR, LINK_TRAINING, LINK_SALE]
+    SEARCHING_RESULT = (By.CSS_SELECTOR, 'ul[role="listbox"]>li:nth-child(1)')
