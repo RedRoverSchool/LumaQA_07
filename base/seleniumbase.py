@@ -206,3 +206,6 @@ class BasePage:
 
     def find_element_and_click(self, locator):
         self.driver.find_element(*locator).click()
+
+    def find_element(self, locator) -> WebElement:
+        return self.driver.find_element(*locator)
