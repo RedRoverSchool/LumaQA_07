@@ -99,11 +99,17 @@ class TestMainPage:
     def test_elements_of_menu_bar_is_visible_and_clickable(self, driver, link_1):
         page = MainPage(driver, HOME_PAGE)
         page.open()
-        page.check_visible_of_menu_bar(link_1)
+        page.check_that_all_elements_are_visible(link_1)
 
     def test_search_suggestions_contains_the_typed_word_in_the_search_bar(self, driver):
         # type_word = 'top'
         page = MainPage(driver, HOME_PAGE)
         page.open()
         page.compare_words(TYPED_WORD)
+
+    @pytest.mark.parametrize('link_1', BasePageLocators.LIST_FOOTER)
+    def test_verify_that_the_elements_of_the_Footer_are_visible_and_clickable(self, driver, link_1):
+        page = MainPage(driver, HOME_PAGE)
+        page.open()
+        page.check_that_all_elements_are_visible(link_1)
 

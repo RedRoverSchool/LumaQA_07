@@ -49,7 +49,7 @@ class MainPage(BasePage):
     def scroll_down_to_shop_eco_friendly(self):
         self.scroll_to_element(BasePageLocators.SHOP_ECO_FRIENDLY)
 
-    def check_visible_of_menu_bar(self, link_1):
+    def check_that_all_elements_are_visible(self, link_1):
         element = self.is_visible(link_1)
         assert element.is_displayed() and element.is_enabled(), 'Элемент не виден  или не доступен для нажатия'
 
