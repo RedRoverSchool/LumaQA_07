@@ -14,10 +14,10 @@ class TestWishList:
         wish_list = [element.text for element in wish_list_elements]
         assert len(wish_list) >= 1, "Items not found"
 
-    @pytest.mark.xfail('BUG_user is broken')
+    @pytest.mark.xfail(reason="Bug user-broken")
     def test_share_wish_list_button_is_working(self, driver, open_main_page, sign_in, add_items_to_wish_list):
         """The [Share wishlist] button was not found on the personal “Wishlist” page;
-        user button broken after 10th test run"""
+        user button broken after some test run"""
         page = WishListPage(driver, url="https://magento.softwaretestingboard.com/wishlist/")
         page.click_share_wish_list_button()
         page.fill_email_field("not@gmail.com")
