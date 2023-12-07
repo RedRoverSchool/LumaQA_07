@@ -40,21 +40,26 @@ class MenTops(BasePage):
         image.click()
 
     def select_sorter(self, name):
+        self.is_clickable(MenTopsPageLocators.TOP_MEN_SORTER)
         select_element = self.driver.find_element(*MenTopsPageLocators.TOP_MEN_SORTER)
         select = Select(select_element)
         select.select_by_visible_text(name)
 
     def get_product_names(self):
+        self.is_visible_all_elements(MenTopsPageLocators.TOP_MEN_PRODUCT_ITEMS_NAME)
         return self.driver.find_elements(*MenTopsPageLocators.TOP_MEN_PRODUCT_ITEMS_NAME)
 
     def get_price(self):
+        self.is_visible_all_elements(MenTopsPageLocators.TOP_MEN_PRODUCT_ITEMS_PRICE)
         return self.driver.find_elements(*MenTopsPageLocators.TOP_MEN_PRODUCT_ITEMS_PRICE)
 
     def click_arrow(self):
+        self.is_clickable(MenTopsPageLocators.TOP_MEN_ARROW)
         arrow = self.driver.find_element(*MenTopsPageLocators.TOP_MEN_ARROW)
         arrow.click()
 
     def click_list_mode(self):
+        self.is_visible(MenTopsPageLocators.TOP_MEN_LIST_MODE)
         list_mode = self.driver.find_element(*MenTopsPageLocators.TOP_MEN_LIST_MODE)
         list_mode.click()
 
