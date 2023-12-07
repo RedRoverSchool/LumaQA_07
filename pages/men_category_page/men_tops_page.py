@@ -38,5 +38,9 @@ class MenTops(BasePage):
         image = self.is_clickable(MenCategoryPageLocators.get_product_image(position))
         image.click()
 
+    def mode_list_is_visible(self):
+        self.is_visible(MenPageLocators.MEN_TOPS_LIST)
+
+
 
 
