@@ -26,7 +26,7 @@ class TestOrdersAndReturnsPage:
 
         assert page.get_search_field_name_text_email() == "Email", "The search field name is different"
 
-    @allure.title("TC_012.008.003 | Footer > “Orders and Returns” "
+    @allure.title("TC_012.008.003 | “Orders and Returns” "
                   "> Visibility and clickability > Verify the 'Continue' button is visible and clickable")
     def test_continue_button_is_visible_and_clickable(self, driver):
         page = OrdersAndReturnsPage(driver, OrdersAndReturnsPage.URL)
