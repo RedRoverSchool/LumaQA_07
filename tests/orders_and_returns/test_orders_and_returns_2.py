@@ -32,5 +32,5 @@ class TestOrdersAndReturnsPage:
         page = OrdersAndReturnsPage(driver, OrdersAndReturnsPage.URL)
         page.open()
 
-        assert page.is_continue_button_visible() and page.is_continue_button_clickable(), \
-            "Continue button is not visible or clickable"
+        assert page.is_continue_button_visible(), "'Continue' button is not visible"
+        assert page.is_continue_button_clickable(), "'Continue' button is not clickable"
