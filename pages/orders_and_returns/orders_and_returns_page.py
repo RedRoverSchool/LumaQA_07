@@ -44,3 +44,11 @@ class OrdersAndReturnsPage(BasePage):
     def get_search_field_name_text_email(self):
         """The method gets the search field name upon choosing 'Email'"""
         return self.is_search_field_name_for_email_visible().text
+
+    def is_continue_button_visible(self):
+        """The method verifies if the 'Continue' button is displayed and its height and width are greater than 0"""
+        return self.is_visible(ORPL.CONTINUE_BUTTON)
+
+    def is_continue_button_clickable(self):
+        """The method verifies if the 'Continue' button is enabled"""
+        return self.is_clickable(ORPL.CONTINUE_BUTTON)
