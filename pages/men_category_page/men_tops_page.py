@@ -41,6 +41,6 @@ class MenTops(BasePage):
     def mode_list_is_visible(self):
         self.is_visible(MenPageLocators.MEN_TOPS_LIST)
 
-
-
+    def mode_list_is_clickable(self):
+        self.is_clickable(MenPageLocators.MEN_TOPS_LIST)
 

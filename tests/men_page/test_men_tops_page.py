@@ -1,3 +1,5 @@
+import allure
+
 from pages.men_category_page.men_tops_page import MenTops
 from data.men_page_url import TOPS_MEN_PAGE, CASSIUS_SPARRING_TANK
 
@@ -29,9 +31,14 @@ class TestMenTopsPage:
         page.open()
         assert page.check_visibility_grid(), "It is not visible"
 
+    @allure.title('TC_008.005.003 | Tops page > Products >Verify a mode-switcher "list" is Visible')
     def test_verify_a_mode_list_is_visible(self, driver):
-        """TC_008.005.003 | Tops page > Products >Verify a mode-switcher "list" is Visible"""
         page = MenTops(driver, TOPS_MEN_PAGE)
         page.open()
         page.mode_list_is_visible(), 'mode-switcher list NOT Visible'
 
+    @allure.title('TC_008.005.004 | Tops page > Products >Verify a mode-switcher "list" is Clicable')
+    def test_verify_a_mode_list_is_clicable(self, driver):
+        page = MenTops(driver, TOPS_MEN_PAGE)
+        page.open()
+        page.mode_list_is_clickable(), 'mode-switcher list NOT Clicable'
