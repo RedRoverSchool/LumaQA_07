@@ -56,8 +56,7 @@ def test_text_block_format_titled_list_of_cookie_files_we_collect(driver):
 
 @pytest.mark.parametrize('locator, expected_page_url, error_message', [
     (PrivacyCookiePolicyPageLocators.LIST_OF_COOKIE_FILES_WE_COLLECT_LINK_IN_TEXT_BLOCK, LIST_OF_COOKIES_WE_COLLECT_SECTION, "The 'List of cookies we collect' section doesn`t displayed"),
-    (PrivacyCookiePolicyPageLocators.CONTACT_US_LINK_LOCATOR, CONTACT_US_PAGE, "The 'Contact Us' page doesn`t displayed")
-])
+    (PrivacyCookiePolicyPageLocators.CONTACT_US_LINK_LOCATOR, CONTACT_US_PAGE, "The 'Contact Us' page doesn`t displayed")])
 def test_opening_pages_after_links_clicking(driver,locator, expected_page_url, error_message):
     """TC_012.014.002 | Footer > "Privacy and Cookie Policy" > Navigation within text >
      Verify redirection of the "List of cookies we collect" section"""
@@ -84,8 +83,7 @@ def test_opening_pages_after_links_clicking(driver,locator, expected_page_url, e
     (PrivacyCookiePolicyAnchorLinksLocators.ONLINE_ACCOUNT_REGISTRATION, True),
     (PrivacyCookiePolicyAnchorLinksLocators.EMAILS, True),
     (PrivacyCookiePolicyAnchorLinksLocators.ACCEPTANCE, True),
-    (PrivacyCookiePolicyAnchorLinksLocators.QUESTIONS_FOR_LUMA, True)]
-                         )
+    (PrivacyCookiePolicyAnchorLinksLocators.QUESTIONS_FOR_LUMA, True)])
 def test_anchor_links_in_the_left_navbar_are_displayed(driver, anchor_link_locator, expected_result):
     """TC_012.005.001 | Footer > "Privacy and Cookie Policy" > Visibility and clickability >
     Visability of the anchor links"""
@@ -108,8 +106,7 @@ def test_anchor_links_in_the_left_navbar_are_displayed(driver, anchor_link_locat
     (PrivacyCookiePolicyAnchorLinksLocators.ONLINE_ACCOUNT_REGISTRATION, True),
     (PrivacyCookiePolicyAnchorLinksLocators.EMAILS, True),
     (PrivacyCookiePolicyAnchorLinksLocators.ACCEPTANCE, True),
-    (PrivacyCookiePolicyAnchorLinksLocators.QUESTIONS_FOR_LUMA, True)]
-                         )
+    (PrivacyCookiePolicyAnchorLinksLocators.QUESTIONS_FOR_LUMA, True)])
 def test_anchor_links_in_the_left_navbar_are_clickable(driver, anchor_link_locator, expected_result):
     """TC_012.005.001 | Footer > "Privacy and Cookie Policy" > Visibility and clickability >
     Visability of the anchor links"""
