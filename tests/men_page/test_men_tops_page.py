@@ -51,6 +51,7 @@ class TestMenTopsPage:
         view_before, after_filter = page.list_page_view()
         assert view_before != after_filter, 'View did NOT change after click the filter'
 
+    @allure.title('TC_008.013.001|Tops Page> Verify the link HoodiesSweatshirts redirects to a correct page')
     def test_verify_redirect_link_hoodies_sweatshirts(self, driver):
         page = MenTops(driver, TOPS_MEN_PAGE)
         page.open()
