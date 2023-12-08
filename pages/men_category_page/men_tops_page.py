@@ -1,6 +1,7 @@
 from base.seleniumbase import BasePage
 from locators.men_tops_page_locators import MenTopsPageLocators
 from locators.men_page_locators import MenPageLocators, MenCategoryPageLocators
+from locators.base_page_locators import BasePageLocators
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait as wait
 from selenium.webdriver.support.select import Select
@@ -73,4 +74,9 @@ class MenTops(BasePage):
         self.find_element_and_click(MenCategoryPageLocators.LIST_MODE)
         after_filter = self.driver.page_source
         return view_before, after_filter
+
+    def click_link_hoodies_sweatshirts(self):
+        self.hold_mouse_on_element(MenPageLocators.MEN_DROPDOWN_BUTTON)
+        self.hold_mouse_on_element(MenPageLocators.TOPS_DROPDOWN_BUTTON)
+        self.hold_mouse_on_element_and_click(BasePageLocators.LINK_MEN_TOPS_HOODIES)
 

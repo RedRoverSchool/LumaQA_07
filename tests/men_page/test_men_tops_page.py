@@ -2,6 +2,7 @@ import allure
 
 from pages.men_category_page.men_tops_page import MenTops
 from data.men_page_url import TOPS_MEN_PAGE, CASSIUS_SPARRING_TANK
+from data.men_page_url import MEN_TOPS_HOODIES_PAGE
 
 
 class TestMenTopsPage:
@@ -50,3 +51,8 @@ class TestMenTopsPage:
         view_before, after_filter = page.list_page_view()
         assert view_before != after_filter, 'View did NOT change after click the filter'
 
+    def test_verify_redirect_link_hoodies_sweatshirts(self, driver):
+        page = MenTops(driver, TOPS_MEN_PAGE)
+        page.open()
+        page.click_link_hoodies_sweatshirts()
+        assert driver.current_url == MEN_TOPS_HOODIES_PAGE, 'Page NOT REDIRECT'
