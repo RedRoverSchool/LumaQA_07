@@ -35,10 +35,18 @@ class TestMenTopsPage:
     def test_verify_a_mode_list_is_visible(self, driver):
         page = MenTops(driver, TOPS_MEN_PAGE)
         page.open()
-        page.mode_list_is_visible(), 'mode-switcher list NOT Visible'
+        assert page.mode_list_is_visible(), 'Mode-switcher list NOT Visible'
 
     @allure.title('TC_008.005.004 | Tops page > Products >Verify a mode-switcher "list" is Clicable')
     def test_verify_a_mode_list_is_clicable(self, driver):
         page = MenTops(driver, TOPS_MEN_PAGE)
         page.open()
-        page.mode_list_is_clickable(), 'mode-switcher list NOT Clicable'
+        assert page.mode_list_is_clickable(), 'Mode-switcher list NOT Clicable'
+
+    @allure.title('TC_008.005.005 | Tops page > Products >Verify view modes change')
+    def test_verify_view_modes_change(self, driver):
+        page = MenTops(driver, TOPS_MEN_PAGE)
+        page.open()
+        view_before, after_filter = page.list_page_view()
+        assert view_before != after_filter, 'View did NOT change after click the filter'
+

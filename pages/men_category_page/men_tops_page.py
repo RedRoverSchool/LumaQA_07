@@ -44,3 +44,10 @@ class MenTops(BasePage):
     def mode_list_is_clickable(self):
         self.is_clickable(MenPageLocators.MEN_TOPS_LIST)
 
+    def list_page_view(self):
+        """ Начальный вид страницы; классы элементов до применения фильтра"""
+        view_before = self.driver.page_source
+        self.find_element_and_click(MenPageLocators.MEN_TOPS_LIST)
+        after_filter = self.driver.page_source
+        return view_before, after_filter
+
