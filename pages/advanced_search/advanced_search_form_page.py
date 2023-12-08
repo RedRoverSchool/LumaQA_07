@@ -1,11 +1,13 @@
 from base.seleniumbase import BasePage
 from locators.advanced_search_locators import AdvancedSearchLocators as locator
+from locators.advanced_search_locators import AdvancedSearchLocators
+
 
 
 class AdvancedSearchFormPage(BasePage):
     QUERY_LIST = ['top', 'bottom', 'capri', 'short', 'tank', 'watch', 'sweatshirt', 'pant', 'hoodie']
 
-    def __init__(self, driver, url):
+    def __init__(self, driver,url):
         super().__init__(driver, url)
         self.current_url = url
 
@@ -27,3 +29,10 @@ class AdvancedSearchFormPage(BasePage):
 
     def button_visible(self):
         return self.is_visible(locator.SEARCH_BUTTON)
+
+
+
+
+
+
+

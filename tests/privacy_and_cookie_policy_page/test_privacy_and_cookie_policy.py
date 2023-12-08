@@ -6,29 +6,33 @@ from data.privacy_and_cookie_policy_page_fonts import PrivacyCookiePolicyFonts
 from locators.privacy_and_cookie_policy_page_locators import PrivacyCookiePolicyPageLocators, PrivacyCookiePolicyAnchorLinksLocators
 import language_tool_python
 
-def test_text_block_font_family_titled_your_choices_regarding_use_of_the_information_we_collect(driver):
+@pytest.mark.parametrize('locator, css_value, expected_result', [
+    (PrivacyCookiePolicyPageLocators.YOUR_CHOICES_REGARDING_USE_OF_THE_INFORMATION_WE_COLLECT_CONTENT_LOCATOR, 'font-family', PrivacyCookiePolicyFonts.TEXT_FONT_FAMILY),
+    (PrivacyCookiePolicyPageLocators.YOUR_CHOICES_REGARDING_USE_OF_THE_INFORMATION_WE_COLLECT_HEADER_LOCATOR, 'font-size', PrivacyCookiePolicyFonts.HEADER_TEXT_FONT_SIZE),
+    (PrivacyCookiePolicyPageLocators.YOUR_CHOICES_REGARDING_USE_OF_THE_INFORMATION_WE_COLLECT_CONTENT_LOCATOR, 'font-size', PrivacyCookiePolicyFonts.TEXT_FONT_SIZE),
+    (PrivacyCookiePolicyPageLocators.LIST_OF_COOKIE_FILES_WE_COLLECT_LINK_IN_TEXT_BLOCK, 'color', 'rgba(0, 107, 180, 1)'),
+    (PrivacyCookiePolicyPageLocators.CONTACT_US_LINK_LOCATOR, 'color', 'rgba(0, 107, 180, 1)')
+])
+def test_privacy_cookie_policy_value_of_elements(driver, locator, css_value, expected_result):
     """TC_012.007.001 | Footer > "Privacy and Cookie Policy" > Content >
      The Font family of the text block titled 'Your Choices Regarding Use Of The Information We Collect'"""
-    page = BasePage(driver, url=PRIVACY_AND_COOKIE_POLICY_PAGE)
-    page.open()
-    font_family = page.is_visible(locator=PrivacyCookiePolicyPageLocators.YOUR_CHOICES_REGARDING_USE_OF_THE_INFORMATION_WE_COLLECT_CONTENT_LOCATOR).value_of_css_property('font-family')
-    assert font_family == PrivacyCookiePolicyFonts.TEXT_FONT_FAMILY
 
-def test_text_block_header_font_size_titled_your_choices_regarding_use_of_the_information_we_collect(driver):
     """TC_012.007.002 | Footer > "Privacy and Cookie Policy" > Content >
      The Font-size of the title 'Your Choices Regarding Use Of The Information We Collect'"""
-    page = BasePage(driver, url=PRIVACY_AND_COOKIE_POLICY_PAGE)
-    page.open()
-    font_size = page.is_visible(locator=PrivacyCookiePolicyPageLocators.YOUR_CHOICES_REGARDING_USE_OF_THE_INFORMATION_WE_COLLECT_HEADER_LOCATOR).value_of_css_property('font-size')
-    assert font_size == PrivacyCookiePolicyFonts.HEADER_TEXT_FONT_SIZE
 
-def test_text_block_font_size_titled_your_choices_regarding_use_of_the_information_we_collect(driver):
     """TC_012.007.003 | Footer > "Privacy and Cookie Policy" > Content >
      The Font-size of the text of the block titled 'Your Choices Regarding Use Of The Information We Collect'"""
+
+    """TC_012.014.001 | Footer > "Privacy and Cookie Policy" > Navigation within text >
+    Visability of the "List of cookies we collect" text in the section "The Information We Collect."""
+
+    """TC_012.015.001 | Footer > Privacy and Cookie Policy Page > Contact us link >
+     Visibility of the "Contact Us" text in the "Questions for Luma?" section"""
+
     page = BasePage(driver, url=PRIVACY_AND_COOKIE_POLICY_PAGE)
     page.open()
-    font_size = page.is_visible(locator=PrivacyCookiePolicyPageLocators.YOUR_CHOICES_REGARDING_USE_OF_THE_INFORMATION_WE_COLLECT_CONTENT_LOCATOR).value_of_css_property('font-size')
-    assert font_size == PrivacyCookiePolicyFonts.TEXT_FONT_SIZE
+    font_size = page.is_visible(locator).value_of_css_property(css_value)
+    assert font_size == expected_result
 
 def test_text_block_for_typos_titled_your_choices_regarding_use_of_the_information_we_collect(driver):
     """TC_012.007.004 | Footer > "Privacy and Cookie Policy" > Content > Verify the text block and title for typos
@@ -50,38 +54,21 @@ def test_text_block_format_titled_list_of_cookie_files_we_collect(driver):
     element_format = page.is_visible(locator=PrivacyCookiePolicyPageLocators.LIST_OF_COOKIE_FILES_WE_COLLECT_CONTENT_LOCATOR).tag_name
     assert element_format == 'table', f"The text of the block is NOT presented in a tabular format"
 
-def test_list_of_cookies_we_collect_text_is_displayed_as_blue_link(driver):
-    """TC_012.014.001 | Footer > "Privacy and Cookie Policy" > Navigation within text >
-    Visability of the "List of cookies we collect" text in the section "The Information We Collect."""
-    page = BasePage(driver, url=PRIVACY_AND_COOKIE_POLICY_PAGE)
-    page.open()
-    link_color = page.is_visible(locator=PrivacyCookiePolicyPageLocators.LIST_OF_COOKIE_FILES_WE_COLLECT_LINK_IN_TEXT_BLOCK).value_of_css_property('color')
-    assert link_color == 'rgba(0, 107, 180, 1)'
-
-def test_list_of_cookies_we_collects_section_is_displayed(driver):
+@pytest.mark.parametrize('locator, expected_page_url, error_message', [
+    (PrivacyCookiePolicyPageLocators.LIST_OF_COOKIE_FILES_WE_COLLECT_LINK_IN_TEXT_BLOCK, LIST_OF_COOKIES_WE_COLLECT_SECTION, "The 'List of cookies we collect' section doesn`t displayed"),
+    (PrivacyCookiePolicyPageLocators.CONTACT_US_LINK_LOCATOR, CONTACT_US_PAGE, "The 'Contact Us' page doesn`t displayed")
+])
+def test_opening_pages_after_links_clicking(driver,locator, expected_page_url, error_message):
     """TC_012.014.002 | Footer > "Privacy and Cookie Policy" > Navigation within text >
      Verify redirection of the "List of cookies we collect" section"""
-    page = BasePage(driver, url=PRIVACY_AND_COOKIE_POLICY_PAGE)
-    page.open()
-    page.is_clickable(locator=PrivacyCookiePolicyPageLocators.LIST_OF_COOKIE_FILES_WE_COLLECT_LINK_IN_TEXT_BLOCK).click()
-    assert page.current_url == LIST_OF_COOKIES_WE_COLLECT_SECTION, "The 'List of cookies we collect' section doesn`t displayed"
 
-def test_contact_us_text_is_displayed_as_blue_link(driver):
-    """TC_012.015.001 | Footer > Privacy and Cookie Policy Page > Contact us link >
-     Visibility of the "Contact Us" text in the "Questions for Luma?" section"""
-    page = BasePage(driver, url=PRIVACY_AND_COOKIE_POLICY_PAGE)
-    page.open()
-    link_color = page.is_visible(locator=PrivacyCookiePolicyPageLocators.CONTACT_US_LINK_LOCATOR).value_of_css_property('color')
-    assert link_color == 'rgba(0, 107, 180, 1)'
-
-@pytest.mark.xfail
-def test_contact_us_page_opening_after_clicking_on_contact_us_link(driver):
     """TC_012.015.002 | Footer > "Privacy and Cookie Policy" > Navigation within text >
      Verify opening the contact page"""
+
     page = BasePage(driver, url=PRIVACY_AND_COOKIE_POLICY_PAGE)
     page.open()
-    page.is_clickable(locator=PrivacyCookiePolicyPageLocators.CONTACT_US_LINK_LOCATOR).click()
-    assert page.current_url == CONTACT_US_PAGE
+    page.is_clickable(locator).click()
+    assert page.current_url == expected_page_url, error_message
 
 @pytest.mark.parametrize('anchor_link_locator, expected_result', [
     (PrivacyCookiePolicyAnchorLinksLocators.LUMA_SECURITY, True),
@@ -128,7 +115,7 @@ def test_anchor_links_in_the_left_navbar_are_clickable(driver, anchor_link_locat
     Visability of the anchor links"""
     page = BasePage(driver, url=PRIVACY_AND_COOKIE_POLICY_PAGE)
     page.open()
-    link = page.is_visible(anchor_link_locator).is_displayed()
+    link = page.is_visible(anchor_link_locator).is_enabled()
     assert link == expected_result
 
 

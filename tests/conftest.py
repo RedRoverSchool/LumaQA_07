@@ -89,6 +89,7 @@ def any_page_precondition(driver, any_url):
     base_page.open()
     return base_page
 
+
 @pytest.fixture()
 def add_items_to_wish_list(driver):
     lst = ['https://magento.softwaretestingboard.com/breathe-easy-tank.html',

@@ -23,7 +23,7 @@ class OrdersAndReturnsPageLocators:
     POSTCODE_FIELD_NAME = (By.XPATH, "//label[@for='oar_zip']")
 
     INCORRECT_DATA_MESSAGE = (By.XPATH, "//*[@data-ui-id='message-error']")
-    CONTINUE_BUTTON = (By.XPATH, "//*[@title='Continue']")
+    CONTINUE_BUTTON = (By.XPATH, "//button[@title='Continue']")
 
     ORDER_NUMBER_ON_VIEW_ORDER_PAGE = (By.XPATH, "//span[@class='base']")
 

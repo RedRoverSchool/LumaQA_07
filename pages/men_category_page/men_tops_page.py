@@ -5,8 +5,6 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait as wait
 from selenium.webdriver.support.select import Select
 
-# from locators.men_tops_page_locators import MenTopsPageLocators
-
 
 class MenTops(BasePage):
     locator = MenCategoryPageLocators()
@@ -63,4 +61,16 @@ class MenTops(BasePage):
         list_mode = self.driver.find_element(*MenTopsPageLocators.TOP_MEN_LIST_MODE)
         list_mode.click()
 
+    def mode_list_is_visible(self):
+        return self.is_visible(MenCategoryPageLocators.LIST_MODE)
+
+    def mode_list_is_clickable(self):
+        return self.is_clickable(MenCategoryPageLocators.LIST_MODE)
+
+    def list_page_view(self):
+        """ Начальный вид страницы; классы элементов до применения фильтра"""
+        view_before = self.driver.page_source
+        self.find_element_and_click(MenCategoryPageLocators.LIST_MODE)
+        after_filter = self.driver.page_source
+        return view_before, after_filter
 

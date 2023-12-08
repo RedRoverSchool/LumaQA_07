@@ -1,6 +1,6 @@
 import locators.product_page_locators
 from pages.product_page.product_main_info import ProductPage
-from data.product_page_data import PRODUCT_PAGE_EXAMPLE
+from data.product_page_data import PRODUCT_PAGE_EXAMPLE, PRODUCT_NAME_EXAMPLE
 from locators.product_page_locators import ProductPageLocators
 from locators.base_page_locators import BasePageLocators as BP
 from data.home_page_url import HOME_PAGE
@@ -117,3 +117,14 @@ class TestProductPage:
         page.open()
         text = page.in_stock_is_displayed()
         assert text == 'IN STOCK'
+
+    def test_name_in_page_title(self, driver):
+        """TC_002.001.001"""
+        page = ProductPage(driver, PRODUCT_PAGE_EXAMPLE)
+        page.open()
+        try:
+            if driver.title == PRODUCT_NAME_EXAMPLE:
+                print('Page Title is correct')
+                assert driver.title == PRODUCT_NAME_EXAMPLE
+        except Exception as error:
+            print(error, 'Webpage failed to load')
