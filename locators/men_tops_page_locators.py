@@ -10,6 +10,7 @@ class MenTopsPageLocators:
     TOP_MEN_PRODUCT_ITEMS_PRICE = (By.CSS_SELECTOR, ".price-wrapper .price")
     TOP_MEN_LIST_MODE = (By.CSS_SELECTOR, ".toolbar-products:nth-child(3) .mode-list")
     # PAGE_NAME = (By.TAG_NAME, "h1")
+    SHOPING_OPTIONS_MENU=(By.CSS_SELECTOR,'#narrow-by-list div.filter-options-title')
 
     @staticmethod
     def get_product_trough_foto(position: int):

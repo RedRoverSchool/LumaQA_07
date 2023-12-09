@@ -40,7 +40,7 @@ class BasePage:
         self.driver = driver
         self.url = url
 
-    def open(self):
+    def open(self) -> object:
         """
         Открывает URL страницы в браузере.
         """

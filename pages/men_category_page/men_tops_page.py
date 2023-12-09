@@ -88,3 +88,12 @@ class MenTops(BasePage):
         self.hold_mouse_on_element(MenPageLocators.TOPS_DROPDOWN_BUTTON)
         self.hold_mouse_on_element_and_click(BasePageLocators.LINK_MEN_TOPS_HOODIES)
 
+
+
+    def check_menu_shopping_options(self):
+        menu_item_list=self.is_visible_all_elements(MenTopsPageLocators.SHOPING_OPTIONS_MENU)
+        data=[]
+        for item in menu_item_list:
+            data.append(item.text)
+        return data
+
