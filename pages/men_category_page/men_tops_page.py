@@ -17,7 +17,7 @@ class MenTops(BasePage):
         return self.is_clickable(MenTopsPageLocators.get_product_trough_foto(position)).click()
 
     def click_men_tops_product_title(self, position):
-        return self.is_clickable(MenTopsPageLocators.get_product_trough_title(position))
+        return self.is_clickable(MenTopsPageLocators.get_product_trough_title(position)).click()
 
     def go_to_men_tops_product(self, position):
         cart = self.is_visible(MenTopsPageLocators.location_product_item(position))
