@@ -30,9 +30,11 @@ class AdvancedSearchFormPage(BasePage):
     def button_visible(self):
         return self.is_visible(locator.SEARCH_BUTTON)
 
+    def get_search_fields_list(self):
+        return self.is_visible_all_elements(locator.SEARCH_FIELDS_LIST)
 
+    def clear_all_search_fields(self):
+        [field.clear() for field in self.get_search_fields_list()]
 
-
-
-
-
+    def get_error_massage_text(self):
+        return self.is_visible(locator.ERROR_MESSAGE_ON_ADVANCED_SEARCH_PAGE).text
