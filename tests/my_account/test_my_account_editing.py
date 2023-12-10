@@ -169,7 +169,7 @@ class TestMyAccountDataEditing(FakeData):
         with allure.step('“This is a required field.“  alert under “Phone Number” field of “Contact Information” block is displayed'):
             assert page.message_phone_error() == AddressAddPage.REQUIRED_FIELD_ERROR
 
-    @allure.title("TC_004.015.013 | Authorization> User's account > My account > Default Billing Address editing > Positive")
+    @allure.title("TC_004.015.013|Authorization>User's account>My account>Default Billing Address editing > Positive")
     @allure.tag("Authorization", "My account", "Default Billing Address")
     @allure.severity(allure.severity_level.NORMAL)
     @allure.label("owner", "valdemards")
