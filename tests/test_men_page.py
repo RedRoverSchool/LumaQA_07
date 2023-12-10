@@ -1,6 +1,5 @@
-import time
-
-from pages.men_page import MenPage
+import allure
+from pages.men_page import MenPage, MenJacketsPage
 from data.men_page_url import MEN_PAGE, TOPS_MEN_PAGE, MEN_BOTTOMS_PAGE, MEN_TOPS_JACKETS_PAGE
 
 
@@ -35,3 +34,13 @@ class TestMenPage:
         page.open()
         page.select_bottoms_from_sidebar_menu()
         assert driver.current_url == MEN_BOTTOMS_PAGE
+
+
+class TestMenJacketsPage:
+    @allure.title('TC_008.011.005 | Jackets page >Verify inner-buttons are visable')
+    def test_verify_inner_buttons_are_visable(self, driver):
+        page = MenJacketsPage(driver, MEN_TOPS_JACKETS_PAGE)
+        page.open()
+        page.random_choice_item()
+        inner_buttons = page.check_all_button()
+        assert inner_buttons.is_displayed(), 'Bts NOT DISPLAYED'

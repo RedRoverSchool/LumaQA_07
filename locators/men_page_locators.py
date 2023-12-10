@@ -9,6 +9,10 @@ class MenPageLocators:
     BOTTOMS_CATEGORY_LINK = (By.XPATH, "//*[@id='narrow-by-list2']/dd/ol/li[2]/a")
     SIDE_BAR_JACKETS = (By.XPATH, "//a[@id='ui-id-19']//span[contains(text(),'Jackets')]")
     MEN_TOPS_GRID = (By.XPATH, "//div[2]/div[1]/strong[2]")
+    JACKETS_ITEMS = (By.CLASS_NAME, "li[class='item product product-item']")
+    ADD_TO_WISHLIST_2 = (By.CLASS_NAME, "//*[@class = 'actions-secondary']/a[1]")
+    ADD_TO_COMPARE_2 = (By.CSS_SELECTOR, ".action.tocompare")
+    INNER_BUTTONS = (By.XPATH, "//*[@class='product actions product-item-actions']")
 
 
 class MenCategoryPageLocators:
@@ -26,6 +30,7 @@ class MenCategoryPageLocators:
     ADD_TO_CART = (By.CLASS_NAME, 'action.tocart.primary')
     ADD_TO_CART_4 = (By.CSS_SELECTOR, "li[class = 'item product product-item']:nth-child(4)")
     BUTTON_ADD_TO_CART = (By.CSS_SELECTOR, "li[class = 'item product product-item']:nth-child(4) button")
+    BUTTON_ADD_TO_CART_2 = (By.CSS_SELECTOR, "li[class = 'item product product-item'] button")
     JACKETS_IMAGE_CARD = (By.CSS_SELECTOR, "li[class='item product product-item']:nth-child(4)")
     ADD_TO_WISH_LIST = (By.CLASS_NAME, 'action.towishlist')
     ADD_TO_COMPARE = (By.CLASS_NAME, 'action.tocompare')
@@ -49,6 +54,10 @@ class MenCategoryPageLocators:
     @staticmethod
     def get_option_locator(option):
         return By.XPATH, f'(//option[@value="{option}"])[2]'
+
+    @staticmethod
+    def create_item_list(num):
+        return By.CSS_SELECTOR, f"li[class='item product product-item']:nth-child({num})"
 
 
 class TopsMenPageLocators:

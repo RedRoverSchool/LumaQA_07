@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 
-class ProductPageLocators:
 
+class ProductPageLocators:
     # Product page
     HEADER = (By.XPATH, "//header[@class='page-header']")
     NAVIGATION_SECTION = (By.XPATH, "//div[@class='sections nav-sections']")
@@ -9,9 +9,6 @@ class ProductPageLocators:
     BODY = (By.XPATH, "//main[@id='maincontent']")
     FOOTER = (By.XPATH, "//footer[@class='page-footer']")
     COPYRIGHT = (By.XPATH, "//small[@class='copyright']")
-
-
-
 
     # Product page body
     MAIN_INFO = (By.XPATH, "//div[@class='product-info-main']")
@@ -40,15 +37,4 @@ class ProductPageLocators:
     ADD_TO_WISH_LIST = (By.XPATH, "//div[@class='product-addto-links']/a[@data-action='add-to-wishlist']")
     ADD_TO_COMPARE = (By.CLASS_NAME, "action.tocompare")
     IN_STOCK = (By.XPATH, "//*[contains(text(), 'In stock')] ")
-
-
-
-
-    # class="product media"
-
-    # class="product info detailed"
-
-
-    # class="block upsell"
-
     ADD_TO_BLOCK = (By.XPATH, "//div[@class = 'product-addto-links']")

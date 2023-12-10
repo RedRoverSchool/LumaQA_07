@@ -33,7 +33,8 @@ class TestMenTopsPage:
 
     @pytest.mark.parametrize('position, relevant_page', MEN_TOPS_CARDS)
     def test_navigate_product_by_clicking_add_to_card(self, driver, position, relevant_page):
-        """TC_008.004.004| Mens > Tops page > Product item >move to the Product page by clicking on the BTN “Add to Cart“ (acceptance criteria 5)"""
+        """TC_008.004.004| Mens > Tops page > Product item >
+        move to the Product page by clicking on the BTN “Add to Cart“ (acceptance criteria 5)"""
         page = MenTops(driver, TOPS_MEN_PAGE)
         page.open()
         page.go_to_men_tops_product(position)

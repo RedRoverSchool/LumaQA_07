@@ -2,6 +2,7 @@ import pytest
 from data.men_page_url import TOPS_MEN_PAGE, MEN_TOPS_CARDS
 from pages.men_category_page.men_tops_page import MenTops
 
+
 class TestAddToCard:
     @pytest.mark.parametrize('position, expected_url', MEN_TOPS_CARDS)
     def test_click_on_Add_to_Cart(self, driver, position, expected_url):

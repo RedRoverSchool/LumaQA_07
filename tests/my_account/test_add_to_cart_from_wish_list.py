@@ -1,4 +1,3 @@
-from pages.item_page import ItemDetailsPage
 from pages.my_account.my_wish_list_page import MyWishListPage
 
 
