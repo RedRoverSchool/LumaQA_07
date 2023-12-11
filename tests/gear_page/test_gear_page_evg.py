@@ -1,5 +1,4 @@
 import pytest
-
 from data.gear_page_urls import GEAR_PAGE, SPRITE_YOGA_COMPANION_KIT_PAGE, SHOP_FITNESS_PAGE, LUMA_WATER_BOTTLE_PAGE,\
     BAGS_PAGE, FITNESS_EQ_PAGE, WATCHES_PAGE
 from locators.gear_page_locators import BannerLocators
@@ -26,16 +25,15 @@ def test_banners_of_page_are_visible(driver, element_locator, expected_result):
     banner = page.is_visible(element_locator).is_displayed()
     assert banner == expected_result, f"{element_locator} - isn`t visible"
 
-
-@pytest.mark.xfail
-def test_sprite_yoga_companion_kit_page_is_open(driver):
+@pytest.mark.parametrize('locator, expected_page_url', [
+    pytest.param(BannerLocators.SPRITE_YOGA_COMPANION_KIT_BANNER, SPRITE_YOGA_COMPANION_KIT_PAGE, marks=pytest.mark.xfail(reason="some bug")),
+])
+def test_opening_pages_after_banners_clicking(driver, locator, expected_page_url):
     """TC_009.005.001 | Gear page > categories > Verify opening the ‘Sprite Yoga Companion Kit’ page"""
     page = BasePage(driver, url=GEAR_PAGE)
     page.open()
-    page.is_visible(BannerLocators.SPRITE_YOGA_COMPANION_KIT_BANNER).click()
-    current_page = driver.current_url
-    assert current_page == SPRITE_YOGA_COMPANION_KIT_PAGE
-
+    page.is_clickable(locator).click()
+    assert page.current_url == expected_page_url, f"The expected page - {expected_page_url} isn`t open"
 
 @pytest.mark.xfail
 def test_sprite_yoga_companion_kit_page_is_open_after_click_button(driver):
