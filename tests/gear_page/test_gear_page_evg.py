@@ -29,23 +29,17 @@ def test_banners_of_page_are_visible(driver, element_locator, expected_result):
     pytest.param(BannerLocators.SPRITE_YOGA_COMPANION_KIT_BANNER, SPRITE_YOGA_COMPANION_KIT_PAGE, marks=pytest.mark.xfail(reason="some bug")),
     pytest.param(BannerLocators.SPRITE_YOGA_COMPANION_KIT_BANNER_BUTTON, SPRITE_YOGA_COMPANION_KIT_PAGE, marks=pytest.mark.xfail(reason="some bug")),
     (BannerLocators.LOOSEN_UP_BANNER, SHOP_FITNESS_PAGE),
+    (BannerLocators.LUMA_WATER_BOTTLE_BANNER, LUMA_WATER_BOTTLE_PAGE),
 ])
 def test_opening_pages_after_banners_clicking(driver, locator, expected_page_url):
     """TC_009.005.001 | Gear page > categories > Verify opening the ‘Sprite Yoga Companion Kit’ page"""
     """TC_009.005.002 | Gear page > categories > Verify opening the 'Sprite Yoga Companion Kit' page after clicking on the "Shop Yoga Kit" button"""
     """TC_009.005.003 | Gear page > categories > Verify opening the ‘Shop Fitness’ page"""
+    """TC_009.005.004 | Gear page > categories > Verify opening the ‘Luma water bottle’ page"""
     page = BasePage(driver, url=GEAR_PAGE)
     page.open()
     page.is_clickable(locator).click()
     assert page.current_url == expected_page_url, f"The expected page - {expected_page_url} isn`t open"
-
-def test_luma_bottle_water_page_is_open(driver):
-    """TC_009.005.004 | Gear page > categories > Verify opening the ‘Luma water bottle’ page"""
-    page = BasePage(driver, url=GEAR_PAGE)
-    page.open()
-    page.is_visible(BannerLocators.LUMA_WATER_BOTTLE_BANNER).click()
-    current_page = driver.current_url
-    assert current_page == LUMA_WATER_BOTTLE_PAGE
 
 def test_bags_page_is_open(driver):
     """TC_009.006.001 | Gear page > categories >Verify opening the 'Bags' page"""
