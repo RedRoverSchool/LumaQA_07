@@ -54,65 +54,61 @@ def test_text_block_format_titled_list_of_cookie_files_we_collect(driver):
     element_format = page.is_visible(locator=PrivacyCookiePolicyPageLocators.LIST_OF_COOKIE_FILES_WE_COLLECT_CONTENT_LOCATOR).tag_name
     assert element_format == 'table', f"The text of the block is NOT presented in a tabular format"
 
-@pytest.mark.parametrize('locator, expected_page_url, error_message', [
-    (PrivacyCookiePolicyPageLocators.LIST_OF_COOKIE_FILES_WE_COLLECT_LINK_IN_TEXT_BLOCK, LIST_OF_COOKIES_WE_COLLECT_SECTION, "The 'List of cookies we collect' section doesn`t displayed"),
-    (PrivacyCookiePolicyPageLocators.CONTACT_US_LINK_LOCATOR, CONTACT_US_PAGE, "The 'Contact Us' page doesn`t displayed")])
-def test_opening_pages_after_links_clicking(driver,locator, expected_page_url, error_message):
+@pytest.mark.parametrize('locator, expected_page_url', [
+    (PrivacyCookiePolicyPageLocators.LIST_OF_COOKIE_FILES_WE_COLLECT_LINK_IN_TEXT_BLOCK, LIST_OF_COOKIES_WE_COLLECT_SECTION),
+    (PrivacyCookiePolicyPageLocators.CONTACT_US_LINK_LOCATOR, CONTACT_US_PAGE)])
+def test_opening_pages_after_links_clicking(driver, locator, expected_page_url):
     """TC_012.014.002 | Footer > "Privacy and Cookie Policy" > Navigation within text >
      Verify redirection of the "List of cookies we collect" section"""
-
     """TC_012.015.002 | Footer > "Privacy and Cookie Policy" > Navigation within text >
      Verify opening the contact page"""
-
     page = BasePage(driver, url=PRIVACY_AND_COOKIE_POLICY_PAGE)
     page.open()
     page.is_clickable(locator).click()
-    assert page.current_url == expected_page_url, error_message
+    assert page.current_url == expected_page_url, f"The expected page {expected_page_url} isn`t open"
 
-@pytest.mark.parametrize('anchor_link_locator, expected_result', [
-    (PrivacyCookiePolicyAnchorLinksLocators.LUMA_SECURITY, True),
-    (PrivacyCookiePolicyAnchorLinksLocators.LUMA_PRIVACY_POLICY, True),
-    (PrivacyCookiePolicyAnchorLinksLocators.THE_INFORMATION_WE_COLLECT, True),
-    (PrivacyCookiePolicyAnchorLinksLocators.HOW_WE_USE_THE_INFORMATION_WE_COLLECT, True),
-    (PrivacyCookiePolicyAnchorLinksLocators.SECURITY, True),
-    (PrivacyCookiePolicyAnchorLinksLocators.OTHERS_WITH_WHOM_WE_SHARE_YOUR_INFORMATION, True),
-    (PrivacyCookiePolicyAnchorLinksLocators.YOUR_CHOICES_REGARDING_USE_OF_THE_INFORMATION_WE_COLLECT, True),
-    (PrivacyCookiePolicyAnchorLinksLocators.YOUR_CALIFORNIA_PRIVACY_RIGHTS, True),
-    (PrivacyCookiePolicyAnchorLinksLocators.COOKIES_WEB_BEACONS_AND_HOW_WE_USE_THEM, True),
-    (PrivacyCookiePolicyAnchorLinksLocators.LIST_OF_COOKIES_WE_COLLECT, True),
-    (PrivacyCookiePolicyAnchorLinksLocators.ONLINE_ACCOUNT_REGISTRATION, True),
-    (PrivacyCookiePolicyAnchorLinksLocators.EMAILS, True),
-    (PrivacyCookiePolicyAnchorLinksLocators.ACCEPTANCE, True),
-    (PrivacyCookiePolicyAnchorLinksLocators.QUESTIONS_FOR_LUMA, True)])
-def test_anchor_links_in_the_left_navbar_are_displayed(driver, anchor_link_locator, expected_result):
+@pytest.mark.parametrize('anchor_link_locator', [
+    (PrivacyCookiePolicyAnchorLinksLocators.LUMA_SECURITY),
+    (PrivacyCookiePolicyAnchorLinksLocators.LUMA_PRIVACY_POLICY),
+    (PrivacyCookiePolicyAnchorLinksLocators.THE_INFORMATION_WE_COLLECT),
+    (PrivacyCookiePolicyAnchorLinksLocators.HOW_WE_USE_THE_INFORMATION_WE_COLLECT),
+    (PrivacyCookiePolicyAnchorLinksLocators.SECURITY),
+    (PrivacyCookiePolicyAnchorLinksLocators.OTHERS_WITH_WHOM_WE_SHARE_YOUR_INFORMATION),
+    (PrivacyCookiePolicyAnchorLinksLocators.YOUR_CHOICES_REGARDING_USE_OF_THE_INFORMATION_WE_COLLECT),
+    (PrivacyCookiePolicyAnchorLinksLocators.YOUR_CALIFORNIA_PRIVACY_RIGHTS),
+    (PrivacyCookiePolicyAnchorLinksLocators.COOKIES_WEB_BEACONS_AND_HOW_WE_USE_THEM),
+    (PrivacyCookiePolicyAnchorLinksLocators.LIST_OF_COOKIES_WE_COLLECT),
+    (PrivacyCookiePolicyAnchorLinksLocators.ONLINE_ACCOUNT_REGISTRATION),
+    (PrivacyCookiePolicyAnchorLinksLocators.EMAILS),
+    (PrivacyCookiePolicyAnchorLinksLocators.ACCEPTANCE),
+    (PrivacyCookiePolicyAnchorLinksLocators.QUESTIONS_FOR_LUMA)])
+def test_anchor_links_in_the_left_navbar_are_displayed(driver, anchor_link_locator):
     """TC_012.005.001 | Footer > "Privacy and Cookie Policy" > Visibility and clickability >
     Visability of the anchor links"""
     page = BasePage(driver, url=PRIVACY_AND_COOKIE_POLICY_PAGE)
     page.open()
-    link = page.is_visible(anchor_link_locator).is_displayed()
-    assert link == expected_result
+    assert page.is_visible(anchor_link_locator), f"{anchor_link_locator} - isn`t visible"
 
-@pytest.mark.parametrize('anchor_link_locator, expected_result', [
-    (PrivacyCookiePolicyAnchorLinksLocators.LUMA_SECURITY, True),
-    (PrivacyCookiePolicyAnchorLinksLocators.LUMA_PRIVACY_POLICY, True),
-    (PrivacyCookiePolicyAnchorLinksLocators.THE_INFORMATION_WE_COLLECT, True),
-    (PrivacyCookiePolicyAnchorLinksLocators.HOW_WE_USE_THE_INFORMATION_WE_COLLECT, True),
-    (PrivacyCookiePolicyAnchorLinksLocators.SECURITY, True),
-    (PrivacyCookiePolicyAnchorLinksLocators.OTHERS_WITH_WHOM_WE_SHARE_YOUR_INFORMATION, True),
-    (PrivacyCookiePolicyAnchorLinksLocators.YOUR_CHOICES_REGARDING_USE_OF_THE_INFORMATION_WE_COLLECT, True),
-    (PrivacyCookiePolicyAnchorLinksLocators.YOUR_CALIFORNIA_PRIVACY_RIGHTS, True),
-    (PrivacyCookiePolicyAnchorLinksLocators.COOKIES_WEB_BEACONS_AND_HOW_WE_USE_THEM, True),
-    (PrivacyCookiePolicyAnchorLinksLocators.LIST_OF_COOKIES_WE_COLLECT, True),
-    (PrivacyCookiePolicyAnchorLinksLocators.ONLINE_ACCOUNT_REGISTRATION, True),
-    (PrivacyCookiePolicyAnchorLinksLocators.EMAILS, True),
-    (PrivacyCookiePolicyAnchorLinksLocators.ACCEPTANCE, True),
-    (PrivacyCookiePolicyAnchorLinksLocators.QUESTIONS_FOR_LUMA, True)])
-def test_anchor_links_in_the_left_navbar_are_clickable(driver, anchor_link_locator, expected_result):
+@pytest.mark.parametrize('anchor_link_locator', [
+    (PrivacyCookiePolicyAnchorLinksLocators.LUMA_SECURITY),
+    (PrivacyCookiePolicyAnchorLinksLocators.LUMA_PRIVACY_POLICY),
+    (PrivacyCookiePolicyAnchorLinksLocators.THE_INFORMATION_WE_COLLECT),
+    (PrivacyCookiePolicyAnchorLinksLocators.HOW_WE_USE_THE_INFORMATION_WE_COLLECT),
+    (PrivacyCookiePolicyAnchorLinksLocators.SECURITY),
+    (PrivacyCookiePolicyAnchorLinksLocators.OTHERS_WITH_WHOM_WE_SHARE_YOUR_INFORMATION),
+    (PrivacyCookiePolicyAnchorLinksLocators.YOUR_CHOICES_REGARDING_USE_OF_THE_INFORMATION_WE_COLLECT),
+    (PrivacyCookiePolicyAnchorLinksLocators.YOUR_CALIFORNIA_PRIVACY_RIGHTS),
+    (PrivacyCookiePolicyAnchorLinksLocators.COOKIES_WEB_BEACONS_AND_HOW_WE_USE_THEM),
+    (PrivacyCookiePolicyAnchorLinksLocators.LIST_OF_COOKIES_WE_COLLECT),
+    (PrivacyCookiePolicyAnchorLinksLocators.ONLINE_ACCOUNT_REGISTRATION),
+    (PrivacyCookiePolicyAnchorLinksLocators.EMAILS),
+    (PrivacyCookiePolicyAnchorLinksLocators.ACCEPTANCE),
+    (PrivacyCookiePolicyAnchorLinksLocators.QUESTIONS_FOR_LUMA)])
+def test_anchor_links_in_the_left_navbar_are_clickable(driver, anchor_link_locator):
     """TC_012.005.001 | Footer > "Privacy and Cookie Policy" > Visibility and clickability >
     Visability of the anchor links"""
     page = BasePage(driver, url=PRIVACY_AND_COOKIE_POLICY_PAGE)
     page.open()
-    link = page.is_visible(anchor_link_locator).is_enabled()
-    assert link == expected_result
+    assert page.is_clickable(anchor_link_locator), f"{anchor_link_locator} - isn`t clickable"
 
 
