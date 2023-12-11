@@ -5,11 +5,16 @@ from data.gear_page_urls import GEAR_PAGE, SPRITE_YOGA_COMPANION_KIT_PAGE, SHOP_
 from locators.gear_page_locators import BannerLocators
 from base.seleniumbase import BasePage
 
-def test_sprite_yoga_companion_kit_is_visible(driver):
+
+@pytest.mark.parametrize('element_locator, expected_result', [
+    (BannerLocators.SPRITE_YOGA_COMPANION_KIT_BANNER, True),
+])
+def test_banners_of_page_are_visible(driver, element_locator, expected_result):
     """TC_009.003.001 | Gear page > categories > Visibility of the 'Sprite Yoga Companion Kit' banner"""
-    page = BasePage(driver, url=GEAR_PAGE)
+    page = BasePage(driver,  url=GEAR_PAGE)
     page.open()
-    assert page.is_visible(BannerLocators.SPRITE_YOGA_COMPANION_KIT_BANNER)
+    banner = page.is_visible(element_locator).is_displayed()
+    assert banner == expected_result, f"{element_locator} - isn`t visible"
 
 def test_loosen_up_is_visible(driver):
     """TC_009.003.002 | Gear page > categories > Visibility of the 'Loosen Up' banner"""
