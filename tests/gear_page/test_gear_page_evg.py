@@ -4,6 +4,7 @@ from data.gear_page_urls import GEAR_PAGE, SPRITE_YOGA_COMPANION_KIT_PAGE, SHOP_
 from locators.gear_page_locators import BannerLocators
 from base.seleniumbase import BasePage
 
+
 @pytest.mark.parametrize('element_locator, expected_result', [
     (BannerLocators.SPRITE_YOGA_COMPANION_KIT_BANNER, True),
     (BannerLocators.LOOSEN_UP_BANNER, True),
