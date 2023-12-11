@@ -4,7 +4,6 @@ from data.gear_page_urls import GEAR_PAGE, SPRITE_YOGA_COMPANION_KIT_PAGE, SHOP_
 from locators.gear_page_locators import BannerLocators
 from base.seleniumbase import BasePage
 
-
 @pytest.mark.parametrize('element_locator, expected_result', [
     (BannerLocators.SPRITE_YOGA_COMPANION_KIT_BANNER, True),
     (BannerLocators.LOOSEN_UP_BANNER, True),
@@ -32,6 +31,7 @@ def test_banners_of_page_are_visible(driver, element_locator, expected_result):
     (BannerLocators.LUMA_WATER_BOTTLE_BANNER, LUMA_WATER_BOTTLE_PAGE),
     (BannerLocators.BAGS_BANNER, BAGS_PAGE),
     (BannerLocators.FITNESS_EUQIPMENT_BANNER, FITNESS_EQ_PAGE),
+    (BannerLocators.WATCHES_BANNER, WATCHES_PAGE),
 ])
 def test_opening_pages_after_banners_clicking(driver, locator, expected_page_url):
     """TC_009.005.001 | Gear page > categories > Verify opening the ‘Sprite Yoga Companion Kit’ page"""
@@ -40,17 +40,11 @@ def test_opening_pages_after_banners_clicking(driver, locator, expected_page_url
     """TC_009.005.004 | Gear page > categories > Verify opening the ‘Luma water bottle’ page"""
     """TC_009.006.001 | Gear page > categories >Verify opening the 'Bags' page"""
     """TC_009.006.002 | Gear page > categories > Verify opening the 'Fitness Equipment' page"""
+    """TC_009.006.003 | Gear page > categories > Verify opening the 'Watches' page"""
     page = BasePage(driver, url=GEAR_PAGE)
     page.open()
     page.is_clickable(locator).click()
     assert page.current_url == expected_page_url, f"The expected page - {expected_page_url} isn`t open"
 
-def test_watches_page_is_open(driver):
-    """TC_009.006.003 | Gear page > categories > Verify opening the 'Watches' page"""
-    page = BasePage(driver, url=GEAR_PAGE)
-    page.open()
-    page.is_visible(BannerLocators.WATCHES_BANNER).click()
-    current_page = driver.current_url
-    assert current_page == WATCHES_PAGE
 
 
