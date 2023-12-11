@@ -1,6 +1,5 @@
 import pytest
 from selenium.common import TimeoutException
-
 from data.product_page_data import PRODUCT_PAGE_URL_LIST, MIN_TIMEOUT, TIMEOUT
 from locators.product_page_locators import ProductPageLocators
 from pages.product_page.product_page import ProductPage

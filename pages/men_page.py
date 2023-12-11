@@ -41,3 +41,5 @@ class MenJacketsPage(BasePage):
         inner_buttons = self.find_element(MenPageLocators.INNER_BUTTONS)
         return inner_buttons
 
+    def check_redirect_page(self):
+        self.find_element_and_click(MenPageLocators.LANDO_GYM_JACKET)

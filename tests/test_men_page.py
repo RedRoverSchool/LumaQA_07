@@ -1,6 +1,6 @@
 import allure
 from pages.men_page import MenPage, MenJacketsPage
-from data.men_page_url import MEN_PAGE, TOPS_MEN_PAGE, MEN_BOTTOMS_PAGE, MEN_TOPS_JACKETS_PAGE
+from data.men_page_url import MEN_PAGE, TOPS_MEN_PAGE, MEN_BOTTOMS_PAGE, MEN_TOPS_JACKETS_PAGE, LANDO_GYM_JACKET_URL
 
 
 class TestMenPage:
@@ -51,4 +51,9 @@ class TestMenJacketsPage:
         men_jacket_page.hold_mouse_on_element_and_click(random_item)
         url_after_click = driver.current_url
         assert url_after_click != url_before_click, 'NOT REDIRECT'
+
+    @allure.title("TC_008.011.003 | Jackets page >Verify redirected to Item Page(Click on Title)")
+    def test_verify_redirected_click_on_title(self, driver, men_jacket_page):
+        men_jacket_page.check_redirect_page()
+        assert driver.current_url == LANDO_GYM_JACKET_URL, 'NOT REDIRECT after click item title'
 
