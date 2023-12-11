@@ -12,6 +12,7 @@ from base.seleniumbase import BasePage
     (BannerLocators.LUMA_WATER_BOTTLE_BANNER, True),
     (BannerLocators.BAGS_BANNER, True),
     (BannerLocators.FITNESS_EUQIPMENT_BANNER, True),
+    (BannerLocators.WATCHES_BANNER, True),
 ])
 def test_banners_of_page_are_visible(driver, element_locator, expected_result):
     """TC_009.003.001 | Gear page > categories > Visibility of the 'Sprite Yoga Companion Kit' banner"""
@@ -19,16 +20,11 @@ def test_banners_of_page_are_visible(driver, element_locator, expected_result):
     """TC_009.003.003 | Gear page > categories > Visibility of the 'Luma water bottle' banner"""
     """TC_009.004.001 | Gear page > categories >Visibility of the 'Bags' banner"""
     """TC_009.004.002 | Gear page > categories > Visibility of the 'Fitness Equipment' banner"""
+    """TC_009.004.003 | Gear page > categories > Visibility of the 'Watches' banner"""
     page = BasePage(driver,  url=GEAR_PAGE)
     page.open()
     banner = page.is_visible(element_locator).is_displayed()
     assert banner == expected_result, f"{element_locator} - isn`t visible"
-
-def test_watches_is_visible(driver):
-    """TC_009.004.003 | Gear page > categories > Visibility of the 'Watches' banner"""
-    page = BasePage(driver, url=GEAR_PAGE)
-    page.open()
-    assert page.is_visible(BannerLocators.WATCHES_BANNER)
 
 
 @pytest.mark.xfail
