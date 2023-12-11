@@ -27,22 +27,16 @@ def test_banners_of_page_are_visible(driver, element_locator, expected_result):
 
 @pytest.mark.parametrize('locator, expected_page_url', [
     pytest.param(BannerLocators.SPRITE_YOGA_COMPANION_KIT_BANNER, SPRITE_YOGA_COMPANION_KIT_PAGE, marks=pytest.mark.xfail(reason="some bug")),
+    pytest.param(BannerLocators.SPRITE_YOGA_COMPANION_KIT_BANNER_BUTTON, SPRITE_YOGA_COMPANION_KIT_PAGE, marks=pytest.mark.xfail(reason="some bug")),
 ])
 def test_opening_pages_after_banners_clicking(driver, locator, expected_page_url):
     """TC_009.005.001 | Gear page > categories > Verify opening the ‘Sprite Yoga Companion Kit’ page"""
+    """TC_009.005.002 | Gear page > categories > Verify opening the 'Sprite Yoga Companion Kit' page after clicking on the "Shop Yoga Kit" button"""
+
     page = BasePage(driver, url=GEAR_PAGE)
     page.open()
     page.is_clickable(locator).click()
     assert page.current_url == expected_page_url, f"The expected page - {expected_page_url} isn`t open"
-
-@pytest.mark.xfail
-def test_sprite_yoga_companion_kit_page_is_open_after_click_button(driver):
-    """TC_009.005.002 | Gear page > categories > Verify opening the 'Sprite Yoga Companion Kit' page after clicking on the "Shop Yoga Kit" button"""
-    page = BasePage(driver, url=GEAR_PAGE)
-    page.open()
-    page.is_visible(BannerLocators.SPRITE_YOGA_COMPANION_KIT_BANNER_BUTTON).click()
-    current_page = driver.current_url
-    assert current_page == SPRITE_YOGA_COMPANION_KIT_PAGE
 
 def test_shop_fitness_page_is_open(driver):
     """TC_009.005.003 | Gear page > categories > Verify opening the ‘Shop Fitness’ page"""
