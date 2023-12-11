@@ -36,5 +36,5 @@ class AdvancedSearchFormPage(BasePage):
     def clear_all_search_fields(self):
         [field.clear() for field in self.get_search_fields_list()]
 
-    def get_error_massage_text(self):
-        return self.is_visible(locator.ERROR_MESSAGE_ON_ADVANCED_SEARCH_PAGE).text
+    def get_error_message(self):
+        return self.is_visible(locator.ERROR_MESSAGE_ON_ADVANCED_SEARCH_PAGE).text.strip()
