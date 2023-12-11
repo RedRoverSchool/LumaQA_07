@@ -1,8 +1,4 @@
 from random import choice
-from time import sleep
-
-import pytest
-
 from data.fake_data import FakeData
 from pages.checkout_page import GuestShippingAddressPage
 from pages.item_page import ItemPage, ItemDetailsPage

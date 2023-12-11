@@ -1,4 +1,3 @@
-import time
 import pytest
 from pages.main_page import MainPage
 from locators.base_page_locators import BasePageLocators

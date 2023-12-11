@@ -1,5 +1,3 @@
-import time
-
 from pages.whatever_page import WhateverPage
 
 

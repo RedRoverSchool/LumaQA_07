@@ -1,5 +1,4 @@
 from pages.other_pages.what_is_new import NewPage
-import pytest
 from locators.whats_new_page_locators import WhatsNewPageLocators
 
 
@@ -17,11 +16,13 @@ def test_widget_yoga(driver):
     assert widget_title == NewPage.YOGA_WIDGET_TITLE, (f'Expected text: {NewPage.YOGA_WIDGET_TITLE}, but got: '
                                                        f'{widget_title}')
 
+
 def test_widget_subtitle(driver):
     page = NewPage(driver, url=NewPage.URL)
     page.open()
     subtitle = page.widget_subtitle()
     assert subtitle == NewPage.YOGA_SUBTITLE_TEXT, f'Expected text: {NewPage.YOGA_SUBTITLE_TEXT}, but got: {subtitle}'
+
 
 def test_widget_title_text(driver):
     whats_new_page = NewPage(driver, url=NewPage.URL)
@@ -30,6 +31,7 @@ def test_widget_title_text(driver):
     title_element_text = whats_new_page.get_text(title_element)
     expected_title = whats_new_page.SENSE_RENEWAL_TITLE_TEXT
     assert title_element_text == expected_title, f'Expected text: {expected_title}, but got: {title_element_text}'
+
 
 def test_shop_new_yoga_btn(driver):
     """TC _006.003.004| What’s New page > Search New Yoga Collection widget > Button “Shop New Yoga” is clickable and
@@ -41,6 +43,4 @@ def test_shop_new_yoga_btn(driver):
     title_txt = NewPage.NEW_LUMA_YOGA_TEXT
     url = NewPage.URL_NEW_LUMA
     assert title_txt == page.new_luma_yoga_page(), f'Expected text: {title_txt}, but got: {page.new_luma_yoga_page()}'
-    assert page.current_url == url, f'Expected text: {url},but got: { page.current_url}'
-
-
+    assert page.current_url == url, f'Expected text: {url},but got: {page.current_url}'

@@ -43,4 +43,12 @@ class TestMenJacketsPage:
         page.open()
         page.random_choice_item()
         inner_buttons = page.check_all_button()
-        assert inner_buttons.is_displayed(), 'Bts NOT DISPLAYED'
+        assert inner_buttons.is_displayed(), 'Buttons NOT DISPLAYED'
+
+    @allure.title("TC_008.011.002 | Jackets page >Verify redirected to Item Page")
+    def test_verify_redirected_to_item_page(self, driver, men_jacket_page, random_item):
+        url_before_click = driver.current_url
+        men_jacket_page.hold_mouse_on_element_and_click(random_item)
+        url_after_click = driver.current_url
+        assert url_after_click != url_before_click, 'NOT REDIRECT'
+

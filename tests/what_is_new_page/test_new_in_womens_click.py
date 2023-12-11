@@ -2,8 +2,8 @@ from data.whats_new_page import NewInWomenLinks as l, WHATS_NEW_PAGE
 from locators.whats_new_page_locators import NewInWomenLocators as loc
 
 
-# TC006.001.002 - 006.001.007 Click to categories New in Women's
 class TestNewInWomenLinks:
+    """ TC006.001.002 - 006.001.007 Click on the categories New Women's Clothing """
     def test_hoodies(self, driver):
         driver.get(WHATS_NEW_PAGE)
         hoodies = driver.find_element(*loc.hoodies_title)

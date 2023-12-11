@@ -40,3 +40,4 @@ class MenJacketsPage(BasePage):
     def check_all_button(self):
         inner_buttons = self.find_element(MenPageLocators.INNER_BUTTONS)
         return inner_buttons
+

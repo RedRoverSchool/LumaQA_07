@@ -10,7 +10,6 @@ class TestTrainingPage:
         expected_url = "https://magento.softwaretestingboard.com/training.html"
         assert driver.current_url == expected_url, 'Wrong URL'
 
-
     def test_text_is_displayed(self, driver):
         page = TrainingPage(driver, url=TrainingPage.URL)
         page.open()
@@ -25,7 +24,6 @@ class TestTrainingPage:
         assert video_download_text.is_displayed(), "Video Download text is not displayed"
         assert compare_products_text.is_displayed(), "Compare Products text is not displayed"
         assert my_wish_list_text.is_displayed(), "My Wish List text is not displayed"
-
 
     def test_Video_Download_is_clickable(self, driver):
         page = TrainingPage(driver, url=TrainingPage.URL)
@@ -60,4 +58,3 @@ class TestTrainingPage:
         block1_img = page.the_presence_of_element_located(TrainingPageLocators.BLOCK1_IMG)
         assert block1_img.size['height'] == TrainingPage.BLOCK1_IMG_HEIGHT and \
                block1_img.size['width'] == TrainingPage.BLOCK1_IMG_WIDTH, "Block1 height and width is not correct"
-

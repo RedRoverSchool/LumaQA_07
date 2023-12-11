@@ -1,7 +1,8 @@
 from pages.other_pages.what_is_new import NewPage
 from locators.whats_new_page_locators import NewInWomenLocators
 
-#006.001.001 User is able to see section NEW IN WOMEN’S (Divided into separate titles)
+
+# 006.001.001 User is able to see section NEW IN WOMEN’S (Divided into separate titles)
 
 def test_headling_visible(driver):
     driver.get(NewPage.URL)
