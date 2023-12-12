@@ -1,9 +1,12 @@
 import pytest
+import allure
 from data.gear_page_urls import GEAR_PAGE, SPRITE_YOGA_COMPANION_KIT_PAGE, SHOP_FITNESS_PAGE, LUMA_WATER_BOTTLE_PAGE,\
     BAGS_PAGE, FITNESS_EQ_PAGE, WATCHES_PAGE
 from locators.gear_page_locators import BannerLocators
 from base.seleniumbase import BasePage
 
+@allure.feature('Gear page banners')
+@allure.story('Visibility')
 @pytest.mark.parametrize('element_locator', [
     (BannerLocators.SPRITE_YOGA_COMPANION_KIT_BANNER),
     (BannerLocators.LOOSEN_UP_BANNER),
@@ -20,9 +23,13 @@ def test_banners_of_page_are_visible(driver, element_locator):
     """TC_009.004.002 | Gear page > categories > Visibility of the 'Fitness Equipment' banner"""
     """TC_009.004.003 | Gear page > categories > Visibility of the 'Watches' banner"""
     page = BasePage(driver,  url=GEAR_PAGE)
-    page.open()
-    assert page.is_visible(element_locator), f"{element_locator} - isn`t visible"
+    with allure.step('Open Gear page'):
+        page.open()
+    with allure.step('Check the visibility of the banner'):
+        assert page.is_visible(element_locator), f"{element_locator} - isn`t visible"
 
+@allure.feature('Gear page banners')
+@allure.story('Clickability and redirection')
 @pytest.mark.parametrize('locator, expected_page_url', [
     pytest.param(BannerLocators.SPRITE_YOGA_COMPANION_KIT_BANNER, SPRITE_YOGA_COMPANION_KIT_PAGE, marks=pytest.mark.xfail(reason="some bug")),
     pytest.param(BannerLocators.SPRITE_YOGA_COMPANION_KIT_BANNER_BUTTON, SPRITE_YOGA_COMPANION_KIT_PAGE, marks=pytest.mark.xfail(reason="some bug")),
@@ -41,9 +48,9 @@ def test_opening_pages_after_banners_clicking(driver, locator, expected_page_url
     """TC_009.006.002 | Gear page > categories > Verify opening the 'Fitness Equipment' page"""
     """TC_009.006.003 | Gear page > categories > Verify opening the 'Watches' page"""
     page = BasePage(driver, url=GEAR_PAGE)
-    page.open()
-    page.is_clickable(locator).click()
-    assert page.current_url == expected_page_url, f"The expected page - {expected_page_url} isn`t open"
-
-
-
+    with allure.step('Open Gear page'):
+        page.open()
+    with allure.step('Check banners clickability'):
+        page.is_clickable(locator).click()
+    with allure.step('Check the page opening'):
+        assert page.current_url == expected_page_url, f"The expected page - {expected_page_url} isn`t open"
