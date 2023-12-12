@@ -55,3 +55,16 @@ class TestAdvancedSearchFunctionality:
         page.open()
 
         assert driver.title == PAGE_TITLE
+
+    def test_verify_title_of_the_page_after_pressing_on_enter_key(self, driver):
+        page = AdvancedSearchFormPage(driver, ADVANCED_SEARCH_URL)
+        page.open()
+
+        page.clear_all_search_fields()
+        page.enter_product_name(VALID_PRODUCT_NAME)
+        page.press_enter_key()
+
+        page = AdvancedSearchResultsPage(driver, get_advanced_search_results_url(product_name=VALID_PRODUCT_NAME))
+        page.open()
+
+        assert driver.title == PAGE_TITLE
