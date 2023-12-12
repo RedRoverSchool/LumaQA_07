@@ -1,8 +1,7 @@
 from pages.advanced_search.advanced_search_form_page import AdvancedSearchFormPage
 from data.advanced_search_url import ADVANCED_SEARCH_URL
 from data.advanced_search_data import ERROR_MESSAGE_ON_ADVANCED_SEARCH_PAGE, INVALID_PRODUCT_NAME, VALID_PRODUCT_NAME
-from data.advanced_search_results_data import (get_advanced_search_results_url, PAGE_TITLE,
-                                               ERROR_MESSAGE_ON_ADVANCED_SEARCH_RESULTS_PAGE)
+from data.advanced_search_results_data import *
 from pages.advanced_search.advanced_search_results_page import AdvancedSearchResultsPage
 
 
@@ -68,3 +67,21 @@ class TestAdvancedSearchFunctionality:
         page.open()
 
         assert driver.title == PAGE_TITLE
+
+    def test_verify_data_search_results_match_to_entered_valid_data(self, driver):
+        page = AdvancedSearchFormPage(driver, ADVANCED_SEARCH_URL)
+        page.open()
+
+        page.clear_all_search_fields()
+        page.enter_product_name(VALID_PRODUCT_NAME)
+        page.click_search()
+
+        page = AdvancedSearchResultsPage(driver, get_advanced_search_results_url(product_name=VALID_PRODUCT_NAME))
+        page.open()
+
+        numbers_of_items = len(page.get_list_of_product_names())
+
+        assert (page.get_message_how_many_items_found() ==
+                str(numbers_of_items) + message_items_were_found(numbers_of_items))
+        assert (page.get_message_number_of_items() == str(numbers_of_items) + message_number_of_items(numbers_of_items))
+        assert [(VALID_PRODUCT_NAME in item) for item in page.get_list_of_product_names()]
