@@ -1,7 +1,7 @@
 from pages.advanced_search.advanced_search_form_page import AdvancedSearchFormPage
 from data.advanced_search_url import ADVANCED_SEARCH_URL
 from data.advanced_search_data import ERROR_MESSAGE_ON_ADVANCED_SEARCH_PAGE, INVALID_PRODUCT_NAME, VALID_PRODUCT_NAME
-from data.advanced_search_results_data import (get_advanced_search_results_url,
+from data.advanced_search_results_data import (get_advanced_search_results_url, PAGE_TITLE,
                                                ERROR_MESSAGE_ON_ADVANCED_SEARCH_RESULTS_PAGE)
 from pages.advanced_search.advanced_search_results_page import AdvancedSearchResultsPage
 
@@ -42,3 +42,16 @@ class TestAdvancedSearchFunctionality:
         page.open()
 
         assert page.get_error_message() == ERROR_MESSAGE_ON_ADVANCED_SEARCH_RESULTS_PAGE
+
+    def test_verify_title_of_the_page_after_clicking_on_search_button(self, driver):
+        page = AdvancedSearchFormPage(driver, ADVANCED_SEARCH_URL)
+        page.open()
+
+        page.clear_all_search_fields()
+        page.enter_product_name(VALID_PRODUCT_NAME)
+        page.click_search()
+
+        page = AdvancedSearchResultsPage(driver, get_advanced_search_results_url(product_name=VALID_PRODUCT_NAME))
+        page.open()
+
+        assert driver.title == PAGE_TITLE
