@@ -212,3 +212,7 @@ class BasePage:
 
     def press_enter_key(self):
         ActionChains(self.driver).send_keys(Keys.ENTER).perform()
+
+    @staticmethod
+    def convert_color_rgb_to_hex(rgb_color_tuple):
+        return '#{:02x}{:02x}{:02x}'.format(*rgb_color_tuple)

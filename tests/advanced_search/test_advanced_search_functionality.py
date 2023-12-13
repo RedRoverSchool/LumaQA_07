@@ -1,6 +1,8 @@
+import re
+
 from pages.advanced_search.advanced_search_form_page import AdvancedSearchFormPage
 from data.advanced_search_url import ADVANCED_SEARCH_URL
-from data.advanced_search_data import ERROR_MESSAGE_ON_ADVANCED_SEARCH_PAGE, INVALID_PRODUCT_NAME, VALID_PRODUCT_NAME
+from data.advanced_search_data import *
 from data.advanced_search_results_data import *
 from pages.advanced_search.advanced_search_results_page import AdvancedSearchResultsPage
 
@@ -85,3 +87,15 @@ class TestAdvancedSearchFunctionality:
                 str(numbers_of_items) + message_items_were_found(numbers_of_items))
         assert (page.get_message_number_of_items() == str(numbers_of_items) + message_number_of_items(numbers_of_items))
         assert [(VALID_PRODUCT_NAME in item) for item in page.get_list_of_product_names()]
+
+    def test_verify_search_fields_become_highlighted_upon_clicking_on_it(self, driver):
+        page = AdvancedSearchFormPage(driver, ADVANCED_SEARCH_URL)
+        page.open()
+
+        for field in page.get_search_fields_list():
+            field.click()
+            field_shadow_style = field.value_of_css_property('box-shadow')
+            rgb_color_list = re.findall(r'([^()]+)\)', field_shadow_style)[0].split(', ')
+            rgb_color_tuple = tuple(int(x) for x in rgb_color_list)
+
+            assert page.convert_color_rgb_to_hex(rgb_color_tuple) == FIELD_HIGHLIGHT_COLOR_HEX
