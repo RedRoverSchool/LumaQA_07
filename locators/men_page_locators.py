@@ -15,6 +15,8 @@ class MenPageLocators:
     # MenTopJacketsPage
     JACKETS_ITEMS = (By.CLASS_NAME, "li[class='item product product-item']")
     LANDO_GYM_JACKET = (By.XPATH, "//a[contains(text(), 'Lando Gym Jacket')]")
+    # MenBottomsPage
+    SHOPPING_OPTIONS = (By.XPATH, '//*[@id="narrow-by-list"]/div[{num}]/div[1]')
 
 
 class MenCategoryPageLocators:
@@ -60,6 +62,10 @@ class MenCategoryPageLocators:
     @staticmethod
     def create_item_list(num):
         return By.CSS_SELECTOR, f"li[class='item product product-item']:nth-child({num})"
+
+    @staticmethod
+    def choose_shopping_options(num):
+        return By.XPATH, f'//*[@id="narrow-by-list"]/div[{num}]/div[1]'
 
 
 class TopsMenPageLocators:
