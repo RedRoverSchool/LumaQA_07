@@ -1,12 +1,16 @@
 import pytest
-from faker import Faker
+import random
 
+from faker import Faker
 from base.seleniumbase import BasePage
+from data.men_page_url import MEN_TOPS_JACKETS_PAGE
 from locators.login import LOGIN_PAGE, LOGAUT_PAGE
 from pages.account.create_account import CreateAccountPage
 from pages.item_page import ItemPage, ItemDetailsPage
 from pages.login.login_page import LoginPage
 from pages.my_account.address_book_page import AddressBookPage
+from locators.men_page_locators import MenCategoryPageLocators as MenCPL
+from pages.men_page import MenJacketsPage
 
 
 @pytest.fixture
@@ -102,3 +106,18 @@ def add_items_to_wish_list(driver):
         page = ItemDetailsPage(driver, url=href)
         page.add_to_wish_list().click()
         assert page.message.endswith('has been added to your Wish List. Click here to continue shopping.')
+
+
+@pytest.fixture()
+def men_jacket_page(driver):
+    page = MenJacketsPage(driver, MEN_TOPS_JACKETS_PAGE)
+    page.open()
+    return page
+
+
+@pytest.fixture()
+def random_item(driver):
+    num_jackets = 11
+    jacket_items = [MenCPL.create_item_list(i) for i in range(1, num_jackets + 1)]
+    random_jacket = random.choice(jacket_items)
+    return random_jacket

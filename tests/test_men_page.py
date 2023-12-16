@@ -1,7 +1,6 @@
-import time
-
-from pages.men_page import MenPage
-from data.men_page_url import MEN_PAGE, TOPS_MEN_PAGE, MEN_BOTTOMS_PAGE, MEN_TOPS_JACKETS_PAGE
+import allure
+from pages.men_page import MenPage, MenJacketsPage
+from data.men_page_url import MEN_PAGE, TOPS_MEN_PAGE, MEN_BOTTOMS_PAGE, MEN_TOPS_JACKETS_PAGE, LANDO_GYM_JACKET_URL
 
 
 class TestMenPage:
@@ -35,3 +34,30 @@ class TestMenPage:
         page.open()
         page.select_bottoms_from_sidebar_menu()
         assert driver.current_url == MEN_BOTTOMS_PAGE
+
+
+class TestMenJacketsPage:
+    @allure.title('TC_008.011.005 | Jackets page >Verify inner-buttons are visible')
+    def test_verify_inner_buttons_are_visible(self, driver):
+        page = MenJacketsPage(driver, MEN_TOPS_JACKETS_PAGE)
+        page.open()
+        page.random_choice_item()
+        inner_buttons = page.check_all_button()
+        assert inner_buttons.is_displayed(), 'Buttons NOT DISPLAYED'
+
+    @allure.title("TC_008.011.002 | Jackets page >Verify redirected to Item Page")
+    def test_verify_redirected_to_item_page(self, driver, men_jacket_page, random_item):
+        url_before_click = driver.current_url
+        men_jacket_page.hold_mouse_on_element_and_click(random_item)
+        url_after_click = driver.current_url
+        assert url_after_click != url_before_click, 'NOT REDIRECT'
+
+    @allure.title("TC_008.011.003 | Jackets page >Verify redirected to Item Page(Click on Title)")
+    def test_verify_redirected_click_on_title(self, driver, men_jacket_page):
+        men_jacket_page.check_redirect_page()
+        assert driver.current_url == LANDO_GYM_JACKET_URL, 'NOT REDIRECT after click item title'
+
+    @allure.title("TC_008.011.001 | Jackets page >Verify visibility products on the page")
+    def test_verify_visibility_products_on_the_page(self, driver, men_jacket_page):
+        result, message = men_jacket_page.all_item()
+        assert result, message

@@ -3,7 +3,7 @@ from locators.men_page_locators import MenCategoryPageLocators as MCL
 
 
 class MenCategoryPage(BasePage):
-    '''Page for categories on the "Men" page, e.g. Tops, Bottoms.'''
+    """Page for categories on the "Men" page, e.g. Tops, Bottoms"""
 
     def get_all_products(self) -> list:
         """
@@ -95,3 +95,13 @@ class MenCategoryPage(BasePage):
         Waits for the "option" button to become clickable, then clicks on it
         """
         self.is_clickable(MCL.get_option_locator(option)).click()
+
+    def click_shopping_options(self):
+        num_options = 13
+        options_dropdown = [MCL.choose_shopping_options(i) for i in range(1, num_options + 1)]
+        for items_selector in options_dropdown:
+            try:
+                items_selector.click()
+            except Exception:
+                return False, f'Item is not clickable: {items_selector}'
+            return True, 'All items are clickable '

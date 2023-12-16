@@ -37,3 +37,15 @@ class TestAdvancedSearch:
         page.open()
         assert page.button_visible(), 'The button is not visible'
 
+    @pytest.mark.parametrize('query', AdvancedSearchFormPage.CLOTHES_LIST)
+    def test_verify_clothes_items_have_size_and_color_options(self, driver, query):
+        page = AdvancedSearchFormPage(driver, ADVANCED_SEARCH_URL)
+        page.open()
+        page.enter_product_name(query)
+        page.click_search()
+        try:
+            assert page.visibility_of_size_options(), 'The size options are not visible'
+            assert page.visibility_of_color_options(), 'The color options are not visible'
+        except:
+            error_message = page.the_presence_of_element_located(locators.ERROR_MESSAGE, 1)
+            assert error_message.is_displayed(), 'No error message displayed'

@@ -4,8 +4,6 @@ from pages.erin_recommends.erin_recommends import ErinRecommendsPage
 from locators.training_page_locators import TrainingPageLocators as tpl
 
 
-from locators.training_page_locators import TrainingPageLocators as tpl
-
 class TestTrainingPageLoggedIn:
     def test_training_page_elements_visibility(self, driver):
         page = CreateAccountPage(driver)
@@ -45,7 +43,8 @@ class TestTrainingPageLoggedIn:
             
             Expected results:
                 The text "Before creating Luma, pro trainer Erin Renny helped world-class athletes reach peak fitness." is visible"""
-        assert page.is_visible(tpl.BLOCK2_TEXT_1).text == 'Before creating Luma, pro trainer Erin Renny helped world-class athletes reach peak fitness', "Block 2 Text 1 is not visible"
+        assert page.is_visible(
+            tpl.BLOCK2_TEXT_1).text == 'Before creating Luma, pro trainer Erin Renny helped world-class athletes reach peak fitness', "Block 2 Text 1 is not visible"
 
         """TC_010.005.003 | Training > Block 2 ("Block-promo training-erin") > Text_2 visibility"""
         """Pre-conditions:
@@ -57,7 +56,8 @@ class TestTrainingPageLoggedIn:
             
             Expected results:
                 The text "Hand-selected by Erin, our training downloads reflect a commitment to yoga, health and wellness." is visible"""
-        assert page.is_visible(tpl.BLOCK2_TEXT_2).text == 'Hand-selected by Erin, our training downloads reflect a commitment to yoga, health and wellness.', "Block 2 Text 2 is not visible"
+        assert page.is_visible(
+            tpl.BLOCK2_TEXT_2).text == 'Hand-selected by Erin, our training downloads reflect a commitment to yoga, health and wellness.', "Block 2 Text 2 is not visible"
 
         """TC_010.007.001 | Training >Block 3 ("Training on demand") > Visibility"""
         """Pre-conditions:
@@ -81,7 +81,8 @@ class TestTrainingPageLoggedIn:
         
             Expected results:
                 "Top Videos Stream free with subscription" text is visible"""
-        assert page.is_visible(tpl.BLOCK4).text == 'Top Videos\nStream free with subscription', "Block 3 Text is not visible"
+        assert page.is_visible(
+            tpl.BLOCK4).text == 'Top Videos\nStream free with subscription', "Block 3 Text is not visible"
 
     def test_training_page_elements_hovering(self, driver):
         page = CreateAccountPage(driver)
@@ -104,9 +105,11 @@ class TestTrainingPageLoggedIn:
                 “Video Download” link is underlined"""
         page.hold_mouse_on_element(tpl.VIDEO_DOWNLOAD)
         cursor_style = page.is_visible(tpl.VIDEO_DOWNLOAD).value_of_css_property("cursor")
-        video_download_link_style_2 = page.is_visible(tpl.VIDEO_DOWNLOAD).value_of_css_property("text-decoration").split(' ')
+        video_download_link_style_2 = page.is_visible(tpl.VIDEO_DOWNLOAD).value_of_css_property(
+            "text-decoration").split(' ')
         assert init_cursor_style != cursor_style and cursor_style == 'pointer', "Cursor didn't change appearance after hovering over “Video Download” link"
-        assert video_download_link_style_2[0] == 'underline', "“Video Download” link is not underlined after cursor hovering"
+        assert video_download_link_style_2[
+                   0] == 'underline', "“Video Download” link is not underlined after cursor hovering"
 
         """TC_010.005.004 | Training > Block 2 ("Block-promo training-erin") > Cursor hovering appearance"""
         """Pre-conditions:
@@ -179,8 +182,6 @@ class TestTrainingPageLoggedIn:
                 "Compare Products" and "My Wish List" titles are visible"""
         page.is_clickable(tpl.TRAINING_MENU).click()
         page.is_clickable(tpl.VIDEO_DOWNLOAD).click()
-        assert page.is_visible(tpl.COMPARE_PRODUCTS_TEXT).text == 'Compare Products', '"Compare Products" tile is not visible'
+        assert page.is_visible(
+            tpl.COMPARE_PRODUCTS_TEXT).text == 'Compare Products', '"Compare Products" tile is not visible'
         assert page.is_visible(tpl.MY_WISH_LIST_TEXT).text == 'My Wish List', '"My Wish List" tile is not visible'
-
-
-

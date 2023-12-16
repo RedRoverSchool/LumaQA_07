@@ -1,5 +1,5 @@
+import allure
 import pytest
-
 import data.men_page_url as mp_url
 from locators.men_page_locators import MenCategoryPageLocators as MCL
 
@@ -148,7 +148,7 @@ class TestTeesFilter:
         page.click_clear_all()
 
         assert (
-            page.driver.current_url == mp_url.TOPS_MEN_PAGE
+                page.driver.current_url == mp_url.TOPS_MEN_PAGE
         ), "The page didn't redirect to the Tops page"
 
 
@@ -164,7 +164,7 @@ class TestMenTopsPage:
         page.driver.find_element(*MCL.TEES_FILTER).click()
 
         assert (
-            page.driver.current_url == mp_url.TEES_FILTER
+                page.driver.current_url == mp_url.TEES_FILTER
         ), "The page didn't redirect to the Tees page"
 
 
@@ -208,8 +208,8 @@ class TestMenBottomsPage:
         page.click_option(option)
 
         assert (
-            len([el for el in page.get_all_products() if el.is_displayed()]) <= int(option)
-            ), f'The number of items exceeds the limit: {option}'
+                len([el for el in page.get_all_products() if el.is_displayed()]) <= int(option)
+        ), f'The number of items exceeds the limit: {option}'
 
     @pytest.mark.parametrize('option', ['5', '10', '15', '20', '25'])
     def test_list_choosing_limit_option(self, page_bottoms, option):
@@ -227,3 +227,8 @@ class TestMenBottomsPage:
         assert (
                 len([el for el in page.get_all_products() if el.is_displayed()]) <= int(option)
         ), f'The number of items exceeds the limit: {option}'
+
+    @allure.title('TC_008.027.001|Bottoms Page>Verify all "Shopping Options" filters are clickable')
+    def test_verify_filters_are_clickable(self, driver, page_bottoms):
+        page = page_bottoms
+        assert page.click_shopping_options()

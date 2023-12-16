@@ -1,10 +1,12 @@
 import pytest
 import allure
+from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
-from locators.new_luma_yoga_collection_locators import PriceTabLocators
+from locators.new_luma_yoga_collection_locators import PriceTabLocators, Items
 from tests.new_luma_yoga_collection.conftest import (
     new_luma_yoga_collection_page_precondition_for_test_data,
 )
+
 
 PRICE_LEVELS = [
     "$10.00 - $19.99",
@@ -25,7 +27,7 @@ class TestPriceLevelsVisibleClickable:
         "visibility",
         "clickability",
     ]
-    
+
     def collect_test_data():
         test_data = []
         with allure.step("Open the New Luma Yoga Collection Page"):
@@ -70,7 +72,7 @@ class TestPriceLevelsVisibleClickable:
             ), "The Price List isn't full filled in according to specification"
         collection_page.driver.quit()
         return test_data
-    
+
     TEST_DATA = collect_test_data()
 
     @pytest.mark.parametrize("param", PARAMETERS)
@@ -99,7 +101,7 @@ class TestPriceLevelsVisibleClickable:
                 element_locator=price_level_locator,
                 location="price table",
             )
-            
+
     @pytest.mark.parametrize("price_level_locator,price_level", TEST_DATA)
     def test_verify_ability_to_filter_the_page_by_price_level(
         self,
@@ -128,3 +130,51 @@ class TestPriceLevelsVisibleClickable:
             assert (
                 collection_page.find_price_level_after_filter() == price_level
             ), f"Mismatch between price level({price_level}) filter and title"
+
+    ITEM_PARAMETER = (
+        ["item color", Items.ITEM_COLORS],
+        ["item name", Items.ITEM_NAME],
+        ["item image", Items.ITEM_IMG],
+        ["item reviews", Items.ITEM_REVIEWS],
+    )
+
+    @pytest.mark.parametrize("item_parameter", ITEM_PARAMETER)
+    @pytest.mark.parametrize("price_level_locator,price_level", TEST_DATA)
+    def test_verify_ability_to_filter_the_page_by_price_level_item_parameter(
+        self,
+        price_level_locator,
+        price_level,
+        item_parameter,
+        new_luma_yoga_collection_page_precondition,
+    ):
+        """
+        TC_006.010.004-006 | New Luma Yoga Collection > Price levels> Ability to Filter Items by Price Level:
+        Item Colors, Item Name, Item Image, Item Reviews
+        """
+        with allure.step("Open the New Luma Yoga Collection Page"):
+            collection_page = new_luma_yoga_collection_page_precondition
+        with allure.step('Locate and open the "Price" tab on the sidebar'):
+            price_tab = collection_page.find_price_tab()
+            price_tab.click()
+        with allure.step(f'Clicking on the specified price level("{price_level}")'):
+            price_tab.find_element(*price_level_locator).click()
+        with allure.step("Find Product Info for item"):
+            product_info = collection_page.is_visible(locator=Items.PRODUCT_ITEM_INFO)
+        with allure.step(
+            f"Find {item_parameter[0]} for this price level {price_level}"
+        ):
+            if (
+                price_level in ["$10.00 - $19.99", "$90.00 and above"]
+                and item_parameter[0] == "item color"
+            ):
+                pytest.xfail(
+                    f'There are no items with "{item_parameter[0]}" for this price level {price_level}'
+                )
+            try:
+                item = product_info.find_element(*item_parameter[1])
+                if not item.is_displayed():
+                    raise NoSuchElementException
+            except NoSuchElementException:
+                assert (
+                    False
+                ), f'There are no items with "{item_parameter[0]}" for this price level {price_level}'

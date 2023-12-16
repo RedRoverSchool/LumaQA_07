@@ -4,7 +4,6 @@ from data.product_page_data import PRODUCT_PAGE_EXAMPLE, PRODUCT_NAME_EXAMPLE
 from locators.product_page_locators import ProductPageLocators
 from locators.base_page_locators import BasePageLocators as BP
 from data.home_page_url import HOME_PAGE
-from pages.account.sign_in import SignInPage
 from locators.product_page_locators import ProductPageLocators as loc
 from tests.login.test__sign_in import TestX
 
@@ -12,32 +11,32 @@ from tests.login.test__sign_in import TestX
 class TestProductPage:
 
     def test_check_product_name_in_main_info(self, driver):
-        """TC_002.005.001"""
+        """TC_002.005.001| Product page > Body > Main info >Name visibility"""
         page = ProductPage(driver, PRODUCT_PAGE_EXAMPLE)
         page.open()
         text = page.check_product_name_in_main_info()
         assert text == "Breathe-Easy Tank"
 
     def test_rating_block_is_visible(self, driver):
-        """TC_002.005.002"""
+        """TC_002.005.002 | Product page > Body > Main info > Rating block visibility"""
         page = ProductPage(driver, PRODUCT_PAGE_EXAMPLE)
         page.open()
         assert page.rating_block_is_visible()
 
     def test_price_block_is_visible(self, driver):
-        """TC_002.005.003"""
+        """TC_002.005.003 | Product page > Body > Main info > Price block visibility"""
         page = ProductPage(driver, PRODUCT_PAGE_EXAMPLE)
         page.open()
         assert page.price_block_is_visible()
 
     def test_add_to_block_is_visible(self, driver):
-        """TC_002.005.009/1"""
+        """TC_002.005.009/1 | Product page > Wish List > Add To Wish List Block > visibility"""
         page = ProductPage(driver, PRODUCT_PAGE_EXAMPLE)
         page.open()
         assert page.product_add_to_block_is_visible()
 
     def test_availability_block_is_displayed(self, driver):
-        """TC_002.005.004"""
+        """TC_002.005.004 | Product page > Body > Main info > Availability block visibility"""
         page = ProductPage(driver, PRODUCT_PAGE_EXAMPLE)
         page.open()
         assert page.availability_block_is_displayed(), "Availability is not displayed"

@@ -48,11 +48,11 @@ def options():
     return options
 
 
-@pytest.fixture 
+@pytest.fixture
 def driver(options):
     driver = webdriver.Chrome(options=options)
     # print(f"Created driver: {driver}")
-    yield driver 
+    yield driver
     driver.quit()
 
 
@@ -84,11 +84,13 @@ def save_screenshot(request, driver):
 
         allure.attach.file(full_file_path, name=file_name, attachment_type=allure.attachment_type.PNG)
 
+
 @pytest.fixture()
 def open_main_page(driver):
     base_page = BasePage(driver=driver, url=HOME_PAGE)
     base_page.open()
     return base_page
+
 
 @pytest.fixture
 def sign_in(driver):
@@ -96,5 +98,3 @@ def sign_in(driver):
     driver.find_element(*LoginPageLocators.EMAIL).send_keys('testTestpro@gmail.com')
     driver.find_element(*LoginPageLocators.PASSWORD).send_keys('Zaqxsw100')
     driver.find_element(*LoginPageLocators.BUTTON_SIGN_IN).click()
-
-

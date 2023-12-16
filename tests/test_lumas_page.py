@@ -1,5 +1,3 @@
-import time
-
 from pages.other_pages.lumas_latest import LumasPage
 
 

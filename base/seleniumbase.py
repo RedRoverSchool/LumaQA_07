@@ -2,7 +2,7 @@ from os import path, pardir
 from time import strftime
 
 from selenium.common import TimeoutException
-from selenium.webdriver import ActionChains
+from selenium.webdriver import ActionChains, Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support import expected_conditions as EC
@@ -40,7 +40,7 @@ class BasePage:
         self.driver = driver
         self.url = url
 
-    def open(self):
+    def open(self) -> object:
         """
         Открывает URL страницы в браузере.
         """
@@ -209,3 +209,10 @@ class BasePage:
 
     def find_element(self, locator) -> WebElement:
         return self.driver.find_element(*locator)
+
+    def press_enter_key(self):
+        ActionChains(self.driver).send_keys(Keys.ENTER).perform()
+
+    @staticmethod
+    def convert_color_rgb_to_hex(rgb_color_tuple):
+        return '#{:02x}{:02x}{:02x}'.format(*rgb_color_tuple)
