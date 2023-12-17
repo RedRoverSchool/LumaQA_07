@@ -1,7 +1,7 @@
 import allure
 from pages.men_page import MenPage, MenJacketsPage
 from data.men_page_url import MEN_PAGE, TOPS_MEN_PAGE, MEN_BOTTOMS_PAGE, MEN_TOPS_JACKETS_PAGE, LANDO_GYM_JACKET_URL
-
+from locators.men_page_locators impor MenCategoryPageLocators as MenCPL
 
 class TestMenPage:
     def test_redirect_to_tops_men_page_from_tops_category(self, driver):
@@ -61,3 +61,9 @@ class TestMenJacketsPage:
     def test_verify_visibility_products_on_the_page(self, driver, men_jacket_page):
         result, message = men_jacket_page.all_item()
         assert result, message
+
+    @allure.title('TC_008.011.004|Jackets page>Verify the product card is highlighted with a shadow')
+    def test_verify_item_with_a_shadow(self, driver, men_jacket_page):
+        page = men_jacket_page
+        page.hold_mouse_on_element(MenCPL.ITEM)
+        assert page.item_with_a_shadow(), 'Item NOT with a shadow'

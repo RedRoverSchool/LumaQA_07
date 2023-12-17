@@ -53,3 +53,8 @@ class MenJacketsPage(BasePage):
             except Exception:
                 return False, f'Item is not visible: {item_selector}'
             return True, 'All items are visible'
+
+    def item_with_a_shadow(self):
+        element = self.driver.find_element(*MenCPL.ITEM)
+        box_shadow = element.value_of_css_property('box-shadow')
+        return box_shadow == 'rgba(0, 0, 0, 0.3) 3px 4px 4px 0px'

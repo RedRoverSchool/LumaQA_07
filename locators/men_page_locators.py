@@ -14,6 +14,7 @@ class MenPageLocators:
     INNER_BUTTONS = (By.XPATH, "//*[@class='product actions product-item-actions']")
     # MenTopJacketsPage
     JACKETS_ITEMS = (By.CLASS_NAME, "li[class='item product product-item']")
+    PROTEUS_FITNESS_JACKSHIRT = (By.XPATH, '//*[@id="maincontent"]/div[3]/div[1]/div[4]/ol/li[1]/div/a/span/span/img')
     LANDO_GYM_JACKET = (By.XPATH, "//a[contains(text(), 'Lando Gym Jacket')]")
     # MenBottomsPage
     SHOPPING_OPTIONS = (By.XPATH, '//*[@id="narrow-by-list"]/div[{num}]/div[1]')
