@@ -1,7 +1,8 @@
 import allure
 from pages.men_page import MenPage, MenJacketsPage
 from data.men_page_url import MEN_PAGE, TOPS_MEN_PAGE, MEN_BOTTOMS_PAGE, MEN_TOPS_JACKETS_PAGE, LANDO_GYM_JACKET_URL
-from locators.men_page_locators impor MenCategoryPageLocators as MenCPL
+from locators.men_page_locators import MenCategoryPageLocators as MenCPL
+
 
 class TestMenPage:
     def test_redirect_to_tops_men_page_from_tops_category(self, driver):
