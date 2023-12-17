@@ -1,7 +1,7 @@
 import allure
 import pytest
 from pages.advanced_search.advanced_search_form_page import AdvancedSearchFormPage
-from data.advanced_search_url import ADVANCED_SEARCH_URL
+from data.advanced_search_url import ADVANCED_SEARCH_URL, ADVANCED_SEARCH_TOP_RESULT_URL
 from locators.advanced_search_locators import AdvancedSearchLocators as locators
 
 
@@ -58,3 +58,11 @@ class TestAdvancedSearch:
 
         assert page.get_search_button_hex_background_color() == "#1979c3", \
             "Search button hex background color is not #1979c3"
+
+    def test_modify_your_search(self, driver):
+        advanced_search_page = AdvancedSearchFormPage(driver, ADVANCED_SEARCH_URL)
+        advanced_search_page.open()
+        advanced_search_page.enter_product_name('top')
+        advanced_search_page.click_search()
+        assert advanced_search_page.is_visible(locators.MODIFY_YOUR_SEARCH), 'modify your search is not visible'
+        assert advanced_search_page.clickable(locators.MODIFY_YOUR_SEARCH), 'modify your search is not clickable'
