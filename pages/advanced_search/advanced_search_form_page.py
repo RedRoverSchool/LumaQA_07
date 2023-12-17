@@ -45,4 +45,9 @@ class AdvancedSearchFormPage(BasePage):
 
     def visibility_of_color_options(self):
         return self.is_visible_all_elements(locator.COLOR_OPTIONS)
-      
+
+    def get_search_button_hex_background_color(self):
+        """The method gets the 'Search' button hex background color value"""
+        search_button = self.find_element(locator.SEARCH_BUTTON)
+
+        return self.convert_rgb_color_to_hex(search_button.value_of_css_property("background"))

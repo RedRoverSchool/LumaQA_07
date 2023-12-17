@@ -38,7 +38,7 @@ def pytest_unconfigure(config):
 @pytest.fixture
 def options():
     options = Options()
-    options.add_argument('--window-size=1000,800')
+    options.add_argument('--window-size=1920,1080')
     options.add_argument('--headless')
     options.add_argument("--ignore-certificate-errors")
     if os.environ.get('PYTHONDONTWRITEBYTECODE') == '1':

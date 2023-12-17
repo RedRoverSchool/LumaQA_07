@@ -1,3 +1,4 @@
+import allure
 import pytest
 from pages.advanced_search.advanced_search_form_page import AdvancedSearchFormPage
 from data.advanced_search_url import ADVANCED_SEARCH_URL
@@ -49,3 +50,11 @@ class TestAdvancedSearch:
         except:
             error_message = page.the_presence_of_element_located(locators.ERROR_MESSAGE, 1)
             assert error_message.is_displayed(), 'No error message displayed'
+
+    @allure.title("TC_016.004.003 | Verify the background color of the 'Search' button is #1979c3 ")
+    def test_search_button_background_color(self, driver):
+        page = AdvancedSearchFormPage(driver, ADVANCED_SEARCH_URL)
+        page.open()
+
+        assert page.get_search_button_hex_background_color() == "#1979c3", \
+            "Search button hex background color is not #1979c3"

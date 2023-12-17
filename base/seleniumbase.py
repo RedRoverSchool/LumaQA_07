@@ -216,3 +216,8 @@ class BasePage:
     @staticmethod
     def convert_color_rgb_to_hex(rgb_color_tuple):
         return '#{:02x}{:02x}{:02x}'.format(*rgb_color_tuple)
+
+    def convert_rgb_color_to_hex(self, rgb):
+        rgb_values = tuple(map(int, rgb.split('(')[1].split(')')[0].split(',')[:3]))
+
+        return '#{:02x}{:02x}{:02x}'.format(*rgb_values)
