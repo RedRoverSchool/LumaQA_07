@@ -43,3 +43,21 @@ class TestFooterPage:
         assert strong_element.text == FOOTER_LINKS_TEXTS["ADVANCED_SEARCH"] \
                and strong_element.get_attribute('href') is None, \
             "Advanced Search link is clickable: its url is still present"
+
+    @allure.title("TC_012.013.001 | Footer > 'Advanced Search' link > Redirection > "
+                  "Verify the opened page URL upon clicking on the appropriate link")
+    def test_verify_url_upon_redirection(self, driver):
+        page = FooterPage(driver, MainPage.URL)
+        page.open()
+        page.click_advanced_search_link()
+
+        assert "advanced" in page.current_url, "Current page URL is different"
+
+    @allure.title("TC_012.013.002 | Footer > 'Advanced Search' link > Redirection > "
+                  "Verify the opened page title upon clicking on the appropriate link")
+    def test_verify_title_upon_redirection(self, driver):
+        page = FooterPage(driver, MainPage.URL)
+        page.open()
+        page.click_advanced_search_link()
+
+        assert page.get_page_title() == "Advanced Search", "Current page title is different"

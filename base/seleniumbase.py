@@ -221,3 +221,6 @@ class BasePage:
         rgb_values = tuple(map(int, rgb.split('(')[1].split(')')[0].split(',')[:3]))
 
         return '#{:02x}{:02x}{:02x}'.format(*rgb_values)
+
+    def get_page_title(self):
+        return self.driver.title
