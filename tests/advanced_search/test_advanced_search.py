@@ -1,7 +1,7 @@
 import allure
 import pytest
 from pages.advanced_search.advanced_search_form_page import AdvancedSearchFormPage
-from data.advanced_search_url import ADVANCED_SEARCH_URL, ADVANCED_SEARCH_TOP_RESULT_URL
+from data.advanced_search_url import ADVANCED_SEARCH_URL
 from locators.advanced_search_locators import AdvancedSearchLocators as locators
 
 

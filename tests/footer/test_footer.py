@@ -61,3 +61,19 @@ class TestFooterPage:
         page.click_advanced_search_link()
 
         assert page.get_page_title() == "Advanced Search", "Current page title is different"
+
+    @allure.title("TC_012.010.001 | Footer > Self > Set of links > Verify first footer block contains 4 links")
+    def test_first_footer_block_contains_four_links(self, driver):
+        page = FooterPage(driver, MainPage.URL)
+        page.open()
+        page.have_first_footer_block_links_href()
+
+        assert page.get_first_footer_links_block_length() == 4, "The 1st links block size is not 4"
+
+    @allure.title("TC_012.010.002 | Footer > Self > Set of links > Verify second footer block contains 4 links")
+    def test_second_footer_block_contains_four_links(self, driver):
+        page = FooterPage(driver, MainPage.URL)
+        page.open()
+        page.have_second_footer_block_links_href()
+
+        assert page.get_second_footer_links_block_length() == 4, "The 2nd links block size is not 4"

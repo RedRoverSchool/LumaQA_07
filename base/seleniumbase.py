@@ -223,4 +223,13 @@ class BasePage:
         return '#{:02x}{:02x}{:02x}'.format(*rgb_values)
 
     def get_page_title(self):
+        """The method gets a page title"""
         return self.driver.title
+
+    def get_elements_list_length(self, locator):
+        """The method gets a list of elements length"""
+        return len(self.driver.find_elements(*locator))
+
+    def are_elements_visible(self, locator, timeout: int = TIMEOUT):
+        """The method checks if all elements are visible"""
+        return wait(self.driver, timeout).until(EC.visibility_of_all_elements_located(locator))

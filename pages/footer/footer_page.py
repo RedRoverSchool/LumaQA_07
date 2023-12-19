@@ -27,3 +27,21 @@ class FooterPage(BasePage):
 
     def chech_visibility_footer_sign_in_link(self):
         return self.is_visible(BasePageLocators.LINK_HEADER_SIGN_IN).click()
+
+    def have_first_footer_block_links_href(self):
+        """The method checks if the first footer block consists of links"""
+        for element in self.are_elements_visible(BasePageLocators.FIRST_FOOTER_LINKS_BLOCK):
+            assert element.get_attribute("href") is not None and element.get_attribute("href").strip() != ""
+
+    def have_second_footer_block_links_href(self):
+        """The method checks if the second footer block consists of links"""
+        for element in self.are_elements_visible(BasePageLocators.SECOND_FOOTER_LINKS_BLOCK):
+            assert element.get_attribute("href") is not None and element.get_attribute("href").strip() != ""
+
+    def get_first_footer_links_block_length(self):
+        """The method gets the first footer block links numbers"""
+        return self.get_elements_list_length(BasePageLocators.FIRST_FOOTER_LINKS_BLOCK)
+
+    def get_second_footer_links_block_length(self):
+        """The method gets the second footer block links numbers"""
+        return self.get_elements_list_length(BasePageLocators.SECOND_FOOTER_LINKS_BLOCK)

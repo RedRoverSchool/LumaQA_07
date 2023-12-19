@@ -25,7 +25,7 @@ import importlib
 
 @pytest.mark.parametrize("locator, assert_page", [(bpl.LINK_WHATS_NEW, WHATS_NEW_PAGE),
                                                   (bpl.LINK_WRITE_FOR_US, WRITE_FOR_US_PAGE),
-                                                  (bpl.LINK_SUBSCRIBE_YO_OUR_MAILING_LIST, SUBSCRIBE_TO_OUR_MAILING_LIST_PAGE),
+                                                  (bpl.LINK_SUBSCRIBE_TO_OUR_MAILING_LIST, SUBSCRIBE_TO_OUR_MAILING_LIST_PAGE),
                                                   (bpl.LINK_CONTACT_US, CONTACT_US_PAGE),
                                                   (bpl.LINK_HIRE, HIRE_PAGE),
                                                   (bpl.LINK_SEARCH_TERMS, SEARCH_TERMS_PAGE),

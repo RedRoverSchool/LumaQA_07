@@ -51,7 +51,7 @@ class BasePageLocators:
     LINK_SALE = (By.XPATH, "//*[@id='ui-id-8']")
 
     LINK_WRITE_FOR_US = (By.XPATH, '//footer//a[@href="https://softwaretestingboard.com/write-for-us/"]')
-    LINK_SUBSCRIBE_YO_OUR_MAILING_LIST = (By.XPATH, '//footer//a[@href="https://softwaretestingboard.com/subscribe/"]')
+    LINK_SUBSCRIBE_TO_OUR_MAILING_LIST = (By.XPATH, '//footer//a[@href="https://softwaretestingboard.com/subscribe/"]')
     LINK_CONTACT_US = (By.XPATH, '//footer//a[@href="https://softwaretestingboard.com/contact/"]')
     LINK_HIRE = (By.XPATH, '//footer//a[@href="https://adeunqa.com"]')
     LINK_SEARCH_TERMS = (By.XPATH, '//footer//a[@href="https://magento.softwaretestingboard.com/search/term/popular/"]')
@@ -59,6 +59,9 @@ class BasePageLocators:
     LINK_ADVANCED_SEARCH = (By.XPATH, '//footer//a[contains (@href, "advanced")]')
     LINK_ORDERS_AND_RETURNS = (By.XPATH, '//footer//a[@href="https://magento.softwaretestingboard.com/sales/guest/form/"]')
     LINK_DISABLED = (By.XPATH, "//footer//strong")
+
+    FIRST_FOOTER_LINKS_BLOCK = (By.CSS_SELECTOR, ".footer .widget.block li a")
+    SECOND_FOOTER_LINKS_BLOCK = (By.CSS_SELECTOR, ".footer.links li a")
 
     COPYRIGHT_INFO = (By.XPATH,"//footer/following-sibling::*[@class='copyright']")
 
@@ -78,5 +81,5 @@ class BasePageLocators:
     SHOP_NEW_YOGA = (By.XPATH, "//span[@class='action more button']")
     LIST_MENU_BAR = [LINK_WHATS_NEW, LINK_WOMEN, LINK_MEN, LINK_GEAR, LINK_TRAINING, LINK_SALE]
     SEARCHING_RESULT = (By.CSS_SELECTOR, 'ul[role="listbox"]>li:nth-child(1)')
-    LIST_FOOTER = [LINK_WRITE_FOR_US, LINK_SUBSCRIBE_YO_OUR_MAILING_LIST, LINK_CONTACT_US, LINK_HIRE, LINK_SEARCH_TERMS,
+    LIST_FOOTER = [LINK_WRITE_FOR_US, LINK_SUBSCRIBE_TO_OUR_MAILING_LIST, LINK_CONTACT_US, LINK_HIRE, LINK_SEARCH_TERMS,
                    LINK_PRIVACY_AND_COOKIE_POLICY, LINK_ADVANCED_SEARCH, LINK_ORDERS_AND_RETURNS]
