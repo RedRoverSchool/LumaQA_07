@@ -1,5 +1,6 @@
 from base.seleniumbase import BasePage
 from locators.advanced_search_results_locators import AdvancedSearchResultsLocators as locator
+from locators.advanced_search_locators import AdvancedSearchLocators
 
 
 class AdvancedSearchResultsPage(BasePage):
@@ -15,3 +16,12 @@ class AdvancedSearchResultsPage(BasePage):
 
     def get_message_number_of_items(self):
         return self.is_visible(locator.MESSAGE_NUMBER_OF_ITEMS).text.strip()
+
+    def enter_product_name(self, string):
+        self.driver.find_element(*AdvancedSearchLocators.PRODUCT_NAME_TEXTBOX).send_keys(string)
+
+    def click_search(self):
+        self.driver.find_element(*AdvancedSearchLocators.SEARCH_BUTTON).click()
+
+    def size_buttons_clickable(self):
+        return self.are_elements_clickable(locator.LIST_OF_SIZES)

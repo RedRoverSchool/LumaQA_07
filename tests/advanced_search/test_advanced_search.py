@@ -1,8 +1,10 @@
 import allure
 import pytest
-from pages.advanced_search.advanced_search_form_page import AdvancedSearchFormPage
+from pages.advanced_search.advanced_search_results_page import AdvancedSearchResultsPage
 from data.advanced_search_url import ADVANCED_SEARCH_URL
 from locators.advanced_search_locators import AdvancedSearchLocators as locators
+from data.advanced_search_results_data import CLOTHES_LIST
+from pages.advanced_search.advanced_search_form_page import AdvancedSearchFormPage
 
 
 class TestAdvancedSearch:
@@ -66,3 +68,11 @@ class TestAdvancedSearch:
         advanced_search_page.click_search()
         assert advanced_search_page.is_visible(locators.MODIFY_YOUR_SEARCH), 'modify your search is not visible'
         assert advanced_search_page.clickable(locators.MODIFY_YOUR_SEARCH), 'modify your search is not clickable'
+
+    @pytest.mark.parametrize('query', CLOTHES_LIST)
+    def test_enable_size_buttons(self, driver, query):
+        page = AdvancedSearchResultsPage(driver, ADVANCED_SEARCH_URL)
+        page.open()
+        page.enter_product_name(query)
+        page.click_search()
+        assert page.size_buttons_clickable(), 'size options are not clickable'

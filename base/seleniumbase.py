@@ -233,3 +233,7 @@ class BasePage:
     def are_elements_visible(self, locator, timeout: int = TIMEOUT):
         """The method checks if all elements are visible"""
         return wait(self.driver, timeout).until(EC.visibility_of_all_elements_located(locator))
+
+    def are_elements_clickable(self, locator, timeout: int = TIMEOUT):
+        """The method checks if all elements are clickable"""
+        return wait(self.driver, timeout).until(EC.all_of(EC.element_to_be_clickable(locator)))

@@ -7,6 +7,7 @@ def get_advanced_search_results_url(product_name='', sku='', description='',
 
 ERROR_MESSAGE_ON_ADVANCED_SEARCH_RESULTS_PAGE = "We can't find any items matching these search criteria."
 PAGE_TITLE = 'Advanced Search Results'
+CLOTHES_LIST = ['top', 'jacket', 'short', 'tank', 'sweatshirt', 'pant', 'hoodie']
 
 
 def message_items_were_found(number_of_items):
