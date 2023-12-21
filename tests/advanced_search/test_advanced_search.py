@@ -1,8 +1,11 @@
+import time
+
 import allure
 import pytest
 from pages.advanced_search.advanced_search_form_page import AdvancedSearchFormPage
-from data.advanced_search_url import ADVANCED_SEARCH_URL
+from data.advanced_search_url import ADVANCED_SEARCH_URL, ADVANCED_SEARCH_TOP_URL
 from locators.advanced_search_locators import AdvancedSearchLocators as locators
+
 
 
 class TestAdvancedSearch:
@@ -66,3 +69,13 @@ class TestAdvancedSearch:
         advanced_search_page.click_search()
         assert advanced_search_page.is_visible(locators.MODIFY_YOUR_SEARCH), 'modify your search is not visible'
         assert advanced_search_page.clickable(locators.MODIFY_YOUR_SEARCH), 'modify your search is not clickable'
+
+    def test_modify_your_search_redirection_advanced_search_form(self, driver):
+        advanced_search_page = AdvancedSearchFormPage(driver, ADVANCED_SEARCH_URL)
+        advanced_search_page.open()
+        advanced_search_page.enter_product_name('top')
+        advanced_search_page.click_search()
+        advanced_search_page.is_visible(locators.MODIFY_YOUR_SEARCH)
+        advanced_search_page.clickable(locators.MODIFY_YOUR_SEARCH).click()
+        assert driver.current_url == ADVANCED_SEARCH_TOP_URL
+
