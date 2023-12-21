@@ -3,7 +3,8 @@ import allure
 
 from pages.main_page import MainPage
 from pages.footer.footer_page import FooterPage
-from data.footer_data import FOOTER_LINKS_TEXTS
+from data.footer_data import FOOTER_LINKS_TEXTS, EXPECTED_FIRST_FOOTER_LINKS_BLOCK_TEXTS, \
+    EXPECTED_SECOND_FOOTER_LINKS_BLOCK_TEXTS
 
 
 @pytest.fixture(scope="function")
@@ -77,3 +78,19 @@ class TestFooterPage:
         page.have_second_footer_block_links_href()
 
         assert page.get_second_footer_links_block_length() == 4, "The 2nd links block size is not 4"
+
+    @allure.title("TC_012.010.005 | Footer > Self > Set of links > Verify the 1st block links texts")
+    def test_first_block_links_texts(self, driver):
+        page = FooterPage(driver, MainPage.URL)
+        page.open()
+
+        assert page.get_first_footer_links_block_texts() == EXPECTED_FIRST_FOOTER_LINKS_BLOCK_TEXTS, \
+            "Texts of the 1st footer links block are not as expected"
+
+    @allure.title("TC_012.010.006 | Footer > Self > Set of links > Verify the 2nd block links texts")
+    def test_second_block_links_texts(self, driver):
+        page = FooterPage(driver, MainPage.URL)
+        page.open()
+
+        assert page.get_second_footer_links_block_texts() == EXPECTED_SECOND_FOOTER_LINKS_BLOCK_TEXTS, \
+            "Texts of the 2nd footer links block are not as expected"
