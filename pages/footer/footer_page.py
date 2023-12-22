@@ -54,3 +54,19 @@ class FooterPage(BasePage):
         """The method gets the second footer block links texts"""
         second_footer_links_block = self.are_elements_visible(BasePageLocators.SECOND_FOOTER_LINKS_BLOCK)
         return [link.text for link in second_footer_links_block]
+
+    def get_first_footer_block_links_urls(self):
+        """The method gets the first footer block links URLs"""
+        urls_list = []
+        for url in self.are_elements_visible(BasePageLocators.FIRST_FOOTER_LINKS_BLOCK):
+            urls_list.append(url.get_attribute("href"))
+
+        return urls_list
+
+    def get_second_footer_block_links_urls(self):
+        """The method gets the second footer block links URLs"""
+        urls_list = []
+        for url in self.are_elements_visible(BasePageLocators.SECOND_FOOTER_LINKS_BLOCK):
+            urls_list.append(url.get_attribute("href"))
+
+        return urls_list
