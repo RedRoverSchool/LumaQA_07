@@ -14,13 +14,6 @@ def footer_page(driver):
     return footer_page
 
 
-@pytest.fixture(scope="module")
-def second_footer_block_urls(driver):
-    page = FooterPage(driver, MainPage.URL)
-    page.open()
-    return page.get_second_footer_block_links_urls()
-
-
 class TestFooterPage:
     @allure.title('TC_012.012.001 | Footer > Advanced search link > Visibility')
     def test_check_visibility_advanced_search_link(self, driver, footer_page):

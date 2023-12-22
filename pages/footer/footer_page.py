@@ -50,6 +50,7 @@ class FooterPage(BasePage):
         """The method gets the first footer block links texts"""
         first_footer_links_block = self.are_elements_visible(BasePageLocators.FIRST_FOOTER_LINKS_BLOCK)
         return [link.text for link in first_footer_links_block]
+
     def get_second_footer_links_block_texts(self):
         """The method gets the second footer block links texts"""
         second_footer_links_block = self.are_elements_visible(BasePageLocators.SECOND_FOOTER_LINKS_BLOCK)
