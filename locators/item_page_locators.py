@@ -33,7 +33,7 @@ class ItemPageLocators:
     LINK_EFCS_SIZE_28 = (By.XPATH, '//a[@href="https://magento.softwaretestingboard.com/echo-fit-compression-short.html"]/following-sibling::div[@class="product details product-item-details"]//child::div[@option-label="28"]')
     LINK_EFCS_SIZE_BLACK = (By.XPATH, '//a[@href="https://magento.softwaretestingboard.com/echo-fit-compression-short.html"]/following-sibling::div[@class="product details product-item-details"]//child::div[@option-label="Black"]')
     LINK_EFCS_ADD_TO_CART = (By.XPATH, '//a[@href="https://magento.softwaretestingboard.com/echo-fit-compression-short.html"]/following-sibling::div[@class="product details product-item-details"]//child::button[@title="Add to Cart"]')
-    LINK_EFCS_SIZE_29 = (By.XPATH, '//div[@class="swatch-option text"]')
+    LINK_EFCS_SIZE_29 = (By.CSS_SELECTOR, '.product-options-wrapper div[option-label="29"]')
     LINK_EFCS_SIZE_BLUE = (By.XPATH, '//div[@aria-label = "Blue"]')
 
 
