@@ -51,7 +51,7 @@ class BasePage:
         self.driver.execute_cdp_cmd("Network.enable", {})
         self.driver.execute_cdp_cmd('Network.setExtraHTTPHeaders', {'headers': {'accept-language': 'en-US,en;q=0.9'}})
         self.driver.get(self.url)
-        # self.the_presence_of_element_located((By.CSS_SELECTOR, "div.modals-wrapper"))
+        self.the_presence_of_element_located((By.CSS_SELECTOR, "div.modals-wrapper"))
 
     def is_visible(self, locator: tuple, timeout: int = TIMEOUT) -> WebElement:
         """
@@ -118,7 +118,7 @@ class BasePage:
         self.driver.execute_cdp_cmd("Network.enable", {})
         self.driver.execute_cdp_cmd('Network.setExtraHTTPHeaders', {'headers': {'accept-language': 'en-US,en;q=0.9'}})
         self.driver.get(val)
-        # self.the_presence_of_element_located((By.CSS_SELECTOR, "div.modals-wrapper"))
+        self.the_presence_of_element_located((By.CSS_SELECTOR, "div.modals-wrapper"))
 
     @property
     def message(self) -> str:
