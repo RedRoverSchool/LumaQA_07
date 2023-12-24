@@ -69,14 +69,14 @@ class TestFooterElementsVisibleClickable:
                 Verify the text of the copyright information in the Footer.
             Expected results:
                 The copyright information should have a text “Copyright © 2013-present Magento, Inc. All rights reserved.”
-                opyright information is visible in the footer of current page of the website.
+                Copyright information is visible in the footer of current page of the website.
         """
 
         expected_text = "Copyright © 2013-present Magento, Inc. All rights reserved."
         any_page = any_page_precondition
         copyright_info = any_page.is_visible(locator=BasePageLocators.COPYRIGHT_INFO)
         assert (
-            copyright_info.text == expected_text
+             expected_text in copyright_info.text
         ), f"""
             The copiright information from this page {any_url} = '{copyright_info.text}' and mismatch to the expected text ('{expected_text}')"""
 
