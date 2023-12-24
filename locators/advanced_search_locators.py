@@ -27,3 +27,5 @@ class AdvancedSearchLocators:
         'SHORT_DESCRIPTION': (By.ID, "short_description"),
         'MIN_PRICE': (By.ID, "price"),
         'MAX_PRICE': (By.ID, "price_to")}
+    PAGINATION = (By.CSS_SELECTOR, '.search .products-grid+.toolbar-products .pages')
+    NEXT_PAGE_ARROW = (By.CSS_SELECTOR, '.search .products-grid+.toolbar-products .pages .pages-item-next a')
