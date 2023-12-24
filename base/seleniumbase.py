@@ -264,3 +264,9 @@ class BasePage:
 
     def is_element_visible(self, element: WebElement, timeout: int = TIMEOUT) -> WebElement:
         return wait(self.driver, timeout).until(EC.visibility_of(element))
+
+
+    def move_to_element_and_click(self, element: WebElement):
+        action = ActionChains(self.driver)
+        action.move_to_element(element).click(element).perform()
+
