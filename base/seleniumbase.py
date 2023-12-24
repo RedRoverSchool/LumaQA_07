@@ -237,3 +237,12 @@ class BasePage:
     def are_elements_clickable(self, locator, timeout: int = TIMEOUT):
         """The method checks if all elements are clickable"""
         return wait(self.driver, timeout).until(EC.all_of(EC.element_to_be_clickable(locator)))
+
+    def are_dictionary_elements_visible(self, locators, timeout: int = TIMEOUT):
+        """The method checks if all dictionary elements are visible"""
+        elements_visible = True
+        for locator in locators.values():
+            if not self.is_visible(locator, timeout):
+                elements_visible = False
+                break
+        return elements_visible

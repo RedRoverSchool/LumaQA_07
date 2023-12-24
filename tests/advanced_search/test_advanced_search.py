@@ -87,3 +87,10 @@ class TestAdvancedSearch:
         advanced_search_page.clickable(locators.MODIFY_YOUR_SEARCH).click()
         assert driver.current_url == ADVANCED_SEARCH_TOP_URL
 
+    @allure.title("TC_016.002.002 | Advanced Search > Fields visibility > Verify 6 search fields: "
+                  "Product Name, SKU, Description, Short Description, min Price and max Price, are visible")
+    def test_six_search_fields_are_visible(self, driver):
+        page = AdvancedSearchFormPage(driver, ADVANCED_SEARCH_URL)
+        page.open()
+
+        assert page.are_six_search_fields_visible(), "6 search fields are not visible"

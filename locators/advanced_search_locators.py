@@ -19,4 +19,10 @@ class AdvancedSearchLocators:
     SIZE_OPTIONS = (By.CSS_SELECTOR, ".swatch-attribute.size")
     COLOR_OPTIONS = (By.CSS_SELECTOR, '.swatch-attribute.color')
     MODIFY_YOUR_SEARCH = (By.XPATH, '//a[contains(text(), "Modify your search")]')
-    
+    SEARCH_FIELDS_TEXTBOXES = {
+        'PRODUCT_NAME': (By.ID, 'name'),
+        'SKU': (By.ID, "sku"),
+        'DESCRIPTION': (By.ID, "description"),
+        'SHORT_DESCRIPTION': (By.ID, "short_description"),
+        'MIN_PRICE': (By.ID, "price"),
+        'MAX_PRICE': (By.ID, "price_to")}

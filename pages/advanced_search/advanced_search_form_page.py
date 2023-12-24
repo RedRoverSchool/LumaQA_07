@@ -1,6 +1,5 @@
 from base.seleniumbase import BasePage
 from locators.advanced_search_locators import AdvancedSearchLocators as locator
-from locators.advanced_search_locators import AdvancedSearchLocators
 
 
 
@@ -51,3 +50,7 @@ class AdvancedSearchFormPage(BasePage):
         search_button = self.find_element(locator.SEARCH_BUTTON)
 
         return self.convert_rgb_color_to_hex(search_button.value_of_css_property("background"))
+
+    def are_six_search_fields_visible(self):
+        """The methods checks if the search fields are visible"""
+        return self.are_dictionary_elements_visible(locator.SEARCH_FIELDS_TEXTBOXES)
