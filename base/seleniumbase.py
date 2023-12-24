@@ -1,5 +1,7 @@
 from os import path, pardir
 from time import strftime
+from urllib.request import urlopen, Request
+from urllib.error import HTTPError, URLError
 
 from selenium.common import TimeoutException
 from selenium.webdriver import ActionChains, Keys
@@ -18,6 +20,8 @@ class BasePage:
     MESSAGE_SUCCESS = (By.CSS_SELECTOR, "[data-ui-id='message-success']")
     MESSAGE_NOTICE = (By.CSS_SELECTOR, "[data-ui-id='message-notice']")
     MESSAGE_ERROR = (By.CSS_SELECTOR, "[data-ui-id='message-error']")
+    IMAGE_EXTENSIONS = ['png', 'jpg', 'jpeg', 'webp', 'bmp', 'ico', 'svg']
+    DEFAULT_USER_AGENT = {'User-Agent': 'Mozilla/5.0'}
     """
     Базовый класс для страниц веб-приложения, использующий Selenium для взаимодействия с элементами на странице.
 
@@ -237,3 +241,26 @@ class BasePage:
     def are_elements_clickable(self, locator, timeout: int = TIMEOUT):
         """The method checks if all elements are clickable"""
         return wait(self.driver, timeout).until(EC.all_of(EC.element_to_be_clickable(locator)))
+
+    def get_current_window_handle(self):
+        """The method checks if all elements are clickable"""
+        return self.driver.current_window_handle
+
+    def get_http_response(self, url):
+        req = Request(
+            url=url,
+            headers=self.DEFAULT_USER_AGENT
+        )
+        try:
+            with urlopen(req, timeout=3) as response:
+                page_status = response.status
+        except HTTPError as error:
+            page_status = error.status
+        except URLError as error:
+            page_status = False
+        except TimeoutError:
+            page_status = False
+        return page_status
+
+    def is_element_visible(self, element: WebElement, timeout: int = TIMEOUT) -> WebElement:
+        return wait(self.driver, timeout).until(EC.visibility_of(element))

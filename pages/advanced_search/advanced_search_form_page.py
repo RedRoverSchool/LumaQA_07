@@ -1,7 +1,5 @@
 from base.seleniumbase import BasePage
 from locators.advanced_search_locators import AdvancedSearchLocators as locator
-from locators.advanced_search_locators import AdvancedSearchLocators
-
 
 
 class AdvancedSearchFormPage(BasePage):
@@ -51,3 +49,46 @@ class AdvancedSearchFormPage(BasePage):
         search_button = self.find_element(locator.SEARCH_BUTTON)
 
         return self.convert_rgb_color_to_hex(search_button.value_of_css_property("background"))
+
+    def is_image_displayed(self, element):
+        base_window = self.get_current_window_handle()
+
+        # visibility #1 check
+        try:
+            self.is_element_visible(element, 3)
+        except:
+            return False
+
+        # zero image size check
+        if not element.size['width'] or not element.size['height']:
+            return False
+
+        # visibility #2 check
+        if not element.is_displayed():
+            return False
+
+        img_link = element.get_attribute('src')
+        img_exts = self.IMAGE_EXTENSIONS
+
+        # image link check
+        if not any(img_link.endswith(ext) for ext in img_exts):
+            return False
+
+        img_page_status = self.get_http_response(img_link)
+
+        # img page response check
+        if img_page_status != 200:
+            return False
+
+        self.driver.execute_script("window.open('about:blank', 'test_image_url_tab');")
+        self.driver.switch_to.window('test_image_url_tab')
+        self.driver.get(img_link)
+        img_page_url = self.driver.current_url
+        self.driver.close()
+        self.driver.switch_to.window(base_window)
+
+        # image page url check
+        if not any(img_page_url.endswith(ext) for ext in img_exts):
+            return False
+
+        return True
