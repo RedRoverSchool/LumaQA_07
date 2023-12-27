@@ -19,4 +19,4 @@ class TestAdvancedSearchResultsPage:
         page.open()
         page.select_items_quantity_per_page_is_24()
 
-        assert page.get_items_on_the_page_quantity() == 24, "Items quantity is not equal 24"
+        assert page.get_items_on_the_page_quantity() == 24, "Items quantity is not equal to 24"
