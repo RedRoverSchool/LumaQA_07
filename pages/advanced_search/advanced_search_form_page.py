@@ -124,3 +124,7 @@ class AdvancedSearchFormPage(BasePage):
             if not image_displayed:
                 missing_image_list.append(image.get_attribute(('src')))
         return {'confirm': all(image_check_list), 'missing_images': list(missing_image_list)}
+
+    def enter_max_price(self, max_price):
+        """The method lets enter the value into the max Price search field textbox"""
+        return self.is_visible(locators.SEARCH_FIELDS_TEXTBOXES['MAX_PRICE']).send_keys(max_price)

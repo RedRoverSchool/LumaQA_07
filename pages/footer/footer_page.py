@@ -1,8 +1,5 @@
-from selenium.webdriver.remote.webelement import WebElement
-
 from base.seleniumbase import BasePage
 from locators.base_page_locators import BasePageLocators
-from selenium.webdriver.common.by import By
 
 
 class FooterPage(BasePage):

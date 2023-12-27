@@ -1,6 +1,7 @@
 from base.seleniumbase import BasePage
 from locators.advanced_search_results_locators import AdvancedSearchResultsLocators as locator
 from locators.advanced_search_locators import AdvancedSearchLocators
+from selenium.webdriver.support.ui import Select
 
 
 class AdvancedSearchResultsPage(BasePage):
@@ -25,3 +26,13 @@ class AdvancedSearchResultsPage(BasePage):
 
     def size_buttons_clickable(self):
         return self.are_elements_clickable(locator.LIST_OF_SIZES)
+
+    def select_items_quantity_per_page_is_24(self):
+        """The method selects items quantity per page equal 24"""
+        items_quantity_per_page = self.is_visible(locator.ITEMS_PER_PAGE_DROPDOWN)
+        dropdown = Select(items_quantity_per_page)
+        dropdown.select_by_visible_text("24")
+
+    def get_items_on_the_page_quantity(self):
+        """The method gets the items on the page quantity"""
+        return len(self.are_elements_visible(locator.ITEMS))
