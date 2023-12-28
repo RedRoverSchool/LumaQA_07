@@ -6,6 +6,7 @@ from pages.footer.footer_page import FooterPage
 from data.footer_data import FOOTER_LINKS_TEXTS, EXPECTED_FIRST_FOOTER_LINKS_BLOCK_TEXTS, \
     EXPECTED_SECOND_FOOTER_LINKS_BLOCK_TEXTS
 from data.test_urls_list import TEST_ADVANCED_SEARCH_URLS_LIST
+from data.advanced_search_data import ADVANCED_SEARCH_PAGE_TITLE
 
 
 @pytest.fixture(scope="function")
@@ -63,8 +64,10 @@ class TestFooterPage:
         page = FooterPage(driver, starting_url)
         page.open()
         page.click_advanced_search_link()
+        actual_title = page.get_page_title()
 
-        assert page.get_page_title() == "Advanced Search", f"{starting_url} page navigates to a page with another title"
+        assert actual_title == ADVANCED_SEARCH_PAGE_TITLE, f"Expected the title '{ADVANCED_SEARCH_PAGE_TITLE}'" \
+                                                           f"for '{starting_url}' but got '{actual_title}'"
 
     @allure.title("TC_012.010.001 | Footer > Self > Set of links > Verify first footer block contains 4 links")
     def test_first_footer_block_contains_four_links(self, driver):
