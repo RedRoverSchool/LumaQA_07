@@ -95,3 +95,10 @@ class TestAdvancedSearch:
         page.open()
 
         assert page.are_six_search_fields_visible(), "6 search fields are not visible"
+
+    def test_enable_color_buttons(self, driver):
+        page = AdvancedSearchResultsPage(driver, ADVANCED_SEARCH_URL)
+        page.open()
+        page.enter_product_name('top')
+        page.click_search()
+        assert page.color_buttons_clickable, 'Color options are not clickable'

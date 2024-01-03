@@ -36,3 +36,7 @@ class AdvancedSearchResultsPage(BasePage):
     def get_items_on_the_page_quantity(self):
         """The method gets the items on the page quantity"""
         return len(self.are_elements_visible(locator.ITEMS))
+
+
+    def color_buttons_clickable(self):
+        return self.are_elements_clickable(locator.LIST_OF_COLORS)

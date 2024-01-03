@@ -9,3 +9,4 @@ class AdvancedSearchResultsLocators:
     LIST_OF_SIZES = (By.CSS_SELECTOR, '.swatch-option.text')
     ITEMS_PER_PAGE_DROPDOWN = (By.XPATH, "(//select[@id='limiter'])[2]")
     ITEMS = (By.CSS_SELECTOR, ".product-item")
+    LIST_OF_COLORS = (By.CSS_SELECTOR, '.swatch-option.color')
