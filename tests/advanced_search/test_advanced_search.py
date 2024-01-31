@@ -112,6 +112,7 @@ class TestAdvancedSearch:
         assert advanced_search_page.is_visible(locators.MODIFY_YOUR_SEARCH), 'modify your search is not visible'
         assert advanced_search_page.clickable(locators.MODIFY_YOUR_SEARCH), 'modify your search is not clickable'
 
+
     def test_items_are_modifiable_by_size_and_color(self, driver):
         page = AdvancedSearchResultsPage(driver, ADVANCED_SEARCH_URL)
         page.open()
