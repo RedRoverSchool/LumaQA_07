@@ -102,3 +102,22 @@ class TestAdvancedSearch:
         page.enter_product_name('top')
         page.click_search()
         assert page.color_buttons_clickable, 'Color options are not clickable'
+
+    @pytest.mark.parametrize('query', CLOTHES_LIST)
+    def test_modify_your_search(self, driver, query):
+        advanced_search_page = AdvancedSearchFormPage(driver, ADVANCED_SEARCH_URL)
+        advanced_search_page.open()
+        advanced_search_page.enter_product_name(query)
+        advanced_search_page.click_search()
+        assert advanced_search_page.is_visible(locators.MODIFY_YOUR_SEARCH), 'modify your search is not visible'
+        assert advanced_search_page.clickable(locators.MODIFY_YOUR_SEARCH), 'modify your search is not clickable'
+
+    def test_items_are_modifiable_by_size_and_color(self, driver):
+        page = AdvancedSearchResultsPage(driver, ADVANCED_SEARCH_URL)
+        page.open()
+        page.enter_product_name('top')
+        page.click_search()
+        assert page.size_buttons_clickable() and page.color_buttons_clickable(), 'Size and color options are not clickable'
+
+
+
